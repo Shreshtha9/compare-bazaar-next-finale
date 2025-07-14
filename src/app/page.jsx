@@ -237,7 +237,7 @@ const logosPerScreen = getLogosPerScreen(width);
   {
     name: "Best Email Marketing Services",
     icon: <Mail />,
-    link: "/EmailMarketing",
+    link: "/Marketing/Best-email-marketing-services",
     image: "/images/emailsystem.png",
   },
   {
@@ -249,7 +249,7 @@ const logosPerScreen = getLogosPerScreen(width);
   {
     name: "Business Phone Systems",
     icon: <Phone />,
-    link: "/phone-systems",
+    link: "/Technology-main/Business-phone-systems",
     image: "/images/BPS.webp",
   },
   {

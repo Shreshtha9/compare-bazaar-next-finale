@@ -30,7 +30,7 @@ const FAQ = ({ faqsData }) => {
   };
 
   return (
-     <section id="crm-faqs" className="mt-8 max-w-7xl mx-auto">
+     <section id="faqs" className="mt-8 max-w-7xl mx-auto">
                 <div className="max-w-none">
                   {/* Main Heading */}
                   <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-8 sm:mb-10 md:mb-12 lg:mb-16">

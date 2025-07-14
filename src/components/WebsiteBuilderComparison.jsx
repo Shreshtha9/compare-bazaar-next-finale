@@ -1121,7 +1121,7 @@ const WebsiteBuilderComparison = () => {
       active: false,
     },
     {
-      id: "crm-faqs",
+      id: "faqs",
       title: "Frequently Asked Questions (FAQ)",
       active: false,
     },
