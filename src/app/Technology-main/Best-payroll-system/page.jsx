@@ -1084,7 +1084,7 @@ const BestPayrollSystem = () => {
       />
     </div>
     <div id="payroll-faq" className="">
-        <FAQ faqs={ payrollFAQs} />
+        <FAQ faqsData={ payrollFAQs} />
     </div>
     
     <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>

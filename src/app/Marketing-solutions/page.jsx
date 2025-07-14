@@ -549,7 +549,7 @@ const Marketing = () => {
         buttonColor="bg-[#ff8633]" 
       />
 
-    <FAQ faqs={ marketingFAQs} />
+    <FAQ faqsData={ marketingFAQs} />
 
     </>
   );
