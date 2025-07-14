@@ -1740,7 +1740,7 @@ const ProjectManagementContent = () => {
 
       {/* faq */}
       <div id="project-faq" className="">
-        <FAQ faqs={ projectManagementFAQs} />
+        <FAQ faqsData={ projectManagementFAQs} />
       </div>
 
       {/* feedback */}

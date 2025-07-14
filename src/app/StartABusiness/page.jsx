@@ -620,7 +620,7 @@ const phoneFAQs = [
 
 
     <div id="phoneFAQs" className="">
-        <FAQ faqs={phoneFAQs} />
+        <FAQ faqsData={phoneFAQs} />
       </div>
 
     </>

@@ -510,7 +510,7 @@ export default function HumanResource() {
             </div>
           </div>
         </section>
-    <FAQ faqs={humanresourcesFAQs} />
+    <FAQ faqsData={humanresourcesFAQs} />
 
     </>
   );

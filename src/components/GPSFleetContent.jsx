@@ -1767,7 +1767,7 @@ It's evolved from simple tracking to a complete management tool that works aroun
 
       {/* faq */}
       <div id="gpsfleet-faq" className="">
-        <FAQ faqs={ gpsFleetFAQs} />
+        <FAQ faqsData={ gpsFleetFAQs} />
       </div>
     </>
   );

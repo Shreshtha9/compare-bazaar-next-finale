@@ -1666,7 +1666,7 @@ const articles = [
 
       {/* faq */}
       <div id="email-faq" className="">
-        <FAQ faqs={ emailFAQs} />
+        <FAQ faqsData={ emailFAQs} />
       </div>
     </>
   );

@@ -2249,7 +2249,7 @@ useEffect(() => {
       </div>
 
       <div id="phoneFAQs" className="">
-        <FAQ faqs={phoneFAQs} />
+        <FAQ faqsData={phoneFAQs} />
       </div>
 <ShopComponent/>
 {/* <Feedback 

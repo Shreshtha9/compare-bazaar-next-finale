@@ -2053,7 +2053,7 @@ const CallCenterContent = () => {
 
       {/* faq */}
       <div id="employee-faq" className="">
-        <FAQ faqs={ callCenterFAQs} />
+        <FAQ faqsData={ callCenterFAQs} />
       </div>
 
       {/* feedback */}

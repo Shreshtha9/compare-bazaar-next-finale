@@ -777,7 +777,7 @@ const Technology = () => {
         buttonColor="bg-[#ff8633]" 
       />
 
-    <FAQ faqs={technologyFAQs} />
+    <FAQ faqsData={technologyFAQs} />
     </>
   );
 };

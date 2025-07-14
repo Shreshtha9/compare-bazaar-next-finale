@@ -1677,7 +1677,7 @@ const EmployeeSection = () => {
 
       {/* faq */}
       <div id="employee-faq" className="">
-        <FAQ faqs={ employeeFAQs} />
+        <FAQ faqsData={ employeeFAQs} />
       </div>
 
       {/* feedback */}
