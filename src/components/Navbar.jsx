@@ -309,9 +309,9 @@ const Navbar = () => {
                   <div className="mobile-dropdown-category">
                     <ul className="category-items">
                       <li><a href="/Technology-main/Business-phone-systems" className="category-item-link">Business Phone System</a></li>
-                      <li><a href="/" className="category-item-link">GPS Fleet Management Software</a></li>
-                      <li><a href="/" className="category-item-link">Best Employee Management Software</a></li>
-                      <li><a href="/" className="category-item-link">Best Payroll System</a></li>
+                      <li><a href="/Technology-main/Business-phone-systems" className="category-item-link">GPS Fleet Management Software</a></li>
+                      <li><a href="/Technology-main/Business-phone-systems" className="category-item-link">Best Employee Management Software</a></li>
+                      <li><a href="/Technology-main/Business-phone-systems" className="category-item-link">Best Payroll System</a></li>
                     </ul>
                   </div>
                 </div>
@@ -336,8 +336,8 @@ const Navbar = () => {
                   <div className="mobile-dropdown-category">
                     <ul className="category-items">
                       <li><a href="/Sales/Best-crm-software" className="category-item-link">Best CRM Software</a></li>
-                      <li><a href="/" className="category-item-link">Best Call Center Management Software</a></li>
-                      <li><a href="/" className="category-item-link">Best Project Management Software</a></li>
+                      <li><a href="/Technology-main/Business-phone-systems" className="category-item-link">Best Call Center Management Software</a></li>
+                      <li><a href="/Technology-main/Business-phone-systems" className="category-item-link">Best Project Management Software</a></li>
                     </ul>
                   </div>
                 </div>
