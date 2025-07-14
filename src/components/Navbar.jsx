@@ -309,9 +309,9 @@ const Navbar = () => {
                   <div className="mobile-dropdown-category">
                     <ul className="category-items">
                       <li><a href="/Technology-main/Business-phone-systems" className="category-item-link">Business Phone System</a></li>
-                      <li><a href="/Technology-main/Gps-fleet-management-software" className="category-item-link">GPS Fleet Management Software</a></li>
-                      <li><a href="/Technology-main/Best-employee-management-software" className="category-item-link">Best Employee Management Software</a></li>
-                      <li><a href="/Technology-main/Best-payroll-system" className="category-item-link">Best Payroll System</a></li>
+                      <li><a href="/" className="category-item-link">GPS Fleet Management Software</a></li>
+                      <li><a href="/" className="category-item-link">Best Employee Management Software</a></li>
+                      <li><a href="/" className="category-item-link">Best Payroll System</a></li>
                     </ul>
                   </div>
                 </div>
@@ -336,8 +336,8 @@ const Navbar = () => {
                   <div className="mobile-dropdown-category">
                     <ul className="category-items">
                       <li><a href="/Sales/Best-crm-software" className="category-item-link">Best CRM Software</a></li>
-                      <li><a href="/Sales/Best-call-center-management-software" className="category-item-link">Best Call Center Management Software</a></li>
-                      <li><a href="/Sales/Best-project-management-software" className="category-item-link">Best Project Management Software</a></li>
+                      <li><a href="/" className="category-item-link">Best Call Center Management Software</a></li>
+                      <li><a href="/" className="category-item-link">Best Project Management Software</a></li>
                     </ul>
                   </div>
                 </div>
@@ -361,7 +361,7 @@ const Navbar = () => {
                 <div className="mobile-dropdown-content">
                   <div className="mobile-dropdown-category">
                     <ul className="category-items">
-                      <li><a href="/Resources/Whitepaper" className="category-item-link">WhitePaper</a></li>
+                      <li><a href="/" className="category-item-link">WhitePaper</a></li>
                       <li><a href="https://blogs.compare-bazaar.com/" className="category-item-link">Blogs</a></li>
                     </ul>
                   </div>

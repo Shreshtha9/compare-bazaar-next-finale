@@ -19,9 +19,9 @@ const Dropdown = ({ activeDropdown, isMobile, setActiveDropdown, activeNavItem }
       title: "Technology",
       items: [
         { name: "Business Phone Systems", link: "/Technology-main/Business-phone-systems" },
-        { name: "GPS Fleet Management Software", link: "/Technology-main/Gps-fleet-management-software" },
-        { name: "Best Employee Management Software", link: "/Technology-main/Best-employee-management-software" },
-        { name: "Best Payroll System", link: "/Technology-main/Best-payroll-system" }
+        { name: "GPS Fleet Management Software", link: "/" },
+        { name: "Best Employee Management Software", link: "/" },
+        { name: "Best Payroll System", link: "/" }
       ]
     },
     
@@ -30,8 +30,8 @@ const Dropdown = ({ activeDropdown, isMobile, setActiveDropdown, activeNavItem }
       title: "Sales",
       items: [
         { name: "Best CRM Software", link: "/Sales/Best-crm-software" },
-        { name: "Best Call Center Management Software", link: "/Sales/Best-call-center-management-software" },
-        { name: "Best Project Management Software", link: "/Sales/Best-project-management-software" }
+        { name: "Best Call Center Management Software", link: "/" },
+        { name: "Best Project Management Software", link: "/" }
       ]
     },
     {
