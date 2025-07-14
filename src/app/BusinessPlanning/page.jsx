@@ -821,7 +821,7 @@ const BusinessPlanning = () => {
 
 
 
-    <FAQ faqs={businessplanningFAQs} />
+<FAQ faqsData={businessplanningFAQs} />
     </>
   );
 };
