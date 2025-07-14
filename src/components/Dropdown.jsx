@@ -38,17 +38,17 @@ const Dropdown = ({ activeDropdown, isMobile, setActiveDropdown, activeNavItem }
       id: 'blog',
       title: "Resources",
       items: [
-        { name: "WhitePaper", link: "/Resources/Whitepaper" },
-        { name: "Blogs", link: "/Resources/Blogs" }
+        { name: "WhitePaper", link: "#" },
+        { name: "Blogs", link: "#" }
       ]
     },
     {
       id: 'contact',
       title: "Contact Us",
       items: [
-        { name: "Contact", link: "/Contact-us/Contact" },
-        { name: "About us", link: "/Contact-us/About-us" },
-        { name: "Careers", link: "/Contact-us/Careers" }
+        { name: "Contact", link: "#" },
+        { name: "About us", link: "#" },
+        { name: "Careers", link: "#" }
       ]
     }
   ];

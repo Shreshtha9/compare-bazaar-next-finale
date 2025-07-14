@@ -361,7 +361,7 @@ const Navbar = () => {
                 <div className="mobile-dropdown-content">
                   <div className="mobile-dropdown-category">
                     <ul className="category-items">
-                      <li><a href="/" className="category-item-link">WhitePaper</a></li>
+                      <li><a href="#" className="category-item-link">WhitePaper</a></li>
                       <li><a href="https://blogs.compare-bazaar.com/" className="category-item-link">Blogs</a></li>
                     </ul>
                   </div>
@@ -386,9 +386,9 @@ const Navbar = () => {
                 <div className="mobile-dropdown-content">
                   <div className="mobile-dropdown-category">
                     <ul className="category-items">
-                      <li><a href="/Contact-us/Contact" className="category-item-link">Contact</a></li>
-                      <li><a href="/Contact-us/About-us" className="category-item-link">About</a></li>
-                      <li><a href="/Contact-us/Careers" className="category-item-link">Career</a></li>
+                      <li><a href="#" className="category-item-link">Contact</a></li>
+                      <li><a href="#" className="category-item-link">About</a></li>
+                      <li><a href="#" className="category-item-link">Career</a></li>
                     </ul>
                   </div>
                 </div>

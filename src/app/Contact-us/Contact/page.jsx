@@ -398,7 +398,7 @@ const ContactPage = () => {
                 </div>
             </div>
    
-            <FAQ faqs={contactFAQs}/>
+            <FAQ faqsData={contactFAQs}/>
         </>
     );
 };
