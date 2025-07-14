@@ -610,149 +610,7 @@ const PhoneSystemsPage = () => {
     },
   },
    },
-   EightByEight: {
-  title: "8x8 – Best for Global Business Phone and Video Communication",
-  logo: "/images/8x8.png",
-  button: {
-    text: "Visit Website",
-    link: "#",
-  },
-  scores: [
-    { label: "Overall Score", score: "4.3/5" },
-    { label: "Pricing", score: "4.2/5" },
-    { label: "General features and Interface", score: "4.4/5" },
-    { label: "Core features", score: "4.5/5" },
-    { label: "Advanced features", score: "4.0/5" },
-    { label: "Integration and compatibility", score: "4.3/5" },
-    { label: "UX", score: "4.5/5" },
-  ],
-  pros: [
-    "Unlimited global calling in over 40 countries",
-    "All-in-one voice, video, chat, and contact center",
-    "Advanced call analytics and dashboards",
-    "Strong security and compliance standards (HIPAA, GDPR)",
-    "Affordable international communication",
-  ],
-  cons: [
-    "Interface can be overwhelming at first",
-    "Some features locked behind higher-tier plans",
-    "Limited third-party integrations compared to competitors",
-  ],
-  why: {
-    intro: `8x8 is ideal for businesses with international clients or distributed teams that need reliable voice and video calling across borders. With unlimited global calling to 40+ countries, robust security, and integrated contact center solutions, 8x8 is one of the most well-rounded UCaaS options available today.`,
-    bullets: [
-      "8x8’s all-in-one platform includes cloud-based phone systems, video conferencing, team messaging, and even contact center capabilities—offering unmatched value for global businesses.",
-      "Its advanced call routing, auto-attendant, and analytics features provide detailed insight into customer communications and agent productivity.",
-      "8x8 is a strong fit for regulated industries like healthcare and finance, with full HIPAA, GDPR, and ISO/IEC compliance.",
-    ],
-    outro: `While 8x8 may have a steeper learning curve than some entry-level tools, its extensive global features and reliability make it a smart investment for growing businesses that prioritize international reach, security, and flexibility.`,
-    extras: {
-      "About": (
-        <>
-          <p className="text-black mb-4">
-            8x8 is a cloud communications and contact center provider offering
-            secure, unified voice, video, chat, and contact center solutions for
-            businesses of all sizes. Trusted by global enterprises, 8x8 ensures
-            seamless internal collaboration and external customer service.
-          </p>
-          <p className="text-black mb-4">
-            The 8x8 eXperience Communications Platform™ brings together voice,
-            video meetings, messaging, and contact center services under a single
-            user interface, making it easier for teams to communicate across time
-            zones and channels.
-          </p>
-          <p className="text-black mb-4">
-            With a presence in 55+ countries and coverage in over 120, 8x8 is
-            particularly suitable for international business communications. Its
-            platform includes analytics dashboards and AI-assisted tools to
-            optimize both internal operations and customer support.
-          </p>
-        </>
-      ),
-      "Key Features": (
-        <>
-          <h4 className="text-lg font-bold mb-2">Unlimited Global Calling:</h4>
-          <p className="text-black mb-4">
-            Make and receive unlimited calls to 40+ countries, perfect for
-            distributed or international teams.
-          </p>
-
-          <h4 className="text-lg font-bold mb-2">8x8 Voice & Video:</h4>
-          <p className="text-black mb-4">
-            HD audio and video conferencing with calendar integrations, screen
-            sharing, and team collaboration tools.
-          </p>
-
-          <h4 className="text-lg font-bold mb-2">Team Messaging & Chat:</h4>
-          <p className="text-black mb-4">
-            Built-in messaging platform with file sharing, emojis, reactions, and
-            direct mentions to replace email for internal collaboration.
-          </p>
-
-          <h4 className="text-lg font-bold mb-2">Call Analytics & Quality Monitoring:</h4>
-          <p className="text-black mb-4">
-            Real-time dashboards and historical analytics to monitor usage, call
-            quality, and agent performance.
-          </p>
-
-          <h4 className="text-lg font-bold mb-2">Security & Compliance:</h4>
-          <p className="text-black">
-            Full compliance with HIPAA, GDPR, and ISO certifications makes it
-            suitable for regulated industries.
-          </p>
-        </>
-      ),
-      Pricing: (
-        <>
-          <p className="text-black mb-4">
-            <a href="#">Free Trial</a> Available (7 days)
-          </p>
-
-          <h4 className="text-lg font-bold mb-2">Express Plan:</h4>
-          <p className="font-bold text-black mb-4">
-            Price: <span className="font-light">$15/user/month</span>
-          </p>
-          <h6 className="text-lg font-bold mb-2">Features:</h6>
-          <ul className="list-disc pl-5 text-black">
-            <li>Voice, video, and messaging</li>
-            <li>Mobile and desktop apps</li>
-            <li>Team chat and file sharing</li>
-            <li>Basic analytics and voicemail</li>
-          </ul>
-
-          <h4 className="text-lg font-bold mb-2">X2 Plan:</h4>
-          <p className="font-bold text-black mb-4">
-            Price: <span className="font-light">$28/user/month</span>
-          </p>
-          <h6 className="text-lg font-bold mb-2">Features:</h6>
-          <ul className="list-disc pl-5 text-black">
-            <li>Unlimited global calling (40+ countries)</li>
-            <li>Auto-attendant and call queues</li>
-            <li>Team messaging with integrations</li>
-            <li>Call handling and call recording</li>
-          </ul>
-
-          <h4 className="text-lg font-bold mb-2">X4 Plan:</h4>
-          <p className="font-bold text-black mb-4">
-            Price: <span className="font-light">$57/user/month</span>
-          </p>
-          <h6 className="text-lg font-bold mb-2">Features:</h6>
-          <ul className="list-disc pl-5 text-black">
-            <li>Everything in X2, plus:</li>
-            <li>Advanced call analytics and supervisor tools</li>
-            <li>Call quality monitoring and custom dashboards</li>
-            <li>CRM and Microsoft Teams integrations</li>
-          </ul>
-
-          <p className="text-black mt-4">
-            Visit the 8x8 Business Pricing page for more details and
-            enterprise-level options.
-          </p>
-        </>
-      ),
-    },
-  },
-   },
+  
    ZoomPhone: {
   title: "Zoom Phone – Best for Teams Already Using Zoom Meetings",
   logo: "/images/zoom.png",
@@ -892,240 +750,8 @@ const PhoneSystemsPage = () => {
     },
   },
    },
-   Grasshopper: {
-  title: "Grasshopper – Best for Solopreneurs & Small Teams",
-  logo: "/images/grasshopper.png",
-  button: {
-    text: "Visit Website",
-    link: "#",
-  },
-  scores: [
-    { label: "Overall Score", score: "4.0/5" },
-    { label: "Pricing", score: "4.2/5" },
-    { label: "General features and Interface", score: "4.0/5" },
-    { label: "Core features", score: "3.9/5" },
-    { label: "Advanced features", score: "3.5/5" },
-    { label: "Integration and compatibility", score: "3.6/5" },
-    { label: "UX", score: "4.3/5" },
-  ],
-  pros: [
-    "Perfect for small businesses and solo entrepreneurs",
-    "Simple interface, easy to set up and use",
-    "Includes voicemail transcription and call forwarding",
-    "No additional hardware required",
-  ],
-  cons: [
-    "Limited features for scaling or growing teams",
-    "No video or team collaboration tools",
-    "Lacks advanced analytics and reporting",
-  ],
-  why: {
-    intro: `Grasshopper is the go-to solution for solopreneurs, freelancers, and very small businesses who need a professional phone presence without a complex system.`,
-    bullets: [
-      "Its simplicity makes it accessible to users without tech expertise, and setup can be done within minutes.",
-      "It includes core VoIP features like voicemail, call forwarding, call handling, and business texting — without overwhelming users with unnecessary extras.",
-    ],
-    outro: `Grasshopper is best for those who want to present a professional image on a budget. It’s a powerful upgrade over using a personal phone number without taking on a full VoIP suite.`,
-    extras: {
-      "About ": (
-        <>
-          <p className="text-black mb-4">
-            Grasshopper is a virtual phone system designed for entrepreneurs and
-            small business owners. It works with your existing devices to create
-            a full-featured business line, separate from your personal number.
-          </p>
-          <p className="text-black">
-            Users can pick a local, toll-free, or vanity number, and manage
-            business calls, texts, and voicemails through a mobile or desktop
-            app. It's ideal for users who want a polished presence without the
-            need for large infrastructure or complicated integrations.
-          </p>
-        </>
-      ),
-      "Key Features": (
-        <>
-          <h4 className="text-lg font-bold mb-2">Business Phone Numbers:</h4>
-          <p className="text-black mb-4">
-            Choose a local, toll-free, or vanity number to enhance your
-            business image.
-          </p>
-          <h4 className="text-lg font-bold mb-2">Call Forwarding & Routing:</h4>
-          <p className="text-black mb-4">
-            Forward business calls to any phone and set custom greetings and
-            schedules.
-          </p>
-          <h4 className="text-lg font-bold mb-2">Voicemail Transcription:</h4>
-          <p className="text-black mb-4">
-            Automatically transcribes voicemails to read them easily in noisy
-            environments.
-          </p>
-          <h4 className="text-lg font-bold mb-2">Mobile & Desktop Apps:</h4>
-          <p className="text-black mb-4">
-            Access calls and messages from anywhere with dedicated apps.
-          </p>
-          <h4 className="text-lg font-bold mb-2">Business Texting:</h4>
-          <p className="text-black">
-            Send and receive business texts without exposing your personal
-            number.
-          </p>
-        </>
-      ),
-      Pricing: (
-        <>
-          <p className="text-black mb-4">
-            <a href="/">Free Trial</a> Available (7 days)
-          </p>
-          <h4 className="text-lg font-bold mb-2">Solo Plan:</h4>
-          <p className="font-bold text-black mb-4">
-            Price: <span className="font-light">$16/month</span>
-          </p>
-          <h6 className="text-lg font-bold mb-2">Includes:</h6>
-          <ul className="list-disc pl-5 text-black">
-            <li>1 number, 3 extensions</li>
-            <li>Mobile + desktop apps</li>
-            <li>Unlimited minutes/texts</li>
-          </ul>
-          <h4 className="text-lg font-bold mb-2">Partner Plan:</h4>
-          <p className="font-bold text-black mb-4">
-            Price: <span className="font-light">$29/month</span>
-          </p>
-          <ul className="list-disc pl-5 text-black">
-            <li>3 numbers, 6 extensions</li>
-            <li>Business texting</li>
-            <li>Call forwarding and voicemail transcription</li>
-          </ul>
-          <h4 className="text-lg font-bold mb-2">Small Business Plan:</h4>
-          <p className="font-bold text-black mb-4">
-            Price: <span className="font-light">$80/month</span>
-          </p>
-          <ul className="list-disc pl-5 text-black">
-            <li>5 numbers, unlimited extensions</li>
-            <li>Full access for small teams</li>
-            <li>Dedicated customer support</li>
-          </ul>
-        </>
-      ),
-    },
-  },
-},
-DialpadTalk: {
-  title: "Dialpad Talk – Best for AI-Powered Calling & Mobility",
-  logo: "/images/dialpad.png",
-  button: {
-    text: "Visit Website",
-    link: "#",
-  },
-  scores: [
-    { label: "Overall Score", score: "4.3/5" },
-    { label: "Pricing", score: "4.2/5" },
-    { label: "General features and Interface", score: "4.4/5" },
-    { label: "Core features", score: "4.5/5" },
-    { label: "Advanced features", score: "4.6/5" },
-    { label: "Integration and compatibility", score: "4.4/5" },
-    { label: "UX", score: "4.6/5" },
-  ],
-  pros: [
-    "Built-in AI-powered voice intelligence",
-    "Excellent mobile and desktop apps",
-    "Unified platform for calling, video, and messaging",
-    "Real-time transcription and call summaries",
-  ],
-  cons: [
-    "Learning curve for AI tools",
-    "Basic plan lacks CRM integrations",
-    "Limited international calling in base plan",
-  ],
-  why: {
-    intro: `Dialpad Talk is best for businesses that prioritize mobile-first communication and want to leverage AI tools for smarter calling and collaboration.`,
-    bullets: [
-      "It uses natural language processing (NLP) and AI to transcribe calls, track action items, and analyze sentiment in real time.",
-      "Designed for hybrid and remote teams, it allows seamless transition between mobile, desktop, and web — all with consistent functionality.",
-    ],
-    outro: `Dialpad Talk is perfect for modern, agile teams that are constantly on the move and rely on AI-powered productivity tools to stay efficient.`,
-    extras: {
-      "About ": (
-        <>
-          <p className="text-black mb-4">
-            Dialpad Talk is a cloud-based business phone system that integrates
-            voice, video, messaging, and AI intelligence into one sleek,
-            user-friendly platform.
-          </p>
-          <p className="text-black mb-4">
-            Its AI features go beyond transcription, offering coaching,
-            recommendations, and real-time feedback. Ideal for sales and support
-            teams, Dialpad supports deep integration with tools like Google
-            Workspace and Microsoft 365.
-          </p>
-          <p className="text-black">
-            Businesses looking for scalability, intelligent features, and strong
-            mobile capabilities find Dialpad an excellent fit.
-          </p>
-        </>
-      ),
-      "Key Features": (
-        <>
-          <h4 className="text-lg font-bold mb-2">Voice Intelligence:</h4>
-          <p className="text-black mb-4">
-            AI-powered transcription, call summaries, and sentiment tracking in
-            real-time.
-          </p>
-          <h4 className="text-lg font-bold mb-2">Seamless App Switching:</h4>
-          <p className="text-black mb-4">
-            Move between devices without dropping a call or losing context.
-          </p>
-          <h4 className="text-lg font-bold mb-2">Multi-level Auto Attendant:</h4>
-          <p className="text-black mb-4">
-            Route calls efficiently with flexible call routing and menus.
-          </p>
-          <h4 className="text-lg font-bold mb-2">Integrations:</h4>
-          <p className="text-black mb-4">
-            Connect with tools like Salesforce, Slack, Zendesk, and HubSpot for
-            contextual communication.
-          </p>
-          <h4 className="text-lg font-bold mb-2">Team Messaging:</h4>
-          <p className="text-black">
-            Built-in chat for teams, reducing need for external collaboration
-            tools.
-          </p>
-        </>
-      ),
-      Pricing: (
-        <>
-          <p className="text-black mb-4">
-            <a href="/">Free Trial</a> Available
-          </p>
-          <h4 className="text-lg font-bold mb-2">Standard Plan:</h4>
-          <p className="font-bold text-black mb-4">
-            Price: <span className="font-light">$23/user/month</span>
-          </p>
-          <ul className="list-disc pl-5 text-black">
-            <li>Unlimited calls within the US & Canada</li>
-            <li>AI-powered call transcription</li>
-            <li>Web + mobile apps</li>
-          </ul>
-          <h4 className="text-lg font-bold mb-2">Pro Plan:</h4>
-          <p className="font-bold text-black mb-4">
-            Price: <span className="font-light">$35/user/month</span>
-          </p>
-          <ul className="list-disc pl-5 text-black">
-            <li>CRM Integrations</li>
-            <li>24/7 support</li>
-            <li>Unlimited meetings with Dialpad Ai Meetings</li>
-          </ul>
-          <h4 className="text-lg font-bold mb-2">Enterprise Plan:</h4>
-          <p className="font-bold text-black mb-4">
-            Price: <span className="font-light">Custom pricing</span>
-          </p>
-          <ul className="list-disc pl-5 text-black">
-            <li>Dedicated account management</li>
-            <li>Advanced reporting and security</li>
-            <li>Custom onboarding</li>
-          </ul>
-        </>
-      ),
-    },
-  },
-},
+   
+ 
 
    };
  
@@ -1136,52 +762,52 @@ DialpadTalk: {
    }));
  
    const systems = [
-     {
-       name: "Zoho CRM",
-       logo: "/images/zoho.png",
-       bestFor: "Best for Growing Businesses",
-       price: "Starts at $14 per user per month",
-       videoCapacity: "Office 365 integration , Zoho Marketplace",
-       support: "24/7 customer support",
-       link: "#",
-     },
-     {
-       name: "Creatio",
-       logo: "/images/creatio.png",
-       bestFor: "Best for Customer Lifecycle Management",
-       price: "Starts at $25 per user per month",
-       videoCapacity: ",14-day free trial",
-       support: "24/7 customer support",
-       link: "#",
-     },
-     {
-       name: "Hub CRM",
-       logo: "/images/hub.png",
-       bestFor: "Best for Sales and Marketing Integrations",
-       price: "Starts at $9 per month per user",
-       videoCapacity: "Includes 1,000 marketing contacts",
-       support: "Email chat support included",
-       link: "#",
-     },
-     {
-       name: "HoneyBook",
-       logo: "/images/honey.png",
-       bestFor: "Best for All-In-One Option",
-       price: "Starts at $29 per user per month",
-       videoCapacity: "7-day free trial",
-       support: "24/7 phone and email support",
-       link: "#",
-     },
-     {
-       name: "Pipedrive",
-       logo: "/images/pipe.png",
-       bestFor: "Best for Automation and Management",
-       price: "Starts at $14 per user per month",
-       videoCapacity: "Free 14-day trial. ",
-       support: "24/7 online chat, premium for phone",
-       link: "#",
-     },
-   ];
+    {
+      name: "Ooma Office",
+      logo: "/images/ooma.png",
+      bestFor: "Best for Ease of Use",
+      price: "Starts at $19.95 per user/month",
+      videoCapacity: "No Contract Necessary",
+      support: "50+ Standard Features",
+      link: "https://www.ooma.com/?srsltid=AfmBOopMghJy72vEAYHkgK_7Ny9Js61zv5HdvxWmPXpeW3AhzGg_Q0cz",
+    },
+    {
+      name: "RingEX",
+      logo: "/images/ringcentral.png",
+      bestFor: "Best for Ease of Use",
+      price: "Starts at $20/user/month paid annually",
+      videoCapacity: "HD video meetings (100 participants)",
+      support: "24/7 customer support",
+      link: "#",
+    },
+    {
+      name: "Zoom",
+      logo: "/images/zoom.png",
+      bestFor: "Video Conferencing",
+      price: "Starts at $10 monthly per user/month",
+      videoCapacity: "International Calling Metered",
+      support: "24/7 customer support",
+      link: "#",
+    },
+    {
+      name: "NextivoONE",
+      logo: "/images/nextiva.png",
+      bestFor: "Best for Support",
+      price: "Starts at $30 per user/month",
+      videoCapacity: "Social media channels",
+      support: "24/7 customer support",
+      link: "#",
+    },
+    {
+      name: "Vonage",
+      logo: "/images/vonage.png",
+      bestFor: "Best for Support",
+      price: "Starts at $13.99 per user/month",
+      videoCapacity: "Unlimited domestic calling",
+      support: "Supports desktop and mobile apps",
+      link: "#",
+    },
+  ];
    const crmTestimonials = [
      {
        avatar: "M",
@@ -1367,22 +993,7 @@ DialpadTalk: {
     freeTrial: true,
     freeVersion: false,
   },
-  {
-    id: 5,
-    name: "8x8 X Series",
-    image: "/images/image.png",
-    alt: "8x8 X Series",
-    expertScore: 4.2,
-    bestFor: "Best for contact centers",
-    visitUrl: "8x8",
-    keyFeatures: [
-      "Omnichannel support",
-      "AI-powered call insights",
-      "Global call routing"
-    ],
-    freeTrial: true,
-    freeVersion: false,
-  },
+  
   {
     id: 6,
     name: "Zoom Phone",
@@ -1399,38 +1010,7 @@ DialpadTalk: {
     freeTrial: true,
     freeVersion: false,
   },
-  {
-    id: 7,
-    name: "Grasshopper",
-    image: "/images/grasshopper.png",
-    alt: "Grasshopper",
-    expertScore: 4.0,
-    bestFor: "Best for entrepreneurs",
-    visitUrl: "grasshopper",
-    keyFeatures: [
-      "Virtual phone numbers",
-      "Call forwarding & extensions",
-      "Voicemail transcription"
-    ],
-    freeTrial: true,
-    freeVersion: false,
-  },
-  {
-    id: 8,
-    name: "Dialpad Talk",
-    image: "/images/dialpad.png",
-    alt: "Dialpad Talk",
-    expertScore: 4.1,
-    bestFor: "Best for AI-powered calling",
-    visitUrl: "dialpad",
-    keyFeatures: [
-      "Real-time transcription",
-      "AI call summaries",
-      "Google Workspace integration"
-    ],
-    freeTrial: true,
-    freeVersion: false,
-  },
+ 
 
 
    ];
@@ -1709,29 +1289,30 @@ DialpadTalk: {
 
     {/* Grasshopper */}
     <div className="flex items-start space-x-3">
-      <div className="w-5 h-5 rounded-full bg-orange-100 flex items-center justify-center mt-0.5">
-        <svg
-          className="w-3 h-3 text-orange-600"
-          fill="currentColor"
-          viewBox="0 0 20 20"
-        >
-          <path
-            fillRule="evenodd"
-            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-            clipRule="evenodd"
-          />
-        </svg>
-      </div>
-      <p className="text-gray-700">
-        <a
-          href="#"
-          className="text-orange-600 hover:text-orange-700 font-medium underline"
-        >
-          Grasshopper:
-        </a>{" "}
-        Best for small businesses and startups
-      </p>
-    </div>
+  <div className="w-5 h-5 rounded-full bg-orange-100 flex items-center justify-center mt-0.5">
+    <svg
+      className="w-3 h-3 text-orange-600"
+      fill="currentColor"
+      viewBox="0 0 20 20"
+    >
+      <path
+        fillRule="evenodd"
+        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+        clipRule="evenodd"
+      />
+    </svg>
+  </div>
+  <p className="text-gray-700">
+    <a
+      href="#"
+      className="text-orange-600 hover:text-orange-700 font-medium underline"
+    >
+      Vonage:
+    </a>{" "}
+    Best for scalability and global communication
+  </p>
+</div>
+
 
     {/* Ooma Office */}
     <div className="flex items-start space-x-3">
@@ -1761,29 +1342,30 @@ DialpadTalk: {
 
     {/* 8x8 */}
     <div className="flex items-start space-x-3">
-      <div className="w-5 h-5 rounded-full bg-orange-100 flex items-center justify-center mt-0.5">
-        <svg
-          className="w-3 h-3 text-orange-600"
-          fill="currentColor"
-          viewBox="0 0 20 20"
-        >
-          <path
-            fillRule="evenodd"
-            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-            clipRule="evenodd"
-          />
-        </svg>
-      </div>
-      <p className="text-gray-700">
-        <a
-          href="#"
-          className="text-orange-600 hover:text-orange-700 font-medium underline"
-        >
-          8x8:
-        </a>{" "}
-        Best for global communications and analytics
-      </p>
-    </div>
+  <div className="w-5 h-5 rounded-full bg-orange-100 flex items-center justify-center mt-0.5">
+    <svg
+      className="w-3 h-3 text-orange-600"
+      fill="currentColor"
+      viewBox="0 0 20 20"
+    >
+      <path
+        fillRule="evenodd"
+        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+        clipRule="evenodd"
+      />
+    </svg>
+  </div>
+  <p className="text-gray-700">
+    <a
+      href="#"
+      className="text-orange-600 hover:text-orange-700 font-medium underline"
+    >
+      Zoom:
+    </a>{" "}
+    Best for video conferencing and hybrid collaboration
+  </p>
+</div>
+
   </div>
 </div>
 
@@ -1887,46 +1469,47 @@ DialpadTalk: {
   </div>
 
   {/* Grasshopper */}
-  <div className="bg-gray-50 rounded-lg p-6 mb-6">
-    <div className="flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0">
-      <div className="flex items-center space-x-4">
-        <div className="w-16 h-16 flex-shrink-0">
-          <Image
-            src="/images/grasshopper.png"
-            alt="Grasshopper Logo"
-            width={64}
-            height={64}
-            className="w-full h-full object-contain"
-          />
-        </div>
-        <div className="text-xl font-bold text-gray-900">
-          Grasshopper
-          <br />
-          <span className="text-lg">Virtual Phone System</span>
-        </div>
+   <div className="bg-gray-50 rounded-lg p-6 mb-6">
+  <div className="flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0">
+    <div className="flex items-center space-x-4">
+      <div className="w-16 h-16 flex-shrink-0">
+        <Image
+          src="/images/zoom.png" // Make sure you have this image in your public/images folder
+          alt="Zoom Logo"
+          width={64}
+          height={64}
+          className="w-full h-full object-contain"
+        />
       </div>
-      <div className="w-full sm:w-auto">
-        <button className="w-full sm:w-auto bg-orange-600 hover:bg-orange-700 text-white font-medium py-3 px-8 rounded-lg transition-colors duration-200 flex items-center justify-center space-x-2">
-          <span>Visit Website</span>
-          <ExternalLink className="w-4 h-4" />
-        </button>
+      <div className="text-xl font-bold text-gray-900">
+        Zoom
+        <br />
+        <span className="text-lg">Video Conferencing Platform</span>
       </div>
     </div>
-    <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
-      <div>
-        <div className="text-gray-600 mb-1">Good For</div>
-        <div className="font-medium text-gray-900">Freelancers & Small Teams</div>
-      </div>
-      <div>
-        <div className="text-gray-600 mb-1">Core Features</div>
-        <div className="font-medium text-gray-900">Call Forwarding, Mobile App, Voicemail</div>
-      </div>
-      <div>
-        <div className="text-gray-600 mb-1">Integrations</div>
-        <div className="font-medium text-gray-900">Google Voice, Skype</div>
-      </div>
+    <div className="w-full sm:w-auto">
+      <button className="w-full sm:w-auto bg-orange-600 hover:bg-orange-700 text-white font-medium py-3 px-8 rounded-lg transition-colors duration-200 flex items-center justify-center space-x-2">
+        <span>Visit Website</span>
+        <ExternalLink className="w-4 h-4" />
+      </button>
     </div>
   </div>
+  <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+    <div>
+      <div className="text-gray-600 mb-1">Good For</div>
+      <div className="font-medium text-gray-900">Remote Teams & Webinars</div>
+    </div>
+    <div>
+      <div className="text-gray-600 mb-1">Core Features</div>
+      <div className="font-medium text-gray-900">HD Video, Screen Sharing, Breakout Rooms</div>
+    </div>
+    <div>
+      <div className="text-gray-600 mb-1">Integrations</div>
+      <div className="font-medium text-gray-900">Slack, Google Calendar, Microsoft Teams</div>
+    </div>
+  </div>
+</div>
+
 
   {/* Ooma Office */}
   <div className="bg-gray-50 rounded-lg p-6 mb-6">
@@ -1971,46 +1554,47 @@ DialpadTalk: {
   </div>
 
   {/* 8x8 */}
-  <div className="bg-gray-50 rounded-lg p-6">
-    <div className="flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0">
-      <div className="flex items-center space-x-4">
-        <div className="w-16 h-16 flex-shrink-0">
-          <Image
-            src="/images/8x8.png"
-            alt="8x8 Logo"
-            width={64}
-            height={64}
-            className="w-full h-full object-contain"
-          />
-        </div>
-        <div className="text-xl font-bold text-gray-900">
-          8x8
-          <br />
-          <span className="text-lg">Enterprise Phone System</span>
-        </div>
+ <div className="bg-gray-50 rounded-lg p-6">
+  <div className="flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0">
+    <div className="flex items-center space-x-4">
+      <div className="w-16 h-16 flex-shrink-0">
+        <Image
+          src="/images/vonage.png" // Ensure this image exists in your /public/images directory
+          alt="Vonage Logo"
+          width={64}
+          height={64}
+          className="w-full h-full object-contain"
+        />
       </div>
-      <div className="w-full sm:w-auto">
-        <button className="w-full sm:w-auto bg-orange-600 hover:bg-orange-700 text-white font-medium py-3 px-8 rounded-lg transition-colors duration-200 flex items-center justify-center space-x-2">
-          <span>Visit Website</span>
-          <ExternalLink className="w-4 h-4" />
-        </button>
+      <div className="text-xl font-bold text-gray-900">
+        Vonage
+        <br />
+        <span className="text-lg">Business Communications Platform</span>
       </div>
     </div>
-    <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
-      <div>
-        <div className="text-gray-600 mb-1">Good For</div>
-        <div className="font-medium text-gray-900">Global Communication & Analytics</div>
-      </div>
-      <div>
-        <div className="text-gray-600 mb-1">Core Features</div>
-        <div className="font-medium text-gray-900">Call Recording, Video Conferencing</div>
-      </div>
-      <div>
-        <div className="text-gray-600 mb-1">Integrations</div>
-        <div className="font-medium text-gray-900">Microsoft Teams, Zendesk, Salesforce</div>
-      </div>
+    <div className="w-full sm:w-auto">
+      <button className="w-full sm:w-auto bg-orange-600 hover:bg-orange-700 text-white font-medium py-3 px-8 rounded-lg transition-colors duration-200 flex items-center justify-center space-x-2">
+        <span>Visit Website</span>
+        <ExternalLink className="w-4 h-4" />
+      </button>
     </div>
   </div>
+  <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+    <div>
+      <div className="text-gray-600 mb-1">Good For</div>
+      <div className="font-medium text-gray-900">Scalable VoIP & Unified Communications</div>
+    </div>
+    <div>
+      <div className="text-gray-600 mb-1">Core Features</div>
+      <div className="font-medium text-gray-900">Voice, Video, Messaging, APIs</div>
+    </div>
+    <div>
+      <div className="text-gray-600 mb-1">Integrations</div>
+      <div className="font-medium text-gray-900">Microsoft Teams, Salesforce, HubSpot</div>
+    </div>
+  </div>
+</div>
+
 </div>
 
 
