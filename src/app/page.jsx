@@ -255,7 +255,7 @@ const logosPerScreen = getLogosPerScreen(width);
   {
     name: "GPS Fleet Management Software",
     icon: <MapPin />,
-    link: "/GpsFleetMangement",
+    link: "/Technology-main/Gps-fleet-management-software",
     image: "/images/gps-system.webp",
   },
   {

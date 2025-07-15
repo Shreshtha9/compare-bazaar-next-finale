@@ -6,7 +6,7 @@ import PhoneSystemCardCommon from '../../../components/PhoneSystemCardCommon';
 import GPSFleetForm from '../../../components/GPSFleetForm';
 import Modal from '../../../components/Modal';
 import GPSFleetContent from '../../../components/GPSFleetContent';
-import TableOfContents from '../../../components/TableOfContents';
+
 import Link from 'next/link';
 import Head from 'next/head';
 const GpsFleetManagementSoftware = () => {
@@ -95,20 +95,7 @@ const [isModalOpen, setIsModalOpen] = useState(false);
     button.appendChild(ripple);
     setTimeout(() => ripple.remove(), 600);
   };
-  const contents = [
-    { id: 1, title: "Introduction to GPS Fleet", slug: "intro-gps" },
-    { id: 2, title: "What Is GPS Fleet Tracking?", slug: "what-is-gpstracking" },
-    { id: 3, title: "How Does GPS Fleet Tracking Works", slug: "gpstracking-working" },
-    { id: 4, title: "Benefits of GPS Fleet Tracking", slug: "gpstracking-benefits" },
-    { id: 5, title: "Key Features For GPS Fleet Management System", slug: "gpstracking-features" },
-    { id: 6, title: "How to Choose a Fleet Tracking Service?", slug: "gpstracking-howchoose" },
-    { id: 7, title: "Methodology", slug: "gps-methodology" },
-    { id: 8, title: "What Are Some Alternative Fleet Tracking Options?", slug: "gps-alternative" },
-    { id: 9, title: "Related Articles", slug: "gpsfleet-articles" },
-    { id: 10, title: "FAQs", slug: "gpsfleet-faq" } ,
-    
-    
-];
+
  
 const additionalText = " The modern fleet management landscape has evolved significantly, with real-time GPS tracking replacing traditional manual logging in many organizations. Today's fleet management systems offer advanced features like AI-powered route optimization, driver behavior analytics, fuel consumption monitoring, and comprehensive maintenance scheduling. These tools help businesses reduce operational costs, improve safety, and streamline their logistics processes. When evaluating different providers, it's important to consider factors such as scalability, real-time accuracy, integration capabilities, and total cost of ownership. Many systems now include unified platform capabilities, bringing together tracking, diagnostics, compliance tools, and analytics in a single dashboard.";
 
@@ -161,7 +148,7 @@ return (
         </div>
       </div>
 
-      <TableOfContents contents={contents}/>
+     
       <GPSFleetContent/>
       
       {/* <Feedback 
