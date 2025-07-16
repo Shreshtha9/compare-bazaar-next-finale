@@ -1,200 +1,329 @@
-"use client";
+ "use client";
 
-import React, { useState, useEffect, useRef } from 'react';
-import PhoneSystemCardCommon from '../../../components/PhoneSystemCardCommon';
-import TableOfContents from '../../../components/TableOfContents';
-import FAQ from '../../../components/FAQ';
-import Article from '../../../components/ArticleLayoutCommon';
-import PayrollForm from '../../../components/PayrollForm';
-import Modal from '../../../components/Modal';
-import Link from 'next/link';
-import Head from 'next/head';
+ import React, { useState, useEffect } from "react";
+import PhoneSystemCardCommon from "../../../components/PhoneSystemCardCommon";
+import Advice from "../../../components/Advice ";
+import Modal from "../../../components/Modal";
+import CRMForm from "../../../components/CRMForm";
+import Article from "../../../components/ArticleLayoutCommon";
+import Head from "next/head";
+// import Feedback from './Feedback';
+import {
+  Home,
+  CheckCircle2,
+  Calendar,
+  ChevronDown,
+  ChevronUp,
+  Plus,
+  Minus,
+  ExternalLink,
+  Search,
+  Filter,
+  Star,
+  Users,
+  DollarSign,
+  Clock,
+  Check,
+  X,
+} from "lucide-react";
+import Link from "next/link";
+import Image from "next/image";
+import TableOfContents from "../../../components/TableOfContents";
+import FAQ from "../../../components/FAQ";
 
 const BestPayrollSystem = () => {
-  const [showMore, setShowMore] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-   const [widgetLoaded, setWidgetLoaded] = useState(false);
-    const widgetRef = useRef(null);
-  
-    useEffect(() => {
-      if (document.querySelector('script[src*="bzWidget.min.js"]')) return;
-    
-      const script1 = document.createElement('script');
-      script1.src = "https://cdn.buyerzone.com/apps/widget/bzWidget.min.js";
-      script1.async = true;
-      script1.setAttribute('data-bzwidget', '');
-      script1.setAttribute('data-bzwidget-pub-id', '59578');
-      script1.setAttribute('data-bzwidget-color-palette-name', 'default');
-      script1.setAttribute('data-bzwidget-category-id', '10113');
-    
-      const container = document.getElementById('buyerzone-widget-container');
-      if (container) {
-        container.appendChild(script1);
-        
-        script1.onload = () => {
-          if (typeof bzWidget !== 'undefined') {
-            bzWidget.init();
-          }
-        };
-      }
-    
-      return () => {
-        if (container && container.contains(script1)) {
-          container.removeChild(script1);
-        }
-      };
-    }, []);
-  
-    useEffect(() => {
-      const iframe = document.createElement('iframe');
-      iframe.src = 'about:blank';
-      iframe.style.width = '100%';
-      iframe.style.maxWidth = '500px';
-      iframe.style.height = window.innerWidth < 640 ? '670px' : '620px';
-      iframe.style.border = 'none';
-      iframe.style.overflow = 'hidden';
-      iframe.style.display = 'block';
-      iframe.style.margin = '0 auto';
-      iframe.scrolling = 'no';
-      
-      const widgetContainer = document.getElementById('buyerzone-widget-container');
-      
-      if (widgetContainer) {
-        widgetContainer.innerHTML = '';
-        widgetContainer.appendChild(iframe);
-        
-        setTimeout(() => {
-  if (!iframe.contentWindow && !iframe.contentDocument) return;
-  const iframeDoc = iframe.contentDocument || (iframe.contentWindow && iframe.contentWindow.document);
-  if (!iframeDoc) return; // Extra safety
+  const [searchTerm, setSearchTerm] = useState("");
+     const [productSearch, setProductSearch] = useState("");
+     const [filterBy, setFilterBy] = useState("Reviews");
+     const [sortBy, setSortBy] = useState("Featured");
+     const [itemsPerPage, setItemsPerPage] = useState("10 per page");
+     const [expandedSections, setExpandedSections] = useState({});
+     const [isMobile, setIsMobile] = useState(false);
+     const [activeSection, setActiveSection] = useState(null);
+     const [openSections, setOpenSections] = useState({});
+     const [openItems, setOpenItems] = useState({});
+     const [showMore, setShowMore] = useState(false);
+     const [isModalOpen, setIsModalOpen] = useState(false);
+     const toggleSection = (sectionKey, labelKey = null) => {
+       setExpandedSections((prev) => ({
+         ...prev,
+         [sectionKey]: !prev[sectionKey],
+       }));
+   
+       if (labelKey) {
+         setActiveSection((prev) => (prev === sectionKey ? null : sectionKey));
+         setOpenSection((prev) => (prev === labelKey ? null : labelKey));
+       }
+   
+       setOpenSections((prev) => ({
+         ...prev,
+         [sectionKey]: !prev[sectionKey],
+       }));
+     };
+   
+     const toggleItem = (index) => {
+       setOpenItems((prev) => ({
+         ...prev,
+         [index]: !prev[index],
+       }));
+     };
+   
+     useEffect(() => {
+       const checkMobile = () => {
+         setIsMobile(window.innerWidth < 768);
+       };
+       checkMobile();
+       window.addEventListener("resize", checkMobile);
+       return () => window.removeEventListener("resize", checkMobile);
+     }, []);
+      const toolsContent = {
+  ADP: {
+    title: "ADP – Best Overall Payroll Solution",
+    logo: "/images/adp.jpg",
+    button: {
+      text: "Visit Website",
+      link: "#",
+    },
+    scores: [
+      { label: "Overall Score", score: "4.8/5" },
+      { label: "Pricing", score: "4.2/5" },
+      { label: "Ease of Use", score: "4.7/5" },
+      { label: "Features", score: "4.9/5" },
+      { label: "Customer Support", score: "4.6/5" },
+    ],
+    pros: [
+      "Comprehensive payroll features for all business sizes",
+      "Built-in compliance and tax filing",
+      "Excellent integration with HR and benefits tools",
+    ],
+    cons: [
+      "Pricing not transparent",
+      "May be overwhelming for small businesses",
+    ],
+    why: {
+      intro: `ADP is a market leader in payroll and HR services, offering end-to-end solutions suitable for businesses of all sizes.`,
+      bullets: [
+        "Automates payroll processing, tax filing, and year-end reporting.",
+        "Integrates with time tracking, HR, benefits, and recruiting tools.",
+      ],
+      outro: `ADP's combination of reliability, scalability, and advanced features makes it a top-tier payroll provider for businesses looking for an all-in-one solution.`,
+      extras: {
+        "Key Features": (
+          <>
+            <h4 className="text-lg font-bold mb-2">Full-Service Payroll</h4>
+            <p className="text-black mb-4">Includes automated tax filing, year-end W-2s, and direct deposit.</p>
+            <h4 className="text-lg font-bold mb-2">Compliance Support</h4>
+            <p className="text-black mb-4">Keeps up with federal, state, and local payroll laws.</p>
+            <h4 className="text-lg font-bold mb-2">Mobile App</h4>
+            <p className="text-black">Employees can access pay stubs, tax forms, and benefits.</p>
+          </>
+        ),
+        Pricing: (
+          <>
+            <p className="text-black">Custom pricing based on company size and features selected. Contact ADP for a quote.</p>
+          </>
+        )
+      },
+    },
+  },
+  ZohoPayroll: {
+    title: "Zoho Payroll – Best for Small Businesses in India",
+    logo: "/images/zoho.png",
+    button: {
+      text: "Visit Website",
+      link: "#",
+    },
+    scores: [
+      { label: "Overall Score", score: "4.6/5" },
+      { label: "Pricing", score: "4.8/5" },
+      { label: "Ease of Use", score: "4.7/5" },
+      { label: "Features", score: "4.5/5" },
+      { label: "Support", score: "4.3/5" },
+    ],
+    pros: [
+      "Simple and clean user interface",
+      "Affordable pricing with no hidden fees",
+      "Best suited for Indian tax laws and payroll regulations",
+    ],
+    cons: [
+      "Limited to Indian markets",
+      "Fewer integrations than global players",
+    ],
+    why: {
+      intro: `Zoho Payroll simplifies payroll management for small businesses in India by automating salary, compliance, and tax handling.`,
+      bullets: [
+        "Easy generation of payslips, Form 16, and tax calculations.",
+        "Seamless integration with Zoho suite (Books, People).",
+      ],
+      outro: `With its affordable pricing and dedicated compliance support, Zoho Payroll is ideal for startups and SMEs operating in India.`,
+      extras: {
+        "Key Features": (
+          <>
+            <h4 className="text-lg font-bold mb-2">TDS and Tax Automation</h4>
+            <p className="text-black mb-4">Handles TDS, Form 16, and tax declarations automatically.</p>
+            <h4 className="text-lg font-bold mb-2">Employee Self-Service</h4>
+            <p className="text-black">Allows employees to access payslips, tax documents, and leave balance.</p>
+          </>
+        ),
+        Pricing: (
+          <>
+            <p className="text-black">Free for up to 10 employees. Paid plans start at ₹50/employee/month.</p>
+          </>
+        )
+      },
+    },
+  },
+  BambooHR: {
+    title: "BambooHR – Best for HR Integration",
+    logo: "/images/bomb.png",
+    button: {
+      text: "Visit Website",
+      link: "#",
+    },
+    scores: [
+      { label: "Overall Score", score: "4.5/5" },
+      { label: "Pricing", score: "4.0/5" },
+      { label: "Ease of Use", score: "4.6/5" },
+      { label: "Features", score: "4.7/5" },
+      { label: "Support", score: "4.4/5" },
+    ],
+    pros: [
+      "All-in-one HR and payroll",
+      "Great employee experience tools",
+      "Customizable reports",
+    ],
+    cons: [
+      "Higher cost",
+      "No native tax filing in some regions",
+    ],
+    why: {
+      intro: `BambooHR is a popular HR platform that now offers integrated payroll features, making it ideal for teams that need more than just payroll.`,
+      bullets: [
+        "Built-in time tracking and employee records management.",
+        "Simple workflows and a clean dashboard.",
+      ],
+      outro: `If you're looking for a combined HR + payroll platform with strong employee management tools, BambooHR is a great choice.`,
+      extras: {
+        "Key Features": (
+          <>
+            <h4 className="text-lg font-bold mb-2">Time Tracking</h4>
+            <p className="text-black mb-4">Track time, PTO, and approvals directly within the platform.</p>
+            <h4 className="text-lg font-bold mb-2">Full-Service Payroll</h4>
+            <p className="text-black">Supports direct deposit, tax filing, and benefits integration.</p>
+          </>
+        ),
+        Pricing: (
+          <>
+            <p className="text-black">Custom pricing based on organization size and modules selected.</p>
+          </>
+        )
+      },
+    },
+  },
+  OnPay: {
+    title: "OnPay – Best for Growing Teams",
+    logo: "/images/on.jpg",
+    button: {
+      text: "Visit Website",
+      link: "#",
+    },
+    scores: [
+      { label: "Overall Score", score: "4.4/5" },
+      { label: "Pricing", score: "4.7/5" },
+      { label: "Ease of Use", score: "4.6/5" },
+      { label: "Features", score: "4.5/5" },
+      { label: "Support", score: "4.3/5" },
+    ],
+    pros: [
+      "Flat-rate pricing",
+      "All features included in base price",
+      "Great for multi-state payroll",
+    ],
+    cons: [
+      "Limited international capabilities",
+      "No mobile app",
+    ],
+    why: {
+      intro: `OnPay is a cost-effective payroll service designed to support growing businesses, especially those with multi-state operations.`,
+      bullets: [
+        "Unlimited payroll runs at no extra charge.",
+        "Includes benefits, PTO tracking, and tax filing.",
+      ],
+      outro: `If you’re scaling and want straightforward payroll without add-on fees, OnPay delivers excellent value.`,
+      extras: {
+        "Key Features": (
+          <>
+            <h4 className="text-lg font-bold mb-2">Full-Service Payroll</h4>
+            <p className="text-black mb-4">Includes federal, state, and local tax filings, W-2s and 1099s.</p>
+            <h4 className="text-lg font-bold mb-2">Employee Self-Service</h4>
+            <p className="text-black">Employees can view pay stubs, benefits, and tax info online.</p>
+          </>
+        ),
+        Pricing: (
+          <>
+            <p className="text-black">$40/month + $6/employee/month. Includes all features.</p>
+          </>
+        )
+      },
+    },
+  },
+  QuickBooksPayroll: {
+    title: "QuickBooks Payroll – Best for QuickBooks Users",
+    logo: "/images/quick.png",
+    button: {
+      text: "Visit Website",
+      link: "#",
+    },
+    scores: [
+      { label: "Overall Score", score: "4.3/5" },
+      { label: "Pricing", score: "4.2/5" },
+      { label: "Ease of Use", score: "4.5/5" },
+      { label: "Features", score: "4.4/5" },
+      { label: "Support", score: "4.1/5" },
+    ],
+    pros: [
+      "Seamless QuickBooks integration",
+      "Auto tax calculations and filings",
+      "Great for accountants and bookkeepers",
+    ],
+    cons: [
+      "Limited HR features",
+      "Premium support requires higher plan",
+    ],
+    why: {
+      intro: `QuickBooks Payroll is a natural choice for users already using QuickBooks for accounting, offering tight integration and streamlined processes.`,
+      bullets: [
+        "Runs payroll in minutes, syncs directly with QuickBooks accounts.",
+        "Supports automated tax filing and year-end forms.",
+      ],
+      outro: `If you’re a QuickBooks user looking to integrate payroll into your workflow without switching platforms, this is your best pick.`,
+      extras: {
+        "Key Features": (
+          <>
+            <h4 className="text-lg font-bold mb-2">Automated Payroll</h4>
+            <p className="text-black mb-4">Set it and forget it – QuickBooks handles payroll and taxes for you.</p>
+            <h4 className="text-lg font-bold mb-2">Next-Day Direct Deposit</h4>
+            <p className="text-black">Pay employees quickly with next-day or same-day deposit options.</p>
+          </>
+        ),
+        Pricing: (
+          <>
+            <p className="text-black">Starts at $45/month + $5/employee/month. Includes free setup and support.</p>
+          </>
+        )
+      },
+    },
+  }
+};
 
-  iframeDoc.open();
-          iframeDoc.write(`
-            <!DOCTYPE html>
-            <html lang="en">
-            <head>
-              <meta charset="UTF-8">
-              <meta name="viewport" content="width=device-width, initial-scale=1.0">
-              <title>Payroll System Comparison</title>
-              <style>
-                body {
-                  font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-                  margin: 0;
-                  padding: 0;
-                  align-items: center;
-                  text-align-center;
-                  background: linear-gradient(135deg, #fff4f0 0%, #ffffff 100%);
-                  overflow: hidden;
-                }
-                #bzWidgetContainer {
-                  width: 100%;
-                  max-width: 600px;
-                  margin: 0 auto;
-                  display: flex;
-                  flex-direction: column;
-                  align-items: center;
-                  border-radius: 12px;
-                  box-shadow: 0 8px 30px rgba(255, 134, 51, 0.1);
-                }
-                .loading {
-                  text-align: center;
-                  padding: 40px;
-                  width: 100%;
-                  background: linear-gradient(180deg, rgba(255,255,255,0.9) 0%, rgba(255,244,240,0.9) 100%);
-                  border-radius: 10px;
-                  box-shadow: 0 4px 20px rgba(255, 134, 51, 0.07);
-                }
-                .spinner {
-                  border: 4px solid rgba(255, 134, 51, 0.1);
-                  border-left: 4px solid #ff8633;
-                  border-radius: 50%;
-                  width: 50px;
-                  height: 50px;
-                  animation: spin 1.2s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite;
-                  margin: 25px auto;
-                }
-                @keyframes spin {
-                  0% { transform: rotate(0deg); }
-                  100% { transform: rotate(360deg); }
-                }
-                @media (max-width: 640px) {
-                  .loading {
-                    padding: 25px;
-                  }
-                  .spinner {
-                    width: 40px;
-                    height: 40px;
-                  }
-                }
-              </style>
-            </head>
-            <body>
-              <div id="bzWidgetContainer">
-                <div class="loading">
-                  <div class="spinner"></div>
-                  <p style="color: #ff8633; font-size: 16px; font-weight: 500;">Loading payroll system comparison...</p>
-                </div>
-              </div>
-              
-              <script data-bzwidget
-                src="https://cdn.buyerzone.com/apps/widget/bzWidget.min.js"
-                data-bzwidget-pub-id="59578"
-                data-bzwidget-color-palette-name="default"
-                data-bzwidget-category-id="10113">
-              </script>
-              
-              <script>
-                function initBzWidget() {
-                  if (typeof bzWidget !== 'undefined') {
-                    bzWidget.init();
-                    document.getElementById('bzWidgetContainer').querySelector('.loading').style.display = 'none';
-                  } else {
-                    setTimeout(initBzWidget, 500);
-                  }
-                }
-                
-                document.addEventListener('DOMContentLoaded', function() {
-                  setTimeout(initBzWidget, 1000);
-                  
-                  setTimeout(function() {
-                    if (typeof bzWidget === 'undefined') {
-                      document.getElementById('bzWidgetContainer').innerHTML = 
-                        '<p style="text-align:center; padding:30px; color:#e74c3c; background: linear-gradient(180deg, #fff0f0 0%, #ffe0e0 100%); border-radius: 10px; box-shadow: 0 4px 15px rgba(231, 76, 60, 0.1);">Unable to load the comparison tool. Please refresh and try again.</p>';
-                    }
-                  }, 10000);
-                });
-  
-                window.addEventListener('resize', function() {
-                  if (typeof bzWidget !== 'undefined' && bzWidget.refresh) {
-                    bzWidget.refresh();
-                  }
-                });
-              </script>
-            </body>
-            </html>
-          `);
-          iframeDoc.close();
-          
-          setWidgetLoaded(true);
-        }, 0);
-      }
-      
-      const handleResize = () => {
-        if (iframe) {
-          iframe.style.height = window.innerWidth < 640 ? '650px' : '620px';
-          iframe.style.width = '100%';
-          iframe.style.maxWidth = '500px';
-        }
-      };
-      
-      window.addEventListener('resize', handleResize);
-      return () => {
-        window.removeEventListener('resize', handleResize);
-      };
-    }, []);
-  
-
-    const systems = [
+   
+     // Convert toolsContent object to array for mapping
+     const toolsArray = Object.entries(toolsContent).map(([key, value]) => ({
+       id: key,
+       ...value,
+     }));
+   
+     const systems = [
       {
         name: "ADP",
         logo: "/images/adp.jpg",
@@ -215,7 +344,7 @@ const BestPayrollSystem = () => {
       },
       {
         name: "BambooHr",
-        logo: "/images/bam.jpg",
+        logo: "/images/bomb.png",
         bestFor: "Best for HR Integration",
         price: "Custom pricing",
         videoCapacity: "Payroll + HR platform",
@@ -242,17 +371,59 @@ const BestPayrollSystem = () => {
         linkText: "Links to Ooma Office"
       },
   ];
-  const contents = [
-    { id: 1, title: "Introduction to Best Payroll System", slug: "intro-payroll" },
-    { id: 2, title: "What Is Payroll System?", slug: "what-is-payrollsystem" },
-    { id: 3, title: "How Does Payroll System Works", slug: "payrollsystem-working" },
-    { id: 4, title: "Why Does it matter?", slug: "whymatter-payroll" },
-    { id: 5, title: "Related Articles", slug: "payroll-articles" },
-    { id: 6, title: "FAQs", slug: "payroll-faq" } ,
-  ];
-
-  const payrollFAQs = [
-    {
+     const crmTestimonials = [
+       {
+         avatar: "M",
+         avatarColor: "bg-teal-600",
+         name: "Michael W.",
+         date: "05/25/2024",
+         stars: 5,
+         text: "This CRM transformed our sales process completely. The contact management and pipeline visibility have increased our conversion rates by 27% in just three months.",
+       },
+       {
+         avatar: "T",
+         avatarColor: "bg-orange-500",
+         name: "Teresa J.",
+         date: "04/18/2024",
+         stars: 4,
+         text: "The automation features save our team hours every week. Email sequences and follow-up reminders ensure no lead falls through the cracks.",
+       },
+       {
+         avatar: "R",
+         avatarColor: "bg-pink-600",
+         name: "Robert K.",
+         date: "03/30/2024",
+         stars: 5,
+         text: "Integration with our phone system was seamless. Having call recordings automatically attached to contact records has improved our training and customer service.",
+       },
+       {
+         avatar: "L",
+         avatarColor: "bg-violet-500",
+         name: "Lisa M.",
+         date: "02/12/2024",
+         stars: 5,
+         text: "The reporting features give our management team real-time visibility into sales performance. Custom dashboards help us make data-driven decisions daily.",
+       },
+       {
+         avatar: "B",
+         avatarColor: "bg-emerald-600",
+         name: "Brian T.",
+         date: "01/07/2024",
+         stars: 4,
+         text: "Mobile app is powerful enough that our field sales team can manage their entire workflow on the go. The offline mode is particularly valuable.",
+       },
+       {
+         avatar: "C",
+         avatarColor: "bg-cyan-500",
+         name: "Christina R.",
+         date: "04/06/2024",
+         stars: 5,
+         text: "Customer support has been exceptional. Their onboarding team ensured our data migration went smoothly and trained our staff thoroughly.",
+       },
+     ];
+   
+     const faqData = [
+       {
       question: "When will I get paid?",
       answer: "All employees at Compare Bazaar are paid on the 15th and last day of each month. If these dates fall on a weekend or holiday, you'll be paid on the last business day before."
     },
@@ -331,38 +502,208 @@ const BestPayrollSystem = () => {
     {
       question: "When are pay raises processed?",
       answer: "Annual raises typically take effect in April paychecks. Promotional raises are processed in the next full pay period after approval. All changes will be reflected in your payslip with details."
-    }
-  ];
+    },
 
-  const articles1 = [
     {
-      id: 1,
-      title: "Compare Bazaar Payroll System: A Complete Guide to Getting Paid",
-      image: "/images/art1payroll.webp",
-      author: "HR Team",
-      date: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
-      excerpt: "Everything you need to know about our payroll system - from pay schedules to accessing your payslips and troubleshooting common issues.",
-      link: "#"
+      question: "Can I get a second phone number without buying another phone?",
+      answer:
+        "Yes. Most business phone systems, especially VoIP services, allow you to add multiple numbers to the same device or user account. This is ideal for managing business and personal lines separately.",
     },
     {
-      id: 2,
-      title: "5 Time-Saving Features of Our Payroll System You Might Not Know About",
-      image: "/images/art2payroll.jpeg",
-      author: "Finance Team",
-      date: "May 15, 2023",
-      excerpt: "Discover hidden features like automated tax form generation, mobile payslip access, and instant payment notifications that make payroll easier.",
-      link: "#"
+      question: "How many VoIP lines does my business need?",
+      answer:
+        "The number of VoIP lines you need depends on your team size and call volume. As a general rule, one line per simultaneous user is recommended. For example, a 10-person team typically needs about 8–10 lines if calls are frequent.",
     },
     {
-        id: 3,
-        title: "Self-Service Payroll Portal: How to Update Your Details in Minutes",
-        image: "images/art3payroll.jpg",
-        author: "IT Support",
-        date: "January 30, 2023",
-        excerpt: "Step-by-step guide to changing your bank details, tax withholdings, and personal information without HR paperwork.",
-        link: "#"
-      },
-  ]
+      question: "Are there any recommended integrations to use with my phone system?",
+      answer:
+        "Yes. Popular integrations include CRM tools (like HubSpot, Salesforce), helpdesk platforms (like Zendesk), and productivity suites (like Google Workspace or Microsoft 365). These boost efficiency and enhance customer interactions.",
+    },
+    {
+      question: "Are business phone systems secure?",
+      answer:
+        "Modern business phone systems use strong encryption protocols, spam filters, and multi-layer authentication to protect your data. Choosing a reputable VoIP provider is key to ensuring communication security.",
+    },
+  ];
+  
+   
+     const contents = [
+    {
+      id: "intro",
+      title: "Introduction to Best Payroll System",
+      active: false,
+    },
+    {
+      id: "Tracking-Work",
+      title: "How Does Fleet Management Tracking Work?",
+      active: false,
+    },
+    {
+      id: "recommendations",
+      title: " Our top 5 Payroll System recommendations",
+      active: false,
+    },
+    {
+      id: "features",
+      title: "What Is Payroll System?",
+      active: false,
+    },
+    {
+      id: "working",
+      title: "How Does Payroll System Work",
+      active: false,
+    },
+    {
+      id: "importance",
+      title: "Why Does Payroll System Matter?",
+      active: false,
+    },
+
+    {
+      id: "articles",
+      title: "Related Articles",
+      active: false,
+    },
+      {
+      id: "Faq",
+      title: "Payroll System FAQs",
+      active: false,
+    },
+     
+    {
+      id: "faqs",
+      title: "Frequently Asked Questions (FAQ)",
+      active: false,
+    },
+  ];
+  
+     const crmData = [
+        
+  {
+                id: 1,
+                name: "ADP",
+                image: "/images/adp.jpg",
+                alt: "ADP",
+                expertScore: 4.8,
+                bestFor: "Best for Large Enterprises",
+                visitUrl: "https://www.adp.com",
+                keyFeatures: [
+                  "$10/user/month + $50 base",
+                  "Full-service payroll & tax filing",
+                  "Dedicated specialist"
+                ],
+                freeTrial: true,
+                freeVersion: false,
+              },
+              {
+                id: 2,
+                name: "Zoho Payroll",
+                image: "/images/zoho.png",
+                alt: "Zoho Payroll",
+                expertScore: 4.6,
+                bestFor: "Best for Small Businesses",
+                visitUrl: "https://www.zoho.com/payroll",
+                keyFeatures: [
+                  "$25/user/month",
+                  "Automated payroll & compliance",
+                  "Email/chat support"
+                ],
+                freeTrial: true,
+                freeVersion: false,
+              },
+              {
+                id: 3,
+                name: "BambooHR",
+                image: "/images/bomb.png",
+                alt: "BambooHR",
+                expertScore: 4.5,
+                bestFor: "Best for HR Integration",
+                visitUrl: "https://www.bamboohr.com",
+                keyFeatures: [
+                  "Custom pricing",
+                  "Payroll + HR platform",
+                  "24/7 support"
+                ],
+                freeTrial: true,
+                freeVersion: false,
+              },
+              {
+                id: 4,
+                name: "OnPay",
+                image: "/images/on.jpg",
+                alt: "OnPay",
+                expertScore: 4.4,
+                bestFor: "Best for SMBs with contractors",
+                visitUrl: "https://www.onpay.com",
+                keyFeatures: [
+                  "$36 + $4/user/month",
+                  "Unlimited payroll runs",
+                  "Phone/email support"
+                ],
+                freeTrial: true,
+                freeVersion: false,
+              },
+              {
+                id: 5,
+                name: "QuickBooks Payroll",
+                image: "/images/quick.png",
+                alt: "QuickBooks Payroll",
+                expertScore: 4.5,
+                bestFor: "Best for Accounting Sync",
+                visitUrl: "https://quickbooks.intuit.com/payroll",
+                keyFeatures: [
+                  "$45/month + $5/user",
+                  "Auto tax calculations",
+                  "24/7 support"
+                ],
+                freeTrial: true,
+                freeVersion: false,
+              }
+   
+  
+  
+     ];
+   
+     const renderStars = (score) => {
+       const stars = [];
+       const fullStars = Math.floor(score);
+       const hasHalfStar = score % 1 !== 0;
+   
+       for (let i = 0; i < fullStars; i++) {
+         stars.push(
+           <svg
+             key={i}
+             className="w-5 h-5 text-yellow-400 fill-current"
+             viewBox="0 0 24 24"
+           >
+             <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+           </svg>
+         );
+       }
+   
+       if (hasHalfStar) {
+         stars.push(
+           <svg
+             key="half"
+             className="w-5 h-5 text-yellow-400 fill-current"
+             viewBox="0 0 24 24"
+           >
+             <defs>
+               <linearGradient id="half">
+                 <stop offset="50%" stopColor="currentColor" />
+                 <stop offset="50%" stopColor="transparent" />
+               </linearGradient>
+             </defs>
+             <path
+               fill="url(#half)"
+               d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+             />
+           </svg>
+         );
+       }
+   
+       return stars;
+     };
 
 
   // Ripple effect for buttons
@@ -428,667 +769,667 @@ const BestPayrollSystem = () => {
           ))}
         </div>
     </div>
-    <TableOfContents contents={contents} />
-
-    {/* introduction */}
-    <div id="intro-payroll" className="max-w-6xl mx-auto rounded-xl px-4 py-10 flex flex-col md:flex-row items-center gap-8">
-  {/* SVG/Image */}
-  <div className="w-full md:w-1/2">
-    <img 
-      src="/images/payrollintro.avif" 
-      alt="Easy Payroll System" 
-      className="w-full h-auto rounded-xl"
-    />
-  </div>
-  
-  {/* Text Content */}
-  <div className="w-full md:w-1/2">
-    <h1 className="text-3xl font-semibold text-gray-900 mb-4">
-      Payroll Made <span className="text-[#ff8633]">Easy & Stress-Free</span>
-    </h1>
-    <p className="text-base text-gray-800 mb-6">
-      At <strong>Compare Bazaar</strong>, we make sure you get paid <strong>on time, every time</strong>.  
-      No confusing numbers, no delays—just simple, accurate payments right to your bank.  
-    </p>
-    <a href="#payrollsystem-working">
-  <button className="bg-[#ff8633] text-white px-6 py-3 rounded-lg font-semibold hover:bg-[#e67329] transition-colors">
-    See How It Works
-  </button>
-</a>
-  </div>
-</div>
-
-{/* what is payroll */}
-<div id="what-is-payrollsystem" className="max-w-6xl mx-auto px-4 font-sans text-gray-800">
-      {/* Header with visual */}
-      <div className="text-center mb-12">
-        <h1 className="text-4xl text-gray-900 font-semibold">
-          What is a Payroll System?
+     <div className="min-h-screen bg-gray-50"> 
+       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div className="flex flex-col lg:flex-row gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-8"> 
+     <TableOfContents contents={contents} />
+     </div>
+    <div className="flex-1 max-w-4xl">
+  <section id="intro">
+    <div className="bg-white rounded-2xl sm:rounded-3xl border border-gray-200 shadow-sm hover:shadow-lg mt-4 transition-shadow duration-300 overflow-hidden p-6 sm:p-8">
+      <header className="mb-8">
+        <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+          Introduction to Best Payroll System
         </h1>
-        <p className="text-base text-gray-800 mt-2">
-          (And Why Every Business Needs One)
-        </p>
-      </div>
+      </header>
 
-      {/* Main explanation */}
-      <div className="space-y-12">
-        <div className="flex flex-col md:flex-row gap-8 bg-blue-50 p-6 rounded-xl">
-          <div className="w-32 h-32 mx-auto md:mx-0">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-full h-full">
-              <path fill="#000e54" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
-            </svg>
-          </div>
-          <div>
-            <h2 className="text-xl text-gray-800 font-semibold mb-4">The Simple Definition</h2>
-            <p className="mb-4">
-              A payroll system is like your business's <strong className="font-semibold">automatic paycheck machine</strong>. It's the process (and software) that:
-            </p>
-            <ul className="list-disc pl-5 space-y-2 mb-4 text-base text-gray-800">
-              <li>Calculates how much each employee earns</li>
-              <li>Subtracts the right taxes and deductions</li>
-              <li>Sends money to employee bank accounts</li>
-              <li>Files tax paperwork with the government</li>
-            </ul>
-            <div className="bg-white p-4 rounded-lg border-l-4 text-gray-800 text-base border-[#000e54] italic">
-              Think of it like your car's GPS - you tell it where employees need to go (their correct pay), and it handles all the complicated turns (calculations) to get them there.
+      {/* Main Content */}
+      <div className="prose prose-lg max-w-none">
+        <p className="text-gray-700 leading-relaxed mb-6">
+          Choosing the right payroll system helps your business automate payments,
+          stay compliant with tax regulations, and boost employee satisfaction.
+          From pricing to features, here are top payroll providers based on business needs.
+        </p>
+
+        {/* Payroll System Cards (Summarized) */}
+        <div className="space-y-3 mb-8">
+          {/* ADP */}
+          <div className="flex items-start space-x-3">
+            <div className="w-5 h-5 rounded-full bg-green-100 flex items-center justify-center mt-0.5">
+              <svg className="w-3 h-3 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                <path
+                  fillRule="evenodd"
+                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                  clipRule="evenodd"
+                />
+              </svg>
             </div>
-          </div>
-        </div>
-
-       
-
-        
-
-        {/* Final summary */}
-        <div className="flex flex-col md:flex-row gap-8 bg-[#ff8633] text-white p-8 rounded-xl mt-12">
-          <div className="w-48 mx-auto md:mx-0">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-full h-auto fill-white">
-              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15c-.55 0-1-.45-1-1v-4c0-.55.45-1 1-1s1 .45 1 1v4c0 .55-.45 1-1 1zm3 0c-.55 0-1-.45-1-1v-4c0-.55.45-1 1-1s1 .45 1 1v4c0 .55-.45 1-1 1zm3 0c-.55 0-1-.45-1-1v-4c0-.55.45-1 1-1s1 .45 1 1v4c0 .55-.45 1-1 1z"/>
-            </svg>
-          </div>
-          <div>
-            <h2 className="text-xl font-semibold mb-4">In Everyday Terms...</h2>
-            <p className="mb-4 text-base">
-              A payroll system is your business's <strong className="font-semibold">paycheck assistant</strong> that handles all the math, payments, and tax paperwork automatically. Just like you wouldn't do accounting with pen and paper anymore, modern businesses use payroll systems instead of manual calculations.
-            </p>
-            <p className="text-base">
-              Whether you have 2 employees or 200, it ensures everyone gets paid correctly and on time, while keeping you compliant with tax laws.
+            <p className="text-gray-700">
+              <span className="font-semibold text-green-700">ADP:</span> Best for large enterprises — 
+              $10/user/month + $50 base. Full-service payroll & tax filing with a dedicated specialist.
             </p>
           </div>
+
+          {/* Zoho Payroll */}
+          <div className="flex items-start space-x-3">
+            <div className="w-5 h-5 rounded-full bg-green-100 flex items-center justify-center mt-0.5">
+              <svg className="w-3 h-3 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                <path
+                  fillRule="evenodd"
+                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </div>
+            <p className="text-gray-700">
+              <span className="font-semibold text-green-700">Zoho Payroll:</span> Best for small businesses — 
+              $25/user/month. Automated payroll, compliance, and email/chat support.
+            </p>
+          </div>
+
+          {/* BambooHR */}
+          <div className="flex items-start space-x-3">
+            <div className="w-5 h-5 rounded-full bg-green-100 flex items-center justify-center mt-0.5">
+              <svg className="w-3 h-3 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                <path
+                  fillRule="evenodd"
+                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </div>
+            <p className="text-gray-700">
+              <span className="font-semibold text-green-700">BambooHR:</span> Best for HR integration — 
+              Custom pricing. Combines payroll with a full HR platform and 24/7 support.
+            </p>
+          </div>
+
+          {/* OnPay */}
+          <div className="flex items-start space-x-3">
+            <div className="w-5 h-5 rounded-full bg-green-100 flex items-center justify-center mt-0.5">
+              <svg className="w-3 h-3 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                <path
+                  fillRule="evenodd"
+                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </div>
+            <p className="text-gray-700">
+              <span className="font-semibold text-green-700">OnPay:</span> Best for SMBs with contractors — 
+              $36 + $4/user/month. Unlimited payroll runs with phone/email support.
+            </p>
+          </div>
+
+          {/* QuickBooks Payroll */}
+          <div className="flex items-start space-x-3">
+            <div className="w-5 h-5 rounded-full bg-green-100 flex items-center justify-center mt-0.5">
+              <svg className="w-3 h-3 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                <path
+                  fillRule="evenodd"
+                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </div>
+            <p className="text-gray-700">
+              <span className="font-semibold text-green-700">QuickBooks Payroll:</span> Best for accounting sync — 
+              $45/month + $5/user. Auto tax calculations and 24/7 support.
+            </p>
+          </div>
         </div>
       </div>
     </div>
-
-
- {/* How it works section */}
- <div id="payrollsystem-working" className="mt-16 max-w-6xl mx-auto px-4">
-  {/* Section Header - Centered */}
-  <div className="text-center mb-12">
-    <h2 className="text-4xl text-gray-900 font-semibold mb-4 flex items-center justify-center">
-      How Payroll Actually Works
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-6 h-6 ml-2 fill-[#000e54]">
-        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
-      </svg>
-    </h2>
-    <p className="text-base text-gray-800 max-w-2xl mx-auto">
-      A simple breakdown of how Compare Bazaar ensures accurate, on-time payments every cycle
-    </p>
-  </div>
-
-  {/* Steps Container - Centered with max width */}
-  <div className="space-y-10">
-    {/* Step 1 */}
-    <div className="flex flex-col md:flex-row gap-6 items-center bg-blue-50 rounded-xl p-6">
-      <div className="flex-shrink-0 bg-[#000e54] text-white w-12 h-12 rounded-full flex items-center justify-center text-xl font-semibold">
-        1
-      </div>
-      <div className="flex-1 text-center md:text-left">
-        <h3 className="text-2xl font-semibold text-gray-800 mb-3">Tracking Time & Work</h3>
-        <p className="text-base text-gray-800 mb-4">
-          The system automatically records your work hours, overtime, leaves, and bonuses.
-        </p>
-        <div className="flex justify-center md:justify-start">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-16 h-16 fill-[#000e54]">
-            <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.4 0-8-3.6-8-8s3.6-8 8-8 8 3.6 8 8-3.6 8-8 8zm.5-13H11v6l5.2 3.2.8-1.3-4.5-2.7V7z"/>
-          </svg>
-        </div>
-      </div>
-    </div>
-
-    {/* Step 2 */}
-    <div className="flex flex-col md:flex-row gap-6 items-center bg-blue-50 rounded-xl p-6">
-      <div className="flex-shrink-0 bg-[#000e54] text-white w-12 h-12 rounded-full flex items-center justify-center text-xl font-semibold">
-        2
-      </div>
-      <div className="flex-1 text-center md:text-left">
-        <h3 className="text-2xl font-semibold text-gray-800 mb-3">Calculating the Numbers</h3>
-        <p className="text-base text-gray-800 mb-4">
-          It computes your pay and handles all deductions automatically:
-        </p>
-        <div className="flex flex-wrap justify-center gap-3 mb-4">
-          <span className="bg-white px-4 py-2 rounded-full text-sm font shadow-sm">Taxes</span>
-          <span className="bg-white px-4 py-2 rounded-full text-sm font shadow-sm">Insurance</span>
-          <span className="bg-white px-4 py-2 rounded-full text-sm font shadow-sm">Retirement</span>
-          <span className="bg-white px-4 py-2 rounded-full text-sm font shadow-sm">Other deductions</span>
-        </div>
-        <div className="flex justify-center md:justify-start">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-16 h-16 fill-[#000e54]">
-            <path d="M7 2h10v2H7zm0 4h10v2H7zm0 4h10v2H7zm0 4h7v2H7zm10 0h3v2h-3z"/>
-          </svg>
-        </div>
-      </div>
-    </div>
-
-    {/* Step 3 */}
-    <div className="flex flex-col md:flex-row gap-6 items-center bg-blue-50 rounded-xl p-6">
-      <div className="flex-shrink-0 bg-[#000e54] text-white w-12 h-12 rounded-full flex items-center justify-center text-xl font-semibold">
-        3
-      </div>
-      <div className="flex-1 text-center md:text-left">
-        <h3 className="text-2xl font-semibold text-gray-800 mb-3">Paying Employees</h3>
-        <p className="text-base text-gray-800 mb-4">
-          Your net pay is deposited directly to your bank account on scheduled paydays - no waiting for checks to clear.
-        </p>
-        <div className="flex justify-center md:justify-start">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-16 h-16 fill-[#000e54]">
-            <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V6h16v12zM12 8l-5 5h4v4h2v-4h4l-5-5z"/>
-          </svg>
-        </div>
-      </div>
-    </div>
-
-    {/* Step 4 */}
-    <div className="flex flex-col md:flex-row gap-6 items-center bg-blue-50 rounded-xl p-6">
-      <div className="flex-shrink-0 bg-[#000e54] text-white w-12 h-12 rounded-full flex items-center justify-center text-xl font-semibold">
-        4
-      </div>
-      <div className="flex-1 text-center md:text-left">
-        <h3 className="text-2xl font-semibold text-gray-800 mb-3">Handling the Paperwork</h3>
-        <p className="text-base text-gray-800 mb-4">
-          The system generates all necessary tax documents and stays updated with the latest regulations.
-        </p>
-        <div className="flex justify-center md:justify-start">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-16 h-16 fill-[#000e54]">
-            <path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm4 18H6V4h7v5h5v11zm-5-7v5h-2v-5h-3l4-4 4 4h-3z"/>
-          </svg>
-        </div>
+  </section>
+ {/* Featured Partners Section */}
+<div className="bg-white rounded-2xl sm:rounded-3xl border border-gray-200 shadow-sm hover:shadow-lg mt-4 transition-shadow duration-300 overflow-hidden p-6 sm:p-8">
+  <div className="flex items-center justify-between mb-6">
+    <h2 className="text-2xl font-bold text-gray-900">Featured Payroll Partners</h2>
+    <div className="flex items-center space-x-2 text-sm text-gray-500">
+      <span>Advertisement</span>
+      <div className="w-4 h-4 rounded-full bg-gray-400 flex items-center justify-center">
+        <span className="text-white font-bold">i</span>
       </div>
     </div>
   </div>
+
+  {/* ADP */}
+  <div className="bg-gray-50 rounded-lg p-6 mb-6">
+    <div className="flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0">
+      <div className="flex items-center space-x-4">
+        <div className="w-16 h-16 flex-shrink-0">
+          <Image src="/images/adp.jpg" alt="ADP Logo" width={64} height={64} className="w-full h-full object-contain" />
+        </div>
+        <div className="text-xl font-bold text-gray-900">
+          ADP
+          <br />
+          <span className="text-lg">Enterprise Payroll Solutions</span>
+        </div>
+      </div>
+      <button className="bg-green-600 hover:bg-green-700 text-white font-medium py-3 px-8 rounded-lg transition-colors duration-200 flex items-center space-x-2">
+        <span>Visit Website</span>
+        <ExternalLink className="w-4 h-4" />
+      </button>
+    </div>
+    <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+      <div><div className="text-gray-600 mb-1">Good For</div><div className="font-medium text-gray-900">Large Enterprises</div></div>
+      <div><div className="text-gray-600 mb-1">Core Features</div><div className="font-medium text-gray-900">Full-service payroll, tax filing</div></div>
+      <div><div className="text-gray-600 mb-1">Pricing</div><div className="font-medium text-gray-900">$10/user/month + $50 base</div></div>
+    </div>
+  </div>
+
+  {/* Zoho Payroll */}
+  <div className="bg-gray-50 rounded-lg p-6 mb-6">
+    <div className="flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0">
+      <div className="flex items-center space-x-4">
+        <div className="w-16 h-16 flex-shrink-0">
+          <Image src="/images/zoho.png" alt="Zoho Logo" width={64} height={64} className="w-full h-full object-contain" />
+        </div>
+        <div className="text-xl font-bold text-gray-900">
+          Zoho Payroll
+          <br />
+          <span className="text-lg">Payroll for Small Businesses</span>
+        </div>
+      </div>
+      <button className="bg-orange-600 hover:bg-orange-700 text-white font-medium py-3 px-8 rounded-lg transition-colors duration-200 flex items-center space-x-2">
+        <span>Visit Website</span>
+        <ExternalLink className="w-4 h-4" />
+      </button>
+    </div>
+    <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+      <div><div className="text-gray-600 mb-1">Good For</div><div className="font-medium text-gray-900">Small Businesses</div></div>
+      <div><div className="text-gray-600 mb-1">Core Features</div><div className="font-medium text-gray-900">Automation, compliance</div></div>
+      <div><div className="text-gray-600 mb-1">Pricing</div><div className="font-medium text-gray-900">$25/user/month</div></div>
+    </div>
+  </div>
+
+  {/* BambooHR */}
+  <div className="bg-gray-50 rounded-lg p-6 mb-6">
+    <div className="flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0">
+      <div className="flex items-center space-x-4">
+        <div className="w-16 h-16 flex-shrink-0">
+          <Image src="/images/bomb.png" alt="BambooHR Logo" width={64} height={64} className="w-full h-full object-contain" />
+        </div>
+        <div className="text-xl font-bold text-gray-900">
+          BambooHR
+          <br />
+          <span className="text-lg">HR + Payroll Platform</span>
+        </div>
+      </div>
+      <button className="bg-orange-600 hover:bg-orange-700 text-white font-medium py-3 px-8 rounded-lg transition-colors duration-200 flex items-center space-x-2">
+        <span>Visit Website</span>
+        <ExternalLink className="w-4 h-4" />
+      </button>
+    </div>
+    <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+      <div><div className="text-gray-600 mb-1">Good For</div><div className="font-medium text-gray-900">HR Integration</div></div>
+      <div><div className="text-gray-600 mb-1">Core Features</div><div className="font-medium text-gray-900">HR + Payroll Management</div></div>
+      <div><div className="text-gray-600 mb-1">Pricing</div><div className="font-medium text-gray-900">Custom Pricing</div></div>
+    </div>
+  </div>
+
+  {/* OnPay */}
+  <div className="bg-gray-50 rounded-lg p-6 mb-6">
+    <div className="flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0">
+      <div className="flex items-center space-x-4">
+        <div className="w-16 h-16 flex-shrink-0">
+          <Image src="/images/on.jpg" alt="OnPay Logo" width={64} height={64} className="w-full h-full object-contain" />
+        </div>
+        <div className="text-xl font-bold text-gray-900">
+          OnPay
+          <br />
+          <span className="text-lg">Payroll for SMBs with Contractors</span>
+        </div>
+      </div>
+      <button className="bg-orange-600 hover:bg-orange-700 text-white font-medium py-3 px-8 rounded-lg transition-colors duration-200 flex items-center space-x-2">
+        <span>Visit Website</span>
+        <ExternalLink className="w-4 h-4" />
+      </button>
+    </div>
+    <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+      <div><div className="text-gray-600 mb-1">Good For</div><div className="font-medium text-gray-900">Contractor Payments</div></div>
+      <div><div className="text-gray-600 mb-1">Core Features</div><div className="font-medium text-gray-900">Unlimited Payroll Runs</div></div>
+      <div><div className="text-gray-600 mb-1">Pricing</div><div className="font-medium text-gray-900">$36 base + $4/user</div></div>
+    </div>
+  </div>
+
+  {/* QuickBooks Payroll */}
+  <div className="bg-gray-50 rounded-lg p-6">
+    <div className="flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0">
+      <div className="flex items-center space-x-4">
+        <div className="w-16 h-16 flex-shrink-0">
+          <Image src="/images/quick.png" alt="QuickBooks Logo" width={64} height={64} className="w-full h-full object-contain" />
+        </div>
+        <div className="text-xl font-bold text-gray-900">
+          QuickBooks Payroll
+          <br />
+          <span className="text-lg">Accounting Integration</span>
+        </div>
+      </div>
+      <button className="bg-orange-600 hover:bg-orange-700 text-white font-medium py-3 px-8 rounded-lg transition-colors duration-200 flex items-center space-x-2">
+        <span>Visit Website</span>
+        <ExternalLink className="w-4 h-4" />
+      </button>
+    </div>
+    <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+      <div><div className="text-gray-600 mb-1">Good For</div><div className="font-medium text-gray-900">Accounting Sync</div></div>
+      <div><div className="text-gray-600 mb-1">Core Features</div><div className="font-medium text-gray-900">Auto Tax Filing, 24/7 Support</div></div>
+      <div><div className="text-gray-600 mb-1">Pricing</div><div className="font-medium text-gray-900">$45/month + $5/user</div></div>
+    </div>
+  </div>
 </div>
+<section id="recommendations" className="mt-8"> 
+  <div className="mx-auto">
+    <div className="text-center mb-8 sm:mb-12">
+      <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-800 mb-4">
+        Our top 5 Payroll System recommendations
+      </h1>
+      <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto rounded-full"></div>
+    </div>
 
-{/* our quotes form */}
-<div className="relative w-full min-h-screen overflow-hidden mt-10 max-w-6xl mx-auto rounded-xl">
-        {/* Strong linear gradient background from light to dark orange */}
-        <div className="absolute inset-0 bg-gradient-to-br from-orange-100 via-orange-300 to-orange-700 max-w-6xl mx-auto "></div>
-
-        {/* Enhanced grid overlay for technical feel - moved to sides */}
-        <div className="absolute inset-0 opacity-10 pointer-events-none">
-          <svg className="w-full h-full" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#ff8633" strokeWidth="0.5" />
-              </pattern>
-            </defs>
-            <rect x="10%" width="80%" height="100%" fill="none" />
-            <rect width="10%" height="100%" fill="url(#grid)" />
-            <rect x="90%" width="10%" height="100%" fill="url(#grid)" />
-          </svg>
-        </div>
-
-        {/* Left side payroll elements */}
-        <div className="absolute left-0 top-0 bottom-0 w-1/4 pointer-events-none">
-          {/* Paycheck animation */}
-          <div className="absolute top-1/5 left-1/4 w-16 h-16">
-            <svg className="w-full h-full" viewBox="0 0 100 100">
-              <rect x="20" y="30" width="60" height="40" rx="5" fill="#fff" stroke="#ff8633" strokeWidth="2"/>
-              <rect x="25" y="35" width="50" height="10" rx="2" fill="#ffd1b3"/>
-              <rect x="25" y="50" width="50" height="5" rx="1" fill="#ffb380"/>
-              <rect x="25" y="60" width="50" height="5" rx="1" fill="#ffb380"/>
-              <text x="50" y="80" fontFamily="Arial" fontSize="10" fill="#ff8633" textAnchor="middle">PAYROLL</text>
-            </svg>
-          </div>
-
-          {/* Calculator icon */}
-          <div className="absolute bottom-1/3 left-1/3 w-12 h-12">
-            <svg className="w-full h-full" viewBox="0 0 24 24" fill="none" stroke="#ff8633" strokeWidth="2">
-              <rect x="4" y="2" width="16" height="20" rx="2" strokeLinecap="round" strokeLinejoin="round"/>
-              <line x1="8" y1="6" x2="16" y2="6" strokeLinecap="round" strokeLinejoin="round"/>
-              <line x1="8" y1="12" x2="16" y2="12" strokeLinecap="round" strokeLinejoin="round"/>
-              <line x1="8" y1="18" x2="16" y2="18" strokeLinecap="round" strokeLinejoin="round"/>
-              <line x1="12" y1="8" x2="12" y2="16" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </div>
-
-          {/* Money growth indicator */}
-          <div className="absolute top-2/3 left-1/4 flex items-end space-x-1">
-            <div className="w-3 bg-orange-300 rounded-t opacity-70" style={{ height: '15px' }}></div>
-            <div className="w-3 bg-orange-400 rounded-t opacity-80" style={{ height: '25px' }}></div>
-            <div className="w-3 bg-orange-500 rounded-t opacity-90" style={{ height: '35px' }}></div>
-            <div className="w-3 bg-orange-600 rounded-t" style={{ height: '45px' }}></div>
-          </div>
-        </div>
-
-        {/* Right side payroll elements */}
-        <div className="absolute right-0 top-0 bottom-0 w-1/4 pointer-events-none">
-          {/* Payroll chart visualization */}
-          <div className="absolute top-1/4 right-1/4 w-32 h-32 opacity-30">
-            <svg className="w-full h-full" viewBox="0 0 100 100">
-              <rect x="10" y="40" width="15" height="60" rx="2" fill="#ff8633" opacity="0.7"/>
-              <rect x="30" y="20" width="15" height="80" rx="2" fill="#ff8633" opacity="0.7"/>
-              <rect x="50" y="60" width="15" height="40" rx="2" fill="#ff8633" opacity="0.7"/>
-              <rect x="70" y="30" width="15" height="70" rx="2" fill="#ff8633" opacity="0.7"/>
-            </svg>
-          </div>
-
-          {/* Time clock */}
-          <div className="absolute bottom-1/4 right-1/4 w-16 h-16">
-            <svg className="w-full h-full" viewBox="0 0 100 100">
-              <circle cx="50" cy="50" r="45" fill="none" stroke="#ff8633" strokeWidth="4" strokeDasharray="2,1" opacity="0.5" />
-              <circle cx="50" cy="50" r="40" fill="none" stroke="#ff8633" strokeWidth="8" strokeDasharray="100,1000" 
-                      strokeLinecap="round" transform="rotate(-90 50 50)" opacity="0.7">
-                <animate attributeName="stroke-dasharray" values="30,1000;80,1000;30,1000" dur="4s" repeatCount="indefinite" />
-              </circle>
-              <text x="50" y="55" textAnchor="middle" fontSize="20" fill="#ff8633" opacity="0.8">9:00</text>
-            </svg>
-          </div>
-
-          {/* Employee icon */}
-          <div className="absolute top-2/3 right-1/3 w-10 h-10">
-            <svg className="w-full h-full" viewBox="0 0 24 24" fill="#ff8633" opacity="0.7">
-              <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-            </svg>
-          </div>
-        </div>
-
-        {/* Floating payroll elements - positioned at sides */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-1/4 left-[5%] w-40 h-40 rounded-full bg-orange-300 opacity-15 animate-pulse-slow"></div>
-          <div className="absolute bottom-1/3 right-[5%] w-48 h-48 rounded-full bg-orange-400 opacity-15 animate-pulse-slower"></div>
-        </div>
-
-        {/* Payroll path visualization - positioned at sides */}
-        <div className="absolute inset-0 opacity-15 pointer-events-none">
-          <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-            <path d="M5,10 C15,50 10,70 5,90" stroke="#ff8633" strokeWidth="0.8" strokeDasharray="2,2" fill="none" />
-            <path d="M95,20 C85,30 90,40 95,20" stroke="#ff8633" strokeWidth="0.8" strokeDasharray="2,2" fill="none" />
-          </svg>
-        </div>
-        
-        {/* Main content container */}
-        <div className="relative z-10 w-full  flex flex-col items-center py-10 px-4 sm:px-6">
-          <div className="w-full max-w-6xl mx-auto">
-            
-            {/* Horizontal banner for small/medium screens */}
-            <div className="lg:hidden w-full flex justify-center relative group mb-8">
-              <div className="absolute -inset-1  opacity-75 rounded-xl blur transition-all duration-300 group-hover:opacity-90"></div>
-              <a href="https://app.buyerzone.com/hr-personnel/payroll-services/rfqz?publisherId=59578&amp;publisherTypeId=1788%27;;"
-                target="_self" className="relative block w-full max-w-[600px]">
-                <div className="relative rounded-lg overflow-hidden shadow-2xl shadow-orange-900/50 transition-all duration-500 group-hover:shadow-[#ff8633]/40 h-[140px]">
-                  {/* Banner background */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#fff8f0] to-[#ffd1b3]"></div>
-                  
-                  {/* Left content */}
-                  <div className="absolute left-4 top-1/2 transform -translate-y-1/2">
-                    <h3 className="text-xl font-bold text-[#ff6b1a] mb-1">Payroll Solutions</h3>
-                    <p className="text-sm text-[#ff8633] mb-2">Compare top providers</p>
-                    <div className="bg-[#ff6b1a] text-white text-sm font-bold px-4 py-2 rounded-lg inline-block">
-                      Free Quotes
+    {/* Unified Table Layout for All Screen Sizes */}
+    <div className="bg-white rounded-2xl  border border-gray-200 overflow-hidden">
+      <div className="overflow-x-auto">
+        <table className="w-full min-w-full">
+          <thead>
+            <tr className="border-b border-gray-200 bg-gray-50">
+              <th className="text-left py-3 sm:py-6 px-2 sm:px-8 font-semibold text-gray-700 text-sm sm:text-lg">
+                Payroll System
+              </th>
+              <th className="text-center py-3 sm:py-6 px-2 sm:px-6 font-semibold text-gray-700 text-sm sm:text-lg">
+                Expert Score
+              </th>
+              <th className="text-center py-3 sm:py-6 px-2 sm:px-6 font-semibold text-gray-700 text-sm sm:text-lg">
+                Best for
+              </th>
+              <th className="text-center py-3 sm:py-6 px-2 sm:px-6 font-semibold text-gray-700 text-sm sm:text-lg">
+                Key Features
+              </th>
+              <th className="text-center py-3 sm:py-6 px-2 sm:px-6 font-semibold text-gray-700 text-sm sm:text-lg">
+                Free Trial
+              </th>
+              <th className="text-center py-3 sm:py-6 px-2 sm:px-6 font-semibold text-gray-700 text-sm sm:text-lg">
+                Free Version
+              </th>
+              <th className="text-center py-3 sm:py-6 px-2 sm:px-8 font-semibold text-gray-700 text-sm sm:text-lg">
+                Action
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {crmData.map((crm, index) => (
+              <tr
+                key={crm.id}
+                className={`border-b border-gray-100 hover:bg-gray-50 transition-colors duration-200 ${
+                  index % 2 === 0 ? "bg-white" : "bg-gray-50/50"
+                }`}
+              >
+                <td className="py-4 sm:py-8 px-2 sm:px-8">
+                  <div className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-3">
+                    <div className="flex items-center justify-center flex-shrink-0">
+                      <img
+                        src={crm.image}
+                        alt={crm.alt}
+                        className="max-w-16 max-h-8 sm:max-w-32 sm:max-h-12 object-contain"
+                      />
+                    </div>
+                    <div className="text-center sm:text-left">
+                      <span className="font-medium text-gray-800 text-xs sm:text-base">
+                        {crm.name}
+                      </span>
                     </div>
                   </div>
-                  
-                  {/* Right graphic */}
-                  <div className="absolute right-4 top-1/2 transform -translate-y-1/2 flex items-center">
-                    <div className="relative">
-                      {/* Paycheck stack */}
-                      <div className="relative w-16 h-16">
-                        <div className="absolute w-full h-full bg-white rounded-md shadow-md transform rotate-3"></div>
-                        <div className="absolute w-full h-full bg-white rounded-md shadow-md transform rotate-6"></div>
-                        <div className="absolute w-full h-full bg-white rounded-md shadow-md flex items-center justify-center">
-                          <span className="text-[#ff6b1a] font-bold text-sm">$</span>
-                        </div>
-                      </div>
-                      {/* Calculator icon */}
-                      <div className="absolute -bottom-2 -right-2 bg-white p-1 rounded-full shadow-sm">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ff6b1a" strokeWidth="2">
-                          <rect x="4" y="2" width="16" height="20" rx="2"/>
-                          <line x1="8" y1="6" x2="16" y2="6"/>
-                          <line x1="8" y1="12" x2="16" y2="12"/>
-                          <line x1="8" y1="18" x2="16" y2="18"/>
-                          <line x1="12" y1="8" x2="12" y2="16"/>
-                        </svg>
-                      </div>
+                </td>
+                <td className="py-4 sm:py-8 px-2 sm:px-6 text-center">
+                  <div className="flex flex-col items-center space-y-1 sm:space-y-2">
+                    <span className="text-lg sm:text-2xl font-bold text-gray-800">
+                      {crm.expertScore}
+                    </span>
+                    <div className="flex space-x-1 scale-75 sm:scale-100">
+                      {renderStars(crm.expertScore)}
                     </div>
                   </div>
-                  
-                  {/* Benefits list */}
-                  <div className="absolute top-30 bottom-2 left-0 right-0 flex justify-center space-x-4">
-                    <div className="flex items-center">
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ff6b1a" strokeWidth="2">
-                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-                        <path d="M22 4L12 14.01l-3-3"/>
-                      </svg>
-                      <span className="text-xs text-[#ff6b1a] ml-1">Automated</span>
-                    </div>
-                    <div className="flex items-center">
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ff6b1a" strokeWidth="2">
-                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-                        <path d="M22 4L12 14.01l-3-3"/>
-                      </svg>
-                      <span className="text-xs text-[#ff6b1a] ml-1">Tax Filing</span>
-                    </div>
-                    <div className="flex items-center">
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ff6b1a" strokeWidth="2">
-                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-                        <path d="M22 4L12 14.01l-3-3"/>
-                      </svg>
-                      <span className="text-xs text-[#ff6b1a] ml-1">HR Integration</span>
-                    </div>
+                </td>
+                <td className="py-4 sm:py-8 px-2 sm:px-6 text-center">
+                  <span className="inline-block bg-blue-100 text-blue-800 px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium">
+                    {crm.bestFor}
+                  </span>
+                </td>
+                <td className="py-4 sm:py-8 px-2 sm:px-6">
+                  <ul className="space-y-1 sm:space-y-2">
+                    {crm.keyFeatures.map((feature, idx) => (
+                      <li
+                        key={idx}
+                        className="text-xs sm:text-sm text-gray-600 flex items-start sm:items-center"
+                      >
+                        <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-blue-500 rounded-full mr-2 sm:mr-3 flex-shrink-0 mt-1.5 sm:mt-0"></div>
+                        <span className="leading-tight sm:leading-normal">
+                          {feature}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </td>
+                <td className="py-4 sm:py-8 px-2 sm:px-6 text-center">
+                  <div className="flex justify-center">
+                    {crm.freeTrial ? (
+                      <div className="w-6 h-6 sm:w-8 sm:h-8 bg-orange-100 rounded-full flex items-center justify-center">
+                        <Check className="w-3 h-3 sm:w-5 sm:h-5 text-orange-600" />
+                      </div>
+                    ) : (
+                      <div className="w-6 h-6 sm:w-8 sm:h-8 bg-red-100 rounded-full flex items-center justify-center">
+                        <X className="w-3 h-3 sm:w-5 sm:h-5 text-red-600" />
+                      </div>
+                    )}
                   </div>
-                </div>
-              </a>
-            </div>
+                </td>
+                <td className="py-4 sm:py-8 px-2 sm:px-6 text-center">
+                  <div className="flex justify-center">
+                    {crm.freeVersion ? (
+                      <div className="w-6 h-6 sm:w-8 sm:h-8 bg-orange-100 rounded-full flex items-center justify-center">
+                        <Check className="w-3 h-3 sm:w-5 sm:h-5 text-orange-600" />
+                      </div>
+                    ) : (
+                      <div className="w-6 h-6 sm:w-8 sm:h-8 bg-red-100 rounded-full flex items-center justify-center">
+                        <X className="w-3 h-3 sm:w-5 sm:h-5 text-red-600" />
+                      </div>
+                    )}
+                  </div>
+                </td>
+                <td className="py-4 sm:py-8 px-2 sm:px-8">
+                  <button className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-medium py-2 px-3 sm:py-3 sm:px-6 rounded-lg transition-all duration-200 flex items-center space-x-1 sm:space-x-2 mx-auto text-xs sm:text-sm">
+                    <span>Visit Website</span>
+                    <ExternalLink className="w-3 h-3 sm:w-4 sm:h-4" />
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
 
-            {/* Main content layout */}
-            <div className="w-full flex flex-col lg:flex-row items-start justify-center gap-8">
-              {/* Vertical banner for large screens */}
-              <div className="hidden lg:block relative group h-[680px] w-[180px]">
-                <div className="absolute -inset-1  opacity-75 rounded-xl blur transition-all duration-300 group-hover:opacity-90"></div>
-                <a href="https://app.buyerzone.com/hr-personnel/payroll-services/rfqz?publisherId=59578&amp;publisherTypeId=1788%27;;"
-                  target="_self" className="relative h-full w-full">
-                  <div className="relative h-full w-full bg-gradient-to-b from-[#fff8f0] to-[#ffd1b3] rounded-xl shadow-2xl shadow-orange-900/50 overflow-hidden p-6 flex flex-col items-center">
-                    {/* Header */}
-                    <div className="text-center mb-6">
-                      <h3 className="text-xl font-bold text-[#ff6b1a]">Payroll Solutions</h3>
-                      <p className="text-sm text-[#ff8633] mt-1">Compare top providers</p>
-                    </div>
-                    
-                    {/* Main graphic */}
-                    <div className="relative flex-1 flex items-center justify-center w-full">
-                      <div className="relative w-24 h-24">
-                        {/* Paycheck stack */}
-                        <div className="absolute top-0 left-0 w-full h-full bg-white rounded-lg shadow-md transform rotate-3"></div>
-                        <div className="absolute top-0 left-0 w-full h-full bg-white rounded-lg shadow-md transform rotate-6"></div>
-                        <div className="absolute top-0 left-0 w-full h-full bg-white rounded-lg shadow-md flex items-center justify-center">
-                          <span className="text-[#ff6b1a] font-bold text-2xl">$</span>
+    <div className="text-center mt-12">
+      <p className="text-gray-600 text-sm">
+        * Scores and recommendations are based on expert analysis and user reviews
+      </p>
+    </div>
+  </div>
+   {toolsArray.map((tool) => (
+                  <div
+                    key={tool.id}
+                    className="bg-white rounded-2xl sm:rounded-3xl border mt-4  border-gray-200  p-6 mb-8"
+                  >
+                    {/* Tool Header */}
+                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+                      <div className="flex items-center gap-4">
+                        <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center">
+                          <Image
+                            src={tool.logo}
+                            alt={`${tool.title} logo`}
+                            width={48}
+                            height={48}
+                            className="object-contain"
+                          />
                         </div>
-                        
-                        {/* Calculator icon */}
-                        <div className="absolute -bottom-2 -right-2 bg-white p-2 rounded-full shadow-md">
-                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ff6b1a" strokeWidth="2">
-                            <rect x="4" y="2" width="16" height="20" rx="2"/>
-                            <line x1="8" y1="6" x2="16" y2="6"/>
-                            <line x1="8" y1="12" x2="16" y2="12"/>
-                            <line x1="8" y1="18" x2="16" y2="18"/>
-                            <line x1="12" y1="8" x2="12" y2="16"/>
-                          </svg>
-                        </div>
+                        <h2 className="text-2xl font-bold text-black">
+                          {tool.title}
+                        </h2>
                       </div>
+                      <a
+                        href={tool.button.link}
+                        className="bg-orange-600 text-white px-4 py-2 rounded-full text-sm hover:bg-orange-700"
+                      >
+                        {tool.button.text}
+                      </a>
                     </div>
-                    
-                    {/* CTA button */}
-                    <div className="w-[500px] text-center mb-6">
-                    <div className="bg-[#ff6b1a] text-white text-sm font-bold px-4 py-2 rounded-lg inline-block">
-                      Free Quotes
-                    </div>
-                    </div>
-                    
-                    {/* Benefits list */}
-                    <div className="w-full space-y-3">
-                      <div className="flex items-center">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ff6b1a" strokeWidth="2">
-                          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-                          <path d="M22 4L12 14.01l-3-3"/>
-                        </svg>
-                        <span className="text-sm text-[#ff6b1a] ml-2">Automated Payroll</span>
-                      </div>
-                      <div className="flex items-center">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ff6b1a" strokeWidth="2">
-                          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-                          <path d="M22 4L12 14.01l-3-3"/>
-                        </svg>
-                        <span className="text-sm text-[#ff6b1a] ml-2">Tax Compliance</span>
-                      </div>
-                      <div className="flex items-center">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ff6b1a" strokeWidth="2">
-                          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-                          <path d="M22 4L12 14.01l-3-3"/>
-                        </svg>
-                        <span className="text-sm text-[#ff6b1a] ml-2">Direct Deposit</span>
-                      </div>
-                      <div className="flex items-center">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ff6b1a" strokeWidth="2">
-                          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-                          <path d="M22 4L12 14.01l-3-3"/>
-                        </svg>
-                        <span className="text-sm text-[#ff6b1a] ml-2">HR Integration</span>
-                      </div>
-                    </div>
-                  </div>
-                </a>
-              </div>
-              
-              {/* Information panel */}
-              <div className="w-full px-4 mx-auto md:max-w-[500px] sm:max-w-[500px] lg:max-w-[450px] relative group">
-                <div className="absolute -inset-1  opacity-60 rounded-2xl blur-md transition-all duration-300"></div>
-                <div className="relative backdrop-blur-xl bg-gradient-to-br from-[#ff6b1a]/40 via-[#ff8633]/40 to-[#ff9e5e]/40 rounded-2xl shadow-2xl overflow-hidden border border-[#ff8633]/30">
-                  <div className="absolute top-0 right-0 w-40 h-40 bg-[#ff8633] rounded-full opacity-10 blur-2xl"></div>
-                  <div className="absolute -bottom-20 -left-20 w-72 h-72 bg-[#ff8633] rounded-full opacity-10 blur-2xl"></div>
-                  
-                  <div className="relative p-10 z-10 sm:h-[800px] md:h-[800px] lg:h-[680px]">
-                    <h2 className="text-3xl font-semibold text-white mb-4">💰 Compare Payroll System Options — 100% Free!</h2>
-                    <div className="w-20 h-1.5 bg-gradient-to-r from-[#ff8633] to-[#ffb380] mb-8"></div>
-                    <h3 className="text-xl font-semibold text-orange-100 mb-7">Looking for the best payroll solution? We've got you covered.</h3>
-                    
-                    <div className="mb-10 space-y-6">
-                      <p className="text-orange-50 leading-relaxed text-base">
-                        Just answer a few quick questions and get customized quotes from top providers - all in under a minute.
-                      </p>
-                      
-                      <div className="space-y-5">
-                        <div className="flex items-start">
-                          <div className="flex-shrink-0 w-7 h-7 rounded-full bg-[#000e54] flex items-center justify-center mr-4  transition-colors duration-300">
-                            <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7"></path>
-                            </svg>
-                          </div>
-                          <span className="font-semibold text-orange-50 text-base">Get free, no-obligation quotes from top providers</span>
-                        </div>
-                        <div className="flex items-start">
-                          <div className="flex-shrink-0 w-7 h-7 rounded-full bg-[#000e54] flex items-center justify-center mr-4  transition-colors duration-300">
-                            <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7"></path>
-                            </svg>
-                          </div>
-                          <span className="font-semibold text-white text-base">Takes less than a minute!</span>
-                        </div>
-                        <div className="flex items-start">
-                          <div className="flex-shrink-0 w-7 h-7 rounded-full bg-[#000e54] flex items-center justify-center mr-4  transition-colors duration-300">
-                            <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7"></path>
-                            </svg>
-                          </div>
-                          <span className="font-semibold text-orange-50 text-base">Make smarter payroll decisions with side-by-side comparisons—all for $0.</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              {/* Comparison widget */}
-              <div className="w-full px-4 mx-auto max-w-[500px] relative group">
-                <div className="absolute -inset-1  opacity-60 rounded-2xl"></div>
-                <div className="relative bg-white rounded-2xl shadow-2xl overflow-hidden">
-                  <div className="bg-gradient-to-r from-[#ff8633] to-[#ff6b1a] p-4 text-white text-center">
-                    <h3 className="text-xl font-semibold">Compare Payroll Solutions</h3>
-                  </div>
-                  <div 
-                    id="buyerzone-widget-container" 
-                    className="w-full h-full bg-white rounded-b-2xl overflow-hidden"
-                  ></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-</div>
-
-{/* Why it matters section */}
-<div id="whymatter-payroll" className="mt-16 max-w-6xl mx-auto px-4">
-  <h2 className="text-4xl font-semibold text-gray-900 mb-8 flex items-center justify-center">
-    Why Payroll Matters More Than You Think
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-6 h-6 ml-2 fill-[#000e54]">
-      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h2v2h-2zm1.6-11.4l-.8.8c-.8.8-1.2 1.2-1.2 2.2v.4h-2v-.3c0-.9.5-1.7 1.3-2.3l1-.7c.3-.2.5-.5.5-.9 0-.6-.4-1-1-1-.5 0-1 .4-1 1H8c0-1.7 1.3-3 3-3s3 1.3 3 3c0 .9-.4 1.7-1.4 2.2z"/>
-    </svg>
-  </h2>
   
-  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-    <div className="bg-white p-6 rounded-xl shadow-sm text-left hover:shadow-md transition-shadow">
-      <div className="w-16 h-16 mx-auto mb-4">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-full h-full fill-[#000e54]">
-          <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14z"/>
-          <path d="M7 12h2v5H7zm4-7h2v12h-2zm4 5h2v7h-2z"/>
-        </svg>
-      </div>
-      <h3 className="text-xl font-semibold mb-2 text-gray-800">Your Time Is Money</h3>
-<p className="text-gray-800 text-base">
-  Small business owners spend 5+ hours monthly on payroll tasks. That's 60+ hours yearly – enough time to:
-</p>
-<ul className="text-left mt-2 text-sm text-gray-800 list-disc pl-5">
-  <li>Land 2-3 new clients</li>
-  <li>Develop a new product feature</li>
-  <li>Take a proper vacation</li>
-</ul>
+                    {/* Scores */}
+                    <div className="space-y-4 text-black mb-6">
+                      {tool.scores.map((score, index) => (
+                        <div key={index}>
+                          <div className="flex justify-between text-sm font-medium mb-1">
+                            <span>{score.label}</span>
+                            <span>{score.score}</span>
+                          </div>
+                          <div className="w-full bg-gray-100 rounded-full h-2">
+                            <div
+                              className="bg-orange-600 h-2 rounded-full"
+                              style={{
+                                width: `${(parseFloat(score.score) / 5) * 100}%`,
+                              }}
+                            ></div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+  
+                    {/* Pros and Cons */}
+                    <div className="grid md:grid-cols-2 text-black gap-6 mb-6">
+                      <div>
+                        <h3 className="text-lg font-semibold mb-2">Pros</h3>
+                        <ul className="list-disc pl-5 space-y-1">
+                          {tool.pros.map((pro, index) => (
+                            <li key={index}>{pro}</li>
+                          ))}
+                        </ul>
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-semibold mb-2">Cons</h3>
+                        <ul className="list-disc pl-5 space-y-1">
+                          {tool.cons.map((con, index) => (
+                            <li key={index}>{con}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+  
+                    {/* Why I Chose Section */}
+                    <div className="mb-6 text-black">
+                      <h3 className="text-lg font-semibold mb-2">
+                        Why I chose {tool.title.split(":")[0]}
+                      </h3>
+                      <p className="mb-4">{tool.why.intro}</p>
+                      {tool.why.bullets && (
+                        <ul className="list-disc pl-5 space-y-1 mb-4">
+                          {tool.why.bullets.map((bullet, index) => (
+                            <li key={index}>{bullet}</li>
+                          ))}
+                        </ul>
+                      )}
+                      <p>{tool.why.outro}</p>
+                    </div>
+  
+                    {/* Expandable Sections */}
+                    {tool.why.extras &&
+                      Object.entries(tool.why.extras).map(([label, content]) => {
+                        const sectionKey = `${tool.id}-${label}`;
+                        return (
+                          <div
+                            key={sectionKey}
+                            className="border-t text-black pt-4 mb-4"
+                          >
+                            <button
+                              onClick={() => toggleSection(sectionKey)}
+                              className="w-full flex justify-between items-center font-medium"
+                            >
+                              <span>{label}</span>
+                              <span className="text-orange-600">
+                                {openSections[sectionKey] ? (
+                                  <Minus className="w-5 h-5" />
+                                ) : (
+                                  <Plus className="w-5 h-5" />
+                                )}
+                              </span>
+                            </button>
+                            {openSections[sectionKey] && (
+                              <div className="mt-2 text-gray-700">
+                                {typeof content === "string" ? (
+                                  <p>{content}</p>
+                                ) : (
+                                  content
+                                )}
+                              </div>
+                            )}
+                          </div>
+                        );
+                      })}
+                  </div>
+                ))}
+</section>
+ <section id="features" className="mt-8 max-w-7xl mx-auto">
+  <div className="max-w-none">
+    <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-8 sm:mb-10 md:mb-12 lg:mb-16">
+      What Is Payroll System?
+    </h1>
 
-    </div>
-    
-    <div className="bg-white p-6 rounded-xl shadow-sm text-left hover:shadow-md transition-shadow">
-      <div className="w-16 h-16 mx-auto mb-4">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-full h-full fill-[#000e54]">
-          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
-        </svg>
-      </div>
-      <h3 className="text-xl text-gray-800 font-semibold mb-2">Compliance = Peace of Mind</h3>
-<p className="text-gray-800 text-base">
-  Payroll mistakes aren't just expensive - they can damage your reputation. We help you:
-</p>
-<ul className="text-left mt-2 text-sm text-gray-800 list-disc pl-5">
-  <li>Avoid tax penalties (up to 15% of unpaid amounts)</li>
-  <li>Stay updated with changing labor laws</li>
-  <li>Maintain perfect audit trails</li>
-</ul>
-
-    </div>
-    
-    <div className="bg-white p-6 rounded-xl shadow-sm text-left hover:shadow-md transition-shadow">
-      <div className="w-16 h-16 mx-auto mb-4">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-full h-full fill-[#000e54]">
-          <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
-        </svg>
-      </div>
-      <h3 className="text-xl text-gray-800 font-semibold mb-2">Employee Trust Builder</h3>
-<p className="text-gray-800 text-base">
-  Payday is the most important day for your team. Consistent payroll:
-</p>
-<ul className="text-left mt-2 text-sm text-gray-800 list-disc pl-5">
-  <li>Reduces turnover by 30%</li>
-  <li>Boosts productivity by 23%</li>
-  <li>Creates positive company culture</li>
-</ul>
-
+    <div className="mb-8 sm:mb-10 md:mb-12 lg:mb-16">
+      <p className="text-base sm:text-sm md:text-lg lg:text-lg text-gray-700 leading-relaxed sm:leading-relaxed md:leading-relaxed lg:leading-relaxed">
+        A payroll system is a software solution designed to automate and streamline the process of paying employees. It handles calculations, tax deductions, benefits administration, and ensures compliance with labor laws.
+      </p>
     </div>
   </div>
+</section>
 
-  <div className="mt-10 bg-blue-50 p-6 rounded-xl">
-    <h3 className="text-xl font-semibold text-center mb-4 text-gray-800">The Hidden Costs of Manual Payroll</h3>
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
-      <div className="bg-white p-4 rounded-lg">
-        <div className="text-xl font-semibold text-[#000e54]">1 in 3</div>
-        <p className="text-gray-800 text-base">Small businesses face payroll penalties each year</p>
+<section id="working" className="mt-8 max-w-7xl mx-auto">
+  <div className="max-w-none">
+    <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-8 sm:mb-10 md:mb-12 lg:mb-16">
+      How Does Payroll System Work
+    </h1>
+
+    <div className="mb-8 sm:mb-10 md:mb-12 lg:mb-16">
+      <p className="text-base sm:text-sm md:text-lg lg:text-lg text-gray-700 leading-relaxed sm:leading-relaxed md:leading-relaxed lg:leading-relaxed">
+        Modern payroll systems automate the entire payment process through several key steps:
+      </p>
+    </div>
+
+    <div className="space-y-12">
+      <div>
+        <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 leading-tight mb-6 sm:mb-8 md:mb-10 lg:mb-12">
+          Data Collection
+        </h2>
+        <ul className="list-disc list-inside text-base sm:text-sm md:text-lg lg:text-lg text-gray-700 leading-relaxed space-y-2">
+          <li>Gathers employee hours, overtime, and attendance data</li>
+          <li>Integrates with time tracking systems</li>
+          <li>Captures salary changes and bonus information</li>
+        </ul>
       </div>
-      <div className="bg-white p-4 rounded-lg">
-        <div className="text-xl font-semibold text-[#000e54]">$850</div>
-        <p className="text-gray-800 text-base">Average cost to correct payroll errors</p>
-      </div>
-      <div className="bg-white p-4 rounded-lg">
-        <div className="text-xl font-semibold text-[#000e54]">42%</div>
-        <p className="text-gray-800 text-base">Employees would leave after two payroll mistakes</p>
+
+      <div>
+        <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 leading-tight mb-6 sm:mb-8 md:mb-10 lg:mb-12">
+          Calculation Phase
+        </h2>
+        <ul className="list-disc list-inside text-base sm:text-sm md:text-lg lg:text-lg text-gray-700 leading-relaxed space-y-2">
+          <li>Computes gross pay based on hours worked</li>
+          <li>Automatically deducts taxes and benefits</li>
+          <li>Calculates net pay for each employee</li>
+        </ul>
       </div>
     </div>
   </div>
+</section>
 
-  <div className="mt-10 p-6 border border-blue-100 rounded-xl bg-white">
-    <h3 className="text-xl font-semibold text-center mb-3 text-gray-800">Payroll Done Right Means...</h3>
-    <div className="flex flex-wrap justify-center gap-4">
-      <span className="px-4 py-2 bg-blue-50  text-[#000e54] rounded-full text-base">✓ More time for strategy</span>
-      <span className="px-4 py-2 bg-blue-50 text-[#000e54] rounded-full text-base">✓ No more tax season stress</span>
-      <span className="px-4 py-2 bg-blue-50 text-[#000e54] rounded-full text-base">✓ Happier, more loyal team</span>
-      <span className="px-4 py-2 bg-blue-50 text-[#000e54] rounded-full text-base">✓ Financial peace of mind</span>
-      <span className="px-4 py-2 bg-blue-50 text-[#000e54] rounded-full text-base">✓ Growth-ready systems</span>
+<section id="importance" className="mt-8 max-w-7xl mx-auto">
+  <div className="max-w-none">
+    <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-8 sm:mb-10 md:mb-12 lg:mb-16">
+      Why Does Payroll System Matter?
+    </h1>
+
+    <div className="space-y-12">
+      <div>
+        <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 leading-tight mb-6 sm:mb-8 md:mb-10 lg:mb-12">
+          Compliance and Accuracy
+        </h2>
+        <ul className="list-disc list-inside text-base sm:text-sm md:text-lg lg:text-lg text-gray-700 leading-relaxed space-y-2">
+          <li>Ensures tax calculations comply with current laws</li>
+          <li>Reduces human error in payment calculations</li>
+          <li>Maintains proper records for audits</li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 leading-tight mb-6 sm:mb-8 md:mb-10 lg:mb-12">
+          Employee Satisfaction
+        </h2>
+        <ul className="list-disc list-inside text-base sm:text-sm md:text-lg lg:text-lg text-gray-700 leading-relaxed space-y-2">
+          <li>Ensures timely and accurate payments</li>
+          <li>Provides self-service access to pay information</li>
+          <li>Transparent calculation of deductions</li>
+        </ul>
+      </div>
     </div>
   </div>
+</section>
+
+<section id="articles" className="mt-8 max-w-7xl mx-auto">
+  <div className="max-w-none">
+    <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-8 sm:mb-10 md:mb-12 lg:mb-16">
+      Related Articles
+    </h1>
+
+    <div className="space-y-6">
+      <p className="text-base sm:text-sm md:text-lg lg:text-lg text-gray-700 leading-relaxed">
+        Explore more about payroll systems and related topics:
+      </p>
+      <ul className="list-disc list-inside text-base sm:text-sm md:text-lg lg:text-lg text-gray-700 leading-relaxed space-y-2">
+        <li>How to Choose the Right Payroll Software</li>
+        <li>Payroll Compliance: What You Need to Know</li>
+        <li>Integrating Payroll with HR Systems</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="Faq" className="mt-8 max-w-7xl mx-auto">
+  <div className="max-w-none">
+    <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-8 sm:mb-10 md:mb-12 lg:mb-16">
+      Payroll System FAQs
+    </h1>
+
+    <div className="space-y-8">
+      <div>
+        <h3 className="text-lg font-bold text-gray-900 mb-4">What are the benefits of automated payroll?</h3>
+        <p className="text-base sm:text-sm md:text-lg lg:text-lg text-gray-700 leading-relaxed">
+          Automated payroll systems save time, reduce errors, ensure compliance, and provide better record-keeping compared to manual processes.
+        </p>
+      </div>
+      <div>
+        <h3 className="text-lg font-bold text-gray-900 mb-4">How often should payroll be processed?</h3>
+        <p className="text-base sm:text-sm md:text-lg lg:text-lg text-gray-700 leading-relaxed">
+          Payroll frequency depends on your business needs and local regulations, but common schedules include weekly, bi-weekly, semi-monthly, or monthly.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+    <div id="faq" className="">
+        <FAQ faqsData={faqData} />
+    </div>
+ 
 </div>
+</div>
+ </div>
+</div>
+    
+
+  
+ 
+
+
+  
+
+ 
+
+ 
 
 {/* buyers guide */}
-<div className="max-w-6xl mx-auto px-4 py-10 flex flex-col lg:flex-row items-center justify-between gap-8">
-          {/* Left side text content - centered at all screen sizes */}
-          <div className="w-full lg:w-2/5 text-center">
-            <h2 className="text-4xl font-semibold text-gray-900 mb-2 text-center">
-              Payroll System
-            </h2>
-            <h3 className="text-4xl font-semibold text-gray-900 mb-6 text-center">
-              Buyer's Guide
-            </h3>
+ 
 
-            <div className="w-16 h-1 bg-gray-300 mx-auto mb-6 block"></div>
-
-            <p className="text-gray-800 mb-8 text-left text-base">
-            Managing payroll manually is time-consuming and prone to errors, but the right payroll system can automate salary calculations, tax deductions, and compliance filings, saving you hours of work while ensuring accuracy. Look for a system that offers automatic tax updates, direct deposit, employee self-service portals, and seamless integration with your existing accounting software—cloud-based solutions are ideal for most businesses because they're accessible anywhere, update automatically, and scale as you grow. Be mindful of hidden costs like setup fees or per-employee charges, and always take advantage of free trials to test the system before committing. At Compare Bazaar, we've designed our payroll solution to be user-friendly, compliant, and fully supported by real experts, so you can focus on your business while we handle the complexities of payroll—let us help you find the perfect fit.
-            </p>
-
-            <a
-              href="https://www.compare-bazaar.com/BusinessPayroll"
-              className="inline-block border-2 mx-auto border-[#ff8633] text-[#ff8633] font px-6 py-3 rounded-full hover:bg-[#ff8633] hover:text-white transition-colors duration-300"
-            >
-              READ THE BUYER'S GUIDE
-            </a>
-          </div>
-
-          {/* Right side image */}
-          <div className="w-full lg:w-3/5 mt-8 lg:mt-0">
-            <div className="relative overflow-hidden rounded-lg shadow-lg">
-              <img
-                src="/images/payrollbuyersguide.jpg"
-                alt="Business communications concept showing a hand touching a phone with digital network icons"
-                className="w-full"
-              />
-              <div className="absolute inset-0 bg-blue-900 opacity-20"></div>
-
-              {/* Overlay elements to match the original image */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-full h-full flex items-center justify-center">
-                  
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-    <div id="payroll-articles">
-      <Article
-        title="Related Articles" 
-        items={articles1} 
-        buttonText="View Post" 
-        buttonColor="bg-[#ff8633]" 
-      />
-    </div>
-    <div id="payroll-faq" className="">
-        <FAQ faqsData={ payrollFAQs} />
-    </div>
+    
     
     <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-        <PayrollForm/>
+        
     </Modal>
     </>
   );

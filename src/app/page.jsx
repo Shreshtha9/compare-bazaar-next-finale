@@ -261,7 +261,7 @@ const logosPerScreen = getLogosPerScreen(width);
   {
     name: "Best Employee Management Software",
     icon: <Users />,
-    link: "/BestEmployeeMangementSoftware",
+    link: "/Technology-main/Best-employee-management-software",
     image: "/images/bestemploye.webp",
   },
   {
@@ -273,13 +273,13 @@ const logosPerScreen = getLogosPerScreen(width);
   {
     name: "Best Payroll System",
     icon: <DollarSign />,
-    link: "/BestPayrollSystem",
+    link: "/Technology-main/Best-payroll-system",
     image: "/images/payroll.webp",
   },
   {
     name: "Best Project Management Software",
     icon: <Clipboard />,
-    link: "/BestProjectManagement",
+    link: "/Sales/Best-project-management-software",
     image: "/images/bestproject.webp",
   },
 ];

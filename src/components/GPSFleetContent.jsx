@@ -1,76 +1,36 @@
-import React, { useState , useEffect } from 'react';
-import Link from "next/link";
-import Image from "next/image";
-import TableOfContents from './TableOfContents';
+import React, { useState } from 'react';
 import FAQ from './FAQ';
 import Article from './ArticleLayoutCommon';
 
-import {
-  Home,
-  CheckCircle2,
-  Calendar,
-  ChevronDown,
-  ChevronUp,
-  Plus,
-  Minus,
-  ExternalLink,
-  Search,
-  Filter,
-  Star,
-  Users,
-  DollarSign,
-  Clock,
-  Check,
-  X,
-} from "lucide-react";
+import { 
+    Truck, 
+    Map, 
+    Shield, 
+    BarChart3, 
+    Clock, 
+    Smartphone,
+    MapPin,
+    Satellite,
+    Zap,
+    Globe,
+    ShieldCheck,
+    TrendingUp,
+    Radio,
+    Users,
+    AlertTriangle,
+    AlertCircle,
+    Cpu, Settings, 
+    Route,
+  Clipboard, Fuel, CreditCard, Calendar,Link,
+  ArrowRight, CheckCircle, PhoneCall,  Bell, Wifi,ChartLine, Database,Code,FileText, Server,RefreshCw, Briefcase,
+    
+  } from 'lucide-react';
 
- 
+
 
 const GPSFleetContent = () => {
-     const [searchTerm, setSearchTerm] = useState("");
-  const [productSearch, setProductSearch] = useState("");
-  const [filterBy, setFilterBy] = useState("Reviews");
-  const [sortBy, setSortBy] = useState("Featured");
-  const [itemsPerPage, setItemsPerPage] = useState("10 per page");
-  const [expandedSections, setExpandedSections] = useState({});
-  const [isMobile, setIsMobile] = useState(false);
-  const [activeSection, setActiveSection] = useState(null);
-  const [openSections, setOpenSections] = useState({});
-  const [openItems, setOpenItems] = useState({});
-  const [activeTab, setActiveTab] = useState("features");
-     const toggleSection = (sectionKey, labelKey = null) => {
-    setExpandedSections((prev) => ({
-      ...prev,
-      [sectionKey]: !prev[sectionKey],
-    }));
-
-    if (labelKey) {
-      setActiveSection((prev) => (prev === sectionKey ? null : sectionKey));
-      setOpenSection((prev) => (prev === labelKey ? null : labelKey));
-    }
-
-    setOpenSections((prev) => ({
-      ...prev,
-      [sectionKey]: !prev[sectionKey],
-    }));
-  };
-
-  const toggleItem = (index) => {
-    setOpenItems((prev) => ({
-      ...prev,
-      [index]: !prev[index],
-    }));
-  };
-
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
-
+    const [activeTab, setActiveTab] = useState('operational');
+    
   // faq
   const gpsFleetFAQs = [
     {
@@ -127,358 +87,316 @@ const GPSFleetContent = () => {
       answer: "Our plug-and-play devices can be self-installed in minutes with no wiring required for most vehicles. For complex installations or heavy equipment, we offer professional installation services."
     }
   ];
-  const contents = [
-    {
-      id: "What-is-GPS-Fleet-Tracking",
-      title: " What is GPS Fleet Tracking?",
-      active: false,
-    },
-    {
-      id: "Tracking-Work",
-      title: "How Does Fleet Management Tracking Work?",
-      active: false,
-    },
-    {
-      id: "gps-recommendations",
-      title: "Compare Our Best GPS Fleet Management Picks",
-      active: false,
-    },
-    {
-      id: "reviews",
-      title: "Reviews",
-      active: false,
-    },
-    {
-      id: "benefits",
-      title: "What Are the Benefits of Fleet Tracking?",
-      active: false,
-    },
-    {
-      id: "features",
-      title: "What Are Some Features of GPS Fleet Tracking?",
-      active: false,
-    },
 
-    {
-      id: "methodology",
-      title: "Methodology",
-      active: false,
+  const features = [
+    { 
+      icon: <Truck className="w-12 h-12 text-[#000e54]" />, 
+      title: "Vehicle Tracking", 
+      description: "Real-time tracking of your entire fleet to optimize routes and improve response times." 
     },
-    {
-      id: "faqs",
-      title: "Frequently Asked Questions (FAQ)",
-      active: false,
+    { 
+      icon: <Map className="w-12 h-12 text-[#000e54]" />, 
+      title: "Route Optimization", 
+      description: "Reduce fuel costs and delivery times with AI-powered route planning." 
     },
+    { 
+      icon: <Shield className="w-12 h-12 text-[#000e54]" />, 
+      title: "Safety Monitoring", 
+      description: "Monitor driver behavior and vehicle health to prevent accidents and breakdowns." 
+    },
+    { 
+      icon: <BarChart3 className="w-12 h-12 text-[#000e54]" />, 
+      title: "Performance Analytics", 
+      description: "Comprehensive reports and insights to improve operational efficiency." 
+    },
+    { 
+      icon: <Clock className="w-12 h-12 text-[#000e54]" />, 
+      title: "Maintenance Scheduling", 
+      description: "Automated maintenance alerts to reduce downtime and extend vehicle lifespan." 
+    },
+    { 
+      icon: <Smartphone className="w-12 h-12 text-[#000e54]" />, 
+      title: "Mobile Access", 
+      description: "Manage your fleet from anywhere with our responsive mobile application." 
+    }
   ];
-  // const features = [
-  //   { 
-  //     icon: <Truck className="w-12 h-12 text-[#000e54]" />, 
-  //     title: "Vehicle Tracking", 
-  //     description: "Real-time tracking of your entire fleet to optimize routes and improve response times." 
-  //   },
-  //   { 
-  //     icon: <Map className="w-12 h-12 text-[#000e54]" />, 
-  //     title: "Route Optimization", 
-  //     description: "Reduce fuel costs and delivery times with AI-powered route planning." 
-  //   },
-  //   { 
-  //     icon: <Shield className="w-12 h-12 text-[#000e54]" />, 
-  //     title: "Safety Monitoring", 
-  //     description: "Monitor driver behavior and vehicle health to prevent accidents and breakdowns." 
-  //   },
-  //   { 
-  //     icon: <BarChart3 className="w-12 h-12 text-[#000e54]" />, 
-  //     title: "Performance Analytics", 
-  //     description: "Comprehensive reports and insights to improve operational efficiency." 
-  //   },
-  //   { 
-  //     icon: <Clock className="w-12 h-12 text-[#000e54]" />, 
-  //     title: "Maintenance Scheduling", 
-  //     description: "Automated maintenance alerts to reduce downtime and extend vehicle lifespan." 
-  //   },
-  //   { 
-  //     icon: <Smartphone className="w-12 h-12 text-[#000e54]" />, 
-  //     title: "Mobile Access", 
-  //     description: "Manage your fleet from anywhere with our responsive mobile application." 
-  //   }
-  // ];
 
-  // const featureCategories = {
-  //   operational: {
-  //     title: "Operational Excellence",
-  //     description: "Optimize your fleet with smart tracking and management tools",
-  //     color: 'bg-[#000e54]',
-  //     textColor:'text-[#000e54]',
-  //     features: [
-  //       {
-  //         icon: <MapPin className="w-12 h-12 text-[#000e54]" />,
-  //         title: "Real-Time Vehicle Tracking",
-  //         description: "Track your fleet in real-time with GPS updates every 30-60 seconds. See each vehicle's location, speed, direction, and status – from any device.",
-  //         benefits: ["Eliminate guesswork about vehicle locations", "Respond quickly to service requests", "Provide accurate ETAs to customers"]
-  //       },
-  //       {
-  //         icon: <Truck className="w-12 h-12 text-[#000e54]" />,
-  //         title: "Route Optimization",
-  //         description: "AI plans smarter routes—factoring in traffic, delivery times, vehicle capacity, and driver schedules to maximize efficiency.",
-  //         benefits: ["Reduce fuel consumption by up to 30%", "Complete more jobs per day", "Minimize overtime expenses"]
-  //       },
-  //       {
-  //         icon: <BarChart3 className="w-12 h-12 text-[#000e54]" />,
-  //         title: "Performance Analytics",
-  //         description: "Get a clear view of your fleet's performance with customizable dashboards that track all your key metrics.",
-  //         benefits: ["Identify inefficient routes and processes", "Compare driver and vehicle performance", "Generate client-ready reports"]
-  //       },
-  //       {
-  //         icon: <Clock className="w-12 h-12 text-[#000e54]" />,
-  //         title: "Automated Dispatching",
-  //         description: "Automatically assigns jobs based on driver location, availability, and task details—maximizing productivity.",
-  //         benefits: ["Reduce dispatcher workload", "Eliminate double-booking", "Respond faster to urgent service requests"]
-  //       }
-  //     ]
-  //   },
-  //   safety: {
-  //     title: "Safety & Compliance",
-  //     description: "Protect your drivers, vehicles, and business with advanced safety features",
-  //     color: "bg-green-600",
-  //     textColor:"text-green-600",
-  //     features: [
-  //       {
-  //         icon: <AlertTriangle className="w-12 h-12 text-green-600" />,
-  //         title: "Driver Behavior Monitoring",
-  //         description: "Track and score driving habits including speeding, harsh braking, rapid acceleration, and cornering to identify risky behaviors before they lead to accidents.",
-  //         benefits: ["Reduce accident rates by up to 40%", "Lower insurance premiums", "Create data-driven safety programs"]
-  //       },
-  //       {
-  //         icon: <Shield className="w-12 h-12 text-green-600" />,
-  //         title: "Compliance Management",
-  //         description: "Automated logging of hours of service, electronic DVIR, IFTA reporting, and regulatory documentation to ensure your fleet stays compliant with transportation regulations.",
-  //         benefits: ["Avoid costly violations and fines", "Streamline DOT audits", "Maintain accurate electronic records"]
-  //       },
-  //       {
-  //         icon: <Bell className="w-12 h-12 text-green-600" />,
-  //         title: "Real-Time Alerts & Notifications",
-  //         description: "Customizable alert system that notifies managers about safety violations, unauthorized vehicle use, geofence breaches, and maintenance issues.",
-  //         benefits: ["Address issues before they escalate", "Prevent unauthorized vehicle use", "Maintain security protocols"]
-  //       },
-  //       {
-  //         icon: <PhoneCall className="w-12 h-12 text-green-600" />,
-  //         title: "Emergency Response Coordination",
-  //         description: "Integrated emergency protocols that help dispatchers quickly locate and assist drivers in distress, with direct communication channels to emergency services.",
-  //         benefits: ["Minimize response time during emergencies", "Provide precise location data to first responders", "Ensure driver safety in crisis situations"]
-  //       }
-  //     ]
-  //   },
-  //   maintenance: {
-  //     title: "Fleet Maintenance",
-  //     description: "Extend vehicle lifespan and reduce downtime with preventative maintenance",
-  //     color: "bg-orange-400",
-  //     textColor:'text-orange-400',
-  //     features: [
-  //       {
-  //         icon: <Settings className="w-12 h-12 text-orange-400" />,
-  //         title: "Preventative Maintenance Scheduling",
-  //         description: "Automated maintenance alerts based on mileage, engine hours, calendar intervals, or diagnostic trouble codes to prevent breakdowns and extend vehicle lifespan.",
-  //         benefits: ["Reduce unexpected breakdowns by 70%", "Extend vehicle service life", "Maintain warranty compliance"]
-  //       },
-  //       {
-  //         icon: <Clipboard className="w-12 h-12 text-orange-400" />,
-  //         title: "Digital Inspection Records",
-  //         description: "Mobile-friendly digital vehicle inspection forms that drivers can complete with photos and notes, creating a comprehensive maintenance history for each vehicle.",
-  //         benefits: ["Ensure inspection compliance", "Track recurring issues", "Create comprehensive vehicle service records"]
-  //       },
-  //       {
-  //         icon: <TrendingUp className="w-12 h-12 text-orange-400" />,
-  //         title: "Diagnostic Trouble Code Monitoring",
-  //         description: "Real-time engine diagnostic monitoring that alerts fleet managers to potential issues before they cause breakdowns or serious damage.",
-  //         benefits: ["Address minor issues before they become major repairs", "Reduce roadside emergencies", "Plan repairs during scheduled downtime"]
-  //       },
-  //       {
-  //         icon: <Calendar className="w-12 h-12 text-orange-400" />,
-  //         title: "Maintenance Vendor Integration",
-  //         description: "Seamless connectivity with maintenance providers for scheduling, parts ordering, and service history tracking across your preferred repair network.",
-  //         benefits: ["Streamline service appointments", "Track repair costs across vendors", "Maintain centralized maintenance records"]
-  //       }
-  //     ]
-  //   },
-  //   financial: {
-  //     title: "Financial Management",
-  //     description: "Control costs and optimize spending with detailed financial tracking",
-  //     color: "bg-purple-600",
-  //     textColor:"text-purple-600",
-  //     features: [
-  //       {
-  //         icon: <Fuel className="w-12 h-12 text-purple-600" />,
-  //         title: "Fuel Management",
-  //         description: "Comprehensive fuel tracking system that monitors consumption patterns, identifies fuel theft, and provides detailed analysis of fuel efficiency across your fleet.",
-  //         benefits: ["Reduce fuel expenses by 10-15%", "Detect fuel theft or misuse", "Identify vehicles with poor fuel economy"]
-  //       },
-  //       {
-  //         icon: <CreditCard className="w-12 h-12 text-purple-600" />,
-  //         title: "Expense Tracking & Allocation",
-  //         description: "Detailed tracking of all fleet-related expenses with the ability to allocate costs to specific departments, projects, or clients for accurate accounting.",
-  //         benefits: ["Simplify client billing", "Improve budgeting accuracy", "Enable data-driven purchasing decisions"]
-  //       },
-  //       {
-  //         icon: <Users className="w-12 h-12 text-purple-600" />,
-  //         title: "Driver Payroll Integration",
-  //         description: "Automated calculation of driver hours, mileage, and performance metrics that integrates with payroll systems to ensure accurate compensation.",
-  //         benefits: ["Reduce payroll processing time", "Eliminate timesheet disputes", "Track overtime and bonuses accurately"]
-  //       },
-  //       {
-  //         icon: <BarChart3 className="w-12 h-12 text-purple-600" />,
-  //         title: "Total Cost of Ownership Analysis",
-  //         description: "Comprehensive tracking of all vehicle-related expenses throughout its lifecycle, providing insights for optimal replacement timing and fleet composition.",
-  //         benefits: ["Identify underperforming assets", "Optimize vehicle replacement cycles", "Make data-driven procurement decisions"]
-  //       }
-  //     ]
-  //   }
-  // };
+  const featureCategories = {
+    operational: {
+      title: "Operational Excellence",
+      description: "Optimize your fleet with smart tracking and management tools",
+      color: 'bg-[#000e54]',
+      textColor:'text-[#000e54]',
+      features: [
+        {
+          icon: <MapPin className="w-12 h-12 text-[#000e54]" />,
+          title: "Real-Time Vehicle Tracking",
+          description: "Track your fleet in real-time with GPS updates every 30-60 seconds. See each vehicle's location, speed, direction, and status – from any device.",
+          benefits: ["Eliminate guesswork about vehicle locations", "Respond quickly to service requests", "Provide accurate ETAs to customers"]
+        },
+        {
+          icon: <Truck className="w-12 h-12 text-[#000e54]" />,
+          title: "Route Optimization",
+          description: "AI plans smarter routes—factoring in traffic, delivery times, vehicle capacity, and driver schedules to maximize efficiency.",
+          benefits: ["Reduce fuel consumption by up to 30%", "Complete more jobs per day", "Minimize overtime expenses"]
+        },
+        {
+          icon: <BarChart3 className="w-12 h-12 text-[#000e54]" />,
+          title: "Performance Analytics",
+          description: "Get a clear view of your fleet's performance with customizable dashboards that track all your key metrics.",
+          benefits: ["Identify inefficient routes and processes", "Compare driver and vehicle performance", "Generate client-ready reports"]
+        },
+        {
+          icon: <Clock className="w-12 h-12 text-[#000e54]" />,
+          title: "Automated Dispatching",
+          description: "Automatically assigns jobs based on driver location, availability, and task details—maximizing productivity.",
+          benefits: ["Reduce dispatcher workload", "Eliminate double-booking", "Respond faster to urgent service requests"]
+        }
+      ]
+    },
+    safety: {
+      title: "Safety & Compliance",
+      description: "Protect your drivers, vehicles, and business with advanced safety features",
+      color: "bg-green-600",
+      textColor:"text-green-600",
+      features: [
+        {
+          icon: <AlertTriangle className="w-12 h-12 text-green-600" />,
+          title: "Driver Behavior Monitoring",
+          description: "Track and score driving habits including speeding, harsh braking, rapid acceleration, and cornering to identify risky behaviors before they lead to accidents.",
+          benefits: ["Reduce accident rates by up to 40%", "Lower insurance premiums", "Create data-driven safety programs"]
+        },
+        {
+          icon: <Shield className="w-12 h-12 text-green-600" />,
+          title: "Compliance Management",
+          description: "Automated logging of hours of service, electronic DVIR, IFTA reporting, and regulatory documentation to ensure your fleet stays compliant with transportation regulations.",
+          benefits: ["Avoid costly violations and fines", "Streamline DOT audits", "Maintain accurate electronic records"]
+        },
+        {
+          icon: <Bell className="w-12 h-12 text-green-600" />,
+          title: "Real-Time Alerts & Notifications",
+          description: "Customizable alert system that notifies managers about safety violations, unauthorized vehicle use, geofence breaches, and maintenance issues.",
+          benefits: ["Address issues before they escalate", "Prevent unauthorized vehicle use", "Maintain security protocols"]
+        },
+        {
+          icon: <PhoneCall className="w-12 h-12 text-green-600" />,
+          title: "Emergency Response Coordination",
+          description: "Integrated emergency protocols that help dispatchers quickly locate and assist drivers in distress, with direct communication channels to emergency services.",
+          benefits: ["Minimize response time during emergencies", "Provide precise location data to first responders", "Ensure driver safety in crisis situations"]
+        }
+      ]
+    },
+    maintenance: {
+      title: "Fleet Maintenance",
+      description: "Extend vehicle lifespan and reduce downtime with preventative maintenance",
+      color: "bg-orange-400",
+      textColor:'text-orange-400',
+      features: [
+        {
+          icon: <Settings className="w-12 h-12 text-orange-400" />,
+          title: "Preventative Maintenance Scheduling",
+          description: "Automated maintenance alerts based on mileage, engine hours, calendar intervals, or diagnostic trouble codes to prevent breakdowns and extend vehicle lifespan.",
+          benefits: ["Reduce unexpected breakdowns by 70%", "Extend vehicle service life", "Maintain warranty compliance"]
+        },
+        {
+          icon: <Clipboard className="w-12 h-12 text-orange-400" />,
+          title: "Digital Inspection Records",
+          description: "Mobile-friendly digital vehicle inspection forms that drivers can complete with photos and notes, creating a comprehensive maintenance history for each vehicle.",
+          benefits: ["Ensure inspection compliance", "Track recurring issues", "Create comprehensive vehicle service records"]
+        },
+        {
+          icon: <TrendingUp className="w-12 h-12 text-orange-400" />,
+          title: "Diagnostic Trouble Code Monitoring",
+          description: "Real-time engine diagnostic monitoring that alerts fleet managers to potential issues before they cause breakdowns or serious damage.",
+          benefits: ["Address minor issues before they become major repairs", "Reduce roadside emergencies", "Plan repairs during scheduled downtime"]
+        },
+        {
+          icon: <Calendar className="w-12 h-12 text-orange-400" />,
+          title: "Maintenance Vendor Integration",
+          description: "Seamless connectivity with maintenance providers for scheduling, parts ordering, and service history tracking across your preferred repair network.",
+          benefits: ["Streamline service appointments", "Track repair costs across vendors", "Maintain centralized maintenance records"]
+        }
+      ]
+    },
+    financial: {
+      title: "Financial Management",
+      description: "Control costs and optimize spending with detailed financial tracking",
+      color: "bg-purple-600",
+      textColor:"text-purple-600",
+      features: [
+        {
+          icon: <Fuel className="w-12 h-12 text-purple-600" />,
+          title: "Fuel Management",
+          description: "Comprehensive fuel tracking system that monitors consumption patterns, identifies fuel theft, and provides detailed analysis of fuel efficiency across your fleet.",
+          benefits: ["Reduce fuel expenses by 10-15%", "Detect fuel theft or misuse", "Identify vehicles with poor fuel economy"]
+        },
+        {
+          icon: <CreditCard className="w-12 h-12 text-purple-600" />,
+          title: "Expense Tracking & Allocation",
+          description: "Detailed tracking of all fleet-related expenses with the ability to allocate costs to specific departments, projects, or clients for accurate accounting.",
+          benefits: ["Simplify client billing", "Improve budgeting accuracy", "Enable data-driven purchasing decisions"]
+        },
+        {
+          icon: <Users className="w-12 h-12 text-purple-600" />,
+          title: "Driver Payroll Integration",
+          description: "Automated calculation of driver hours, mileage, and performance metrics that integrates with payroll systems to ensure accurate compensation.",
+          benefits: ["Reduce payroll processing time", "Eliminate timesheet disputes", "Track overtime and bonuses accurately"]
+        },
+        {
+          icon: <BarChart3 className="w-12 h-12 text-purple-600" />,
+          title: "Total Cost of Ownership Analysis",
+          description: "Comprehensive tracking of all vehicle-related expenses throughout its lifecycle, providing insights for optimal replacement timing and fleet composition.",
+          benefits: ["Identify underperforming assets", "Optimize vehicle replacement cycles", "Make data-driven procurement decisions"]
+        }
+      ]
+    }
+  };
 
 
 
 //   alternative
-// const alternatives = [
-//     {
-//       title: "Cellular-Based Tracking",
-//       description: "Uses cellular networks for real-time data transmission",
-//       pros: [
-//         "Wide coverage in urban areas",
-//         "Lower hardware costs",
-//         "Easy to install"
-//       ],
-//       cons: [
-//         "Limited rural coverage",
-//         "Ongoing data plan costs"
-//       ],
-//       visual: "https://www.dtss.us/blog/wp-content/uploads/2020/11/AdobeStock_122704176.jpeg"
-//     },
-//     {
-//       title: "Satellite Tracking",
-//       description: "Global coverage using satellite networks",
-//       pros: [
-//         "Works anywhere with sky visibility",
-//         "No cellular dependency",
-//         "Ideal for remote operations"
-//       ],
-//       cons: [
-//         "Higher equipment costs",
-//         "Potential latency issues"
-//       ],
-//       visual: "https://gdmissionsystems.com/-/media/CF4A8AD1DB5246FD854D156C5B82776A.ashx"
-//     },
-//     {
-//       title: "Bluetooth Beacons",
-//       description: "Short-range tracking for localized monitoring",
-//       pros: [
-//         "Excellent for yard management",
-//         "Low power consumption",
-//         "Inexpensive hardware"
-//       ],
-//       cons: [
-//         "Very limited range",
-//         "Requires dense beacon network"
-//       ],
-//       visual: "https://wordpress.mapsted.com/wp-content/uploads/2022/04/Beacons-BLE-2.jpg"
-//     },
-//     {
-//       title: "RFID Tracking",
-//       description: "Tag-based identification at specific checkpoints",
-//       pros: [
-//         "Great for fixed routes",
-//         "No ongoing connectivity costs",
-//         "Long battery life"
-//       ],
-//       cons: [
-//         "No real-time tracking",
-//         "Limited to checkpoint data"
-//       ],
-//       visual: "https://www.intellistride.com/wp-content/uploads/2020/01/RFID-is-still-offers-best-solutions-for-track-and-trace.jpg"
-//     },
-//     {
-//       title: "Hybrid Systems",
-//       description: "Combines multiple technologies for optimal coverage",
-//       pros: [
-//         "Flexible solution",
-//         "Automatic failover",
-//         "Comprehensive data"
-//       ],
-//       cons: [
-//         "More complex setup",
-//         "Higher initial investment"
-//       ],
-//       visual: "https://tse3.mm.bing.net/th?id=OIP.p8Vp0wlKBTVq9LZQhinPjQHaEK&pid=Api&P=0&h=220"
-//     },
-//     {
-//       title: "AI-Powered Video Telematics",
-//       description: "Combines tracking with computer vision analysis",
-//       pros: [
-//         "Detailed driver behavior insights",
-//         "Visual documentation",
-//         "Enhanced safety features"
-//       ],
-//       cons: [
-//         "Higher bandwidth needs",
-//         "Privacy considerations"
-//       ],
-//       visual: "https://www.thegpstime.com/wp-content/uploads/2021/05/AI-powered-Video-Telematics-solution.png"
-//     }
-//   ];
+const alternatives = [
+    {
+      title: "Cellular-Based Tracking",
+      description: "Uses cellular networks for real-time data transmission",
+      pros: [
+        "Wide coverage in urban areas",
+        "Lower hardware costs",
+        "Easy to install"
+      ],
+      cons: [
+        "Limited rural coverage",
+        "Ongoing data plan costs"
+      ],
+      visual: "https://www.dtss.us/blog/wp-content/uploads/2020/11/AdobeStock_122704176.jpeg"
+    },
+    {
+      title: "Satellite Tracking",
+      description: "Global coverage using satellite networks",
+      pros: [
+        "Works anywhere with sky visibility",
+        "No cellular dependency",
+        "Ideal for remote operations"
+      ],
+      cons: [
+        "Higher equipment costs",
+        "Potential latency issues"
+      ],
+      visual: "https://gdmissionsystems.com/-/media/CF4A8AD1DB5246FD854D156C5B82776A.ashx"
+    },
+    {
+      title: "Bluetooth Beacons",
+      description: "Short-range tracking for localized monitoring",
+      pros: [
+        "Excellent for yard management",
+        "Low power consumption",
+        "Inexpensive hardware"
+      ],
+      cons: [
+        "Very limited range",
+        "Requires dense beacon network"
+      ],
+      visual: "https://wordpress.mapsted.com/wp-content/uploads/2022/04/Beacons-BLE-2.jpg"
+    },
+    {
+      title: "RFID Tracking",
+      description: "Tag-based identification at specific checkpoints",
+      pros: [
+        "Great for fixed routes",
+        "No ongoing connectivity costs",
+        "Long battery life"
+      ],
+      cons: [
+        "No real-time tracking",
+        "Limited to checkpoint data"
+      ],
+      visual: "https://www.intellistride.com/wp-content/uploads/2020/01/RFID-is-still-offers-best-solutions-for-track-and-trace.jpg"
+    },
+    {
+      title: "Hybrid Systems",
+      description: "Combines multiple technologies for optimal coverage",
+      pros: [
+        "Flexible solution",
+        "Automatic failover",
+        "Comprehensive data"
+      ],
+      cons: [
+        "More complex setup",
+        "Higher initial investment"
+      ],
+      visual: "https://tse3.mm.bing.net/th?id=OIP.p8Vp0wlKBTVq9LZQhinPjQHaEK&pid=Api&P=0&h=220"
+    },
+    {
+      title: "AI-Powered Video Telematics",
+      description: "Combines tracking with computer vision analysis",
+      pros: [
+        "Detailed driver behavior insights",
+        "Visual documentation",
+        "Enhanced safety features"
+      ],
+      cons: [
+        "Higher bandwidth needs",
+        "Privacy considerations"
+      ],
+      visual: "https://www.thegpstime.com/wp-content/uploads/2021/05/AI-powered-Video-Telematics-solution.png"
+    }
+  ];
 
-//   const renderFeature = (feature, colorClass) => (
-//     <div className="flex flex-col lg:flex-row  py-12 border-b border-gray-200 last:border-0 max-w-6xl" >
-//       <div className="lg:w-1/3">
-//         <div className={`bg-${colorClass}-50 rounded-xl p-6 inline-block mb-4`}>
-//           {feature.icon}
-//         </div>
-//         <h3 className="text-xl font-semibold text-gray-800 mb-2">{feature.title}</h3>
-//         <div className={`w-16 h-1 bg-${colorClass}-600 mb-4`}></div>
-//       </div>
-//       <div className="lg:w-2/3">
-//         <p className="text-base text-gray-800 mb-6">
-//           {feature.description}
-//         </p>
-//         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-// {feature.benefits.map((benefit, index) => (
-//   <div key={`${benefit}-${index}`} className="flex items-start">
-//     <CheckCircle className={`w-5 h-5 text-${colorClass}-600 mr-2 mt-1 flex-shrink-0`} />
-//     <p className="text-base text-gray-800">{benefit}</p>
-//   </div>
-// ))}
+  const renderFeature = (feature, colorClass) => (
+    <div className="flex flex-col lg:flex-row  py-12 border-b border-gray-200 last:border-0 max-w-6xl" >
+      <div className="lg:w-1/3">
+        <div className={`bg-${colorClass}-50 rounded-xl p-6 inline-block mb-4`}>
+          {feature.icon}
+        </div>
+        <h3 className="text-xl font-semibold text-gray-800 mb-2">{feature.title}</h3>
+        <div className={`w-16 h-1 bg-${colorClass}-600 mb-4`}></div>
+      </div>
+      <div className="lg:w-2/3">
+        <p className="text-base text-gray-800 mb-6">
+          {feature.description}
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+{feature.benefits.map((benefit, index) => (
+  <div key={`${benefit}-${index}`} className="flex items-start">
+    <CheckCircle className={`w-5 h-5 text-${colorClass}-600 mr-2 mt-1 flex-shrink-0`} />
+    <p className="text-base text-gray-800">{benefit}</p>
+  </div>
+))}
 
-//         </div>
-//       </div>
-//     </div>
-//   );
+        </div>
+      </div>
+    </div>
+  );
 
-//   const renderAnimatedIcon = (category) => {
-//     const icons = {
-//       operational: (
-//         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-//           <circle cx="12" cy="12" r="10" />
-//           <polyline points="12 6 12 12 16 14" />
-//         </svg>
-//       ),
-//       safety: (
-//         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-//           <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-//         </svg>
-//       ),
-//       maintenance: (
-//         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-//           <circle cx="12" cy="12" r="3" />
-//           <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
-//         </svg>
-//       ),
-//       financial: (
-//         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-//           <line x1="12" y1="1" x2="12" y2="23" />
-//           <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
-//         </svg>
-//       )
-//     };
+  const renderAnimatedIcon = (category) => {
+    const icons = {
+      operational: (
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <circle cx="12" cy="12" r="10" />
+          <polyline points="12 6 12 12 16 14" />
+        </svg>
+      ),
+      safety: (
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+        </svg>
+      ),
+      maintenance: (
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <circle cx="12" cy="12" r="3" />
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
+        </svg>
+      ),
+      financial: (
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <line x1="12" y1="1" x2="12" y2="23" />
+          <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+        </svg>
+      )
+    };
 
-//     return icons[category];
-//   };
+    return icons[category];
+  };
 
   const articles1 = [
     {
@@ -510,2018 +428,1331 @@ const GPSFleetContent = () => {
     }
   ];
 
- const toolsContent = {
-    Motive: {
-      title: "Motive – Best for beginners and small businesses",
-      logo: "/images/motive.png",
-      button: {
-        text: "Visit Website",
-        link: "#",
-      },
-      scores: [
-        { label: "Overall Score", score: "4.5/5" },
-        { label: "Pricing", score: "4.2/5" },
-        { label: "General features and Interface", score: "4.8/5" },
-        { label: "Core features", score: "4.6/5" },
-        { label: "Advanced features", score: "4.1/5" },
-        { label: "Integration and compatibility", score: "4.3/5" },
-        { label: "UX", score: "4.9/5" },
-      ],
-      pros: [
-        "Intuitive fleet management interface",
-        "Comprehensive driver safety features",
-        "Easy-to-use electronic logging device (ELD)",
-      ],
-      cons: ["Limited customization compared to enterprise solutions"],
-      why: {
-        intro: `Motive is best for beginners and small businesses because it delivers an unmatched combination of simplicity, safety features, and comprehensive fleet management that makes vehicle tracking accessible to everyone. Its high scores in user experience and interface design reflect a real-world efficacy that non-technical users can rely on.`,
-        bullets: [
-          "Motive scores an impressive 98/100 in ease of use, with perfect scores in dashboard functionality and driver coaching, essential for users without fleet management experience. Its ability to provide AI-powered safety insights and real-time tracking further cements its position as the go-to platform for beginners.",
-          "Additionally, Motive offers a more seamless fleet management experience across all devices compared to competitors.",
-        ],
-        outro: `Motive's AI-powered driver coaching creates personalized safety recommendations automatically, crucial for users who want professional fleet management quickly. The integrated marketplace provides hundreds of third-party integrations, ensuring all business needs are covered. Motive's unique real-time dashboard allows instant fleet visibility, providing immediate insights irrespective of technical skill level.`,
-        extras: {
-          "About ": (
-            <>
-              <p className="text-black mb-4">
-                Motive is a comprehensive fleet management platform that includes
-                vehicle tracking, driver safety, ELD compliance, and more,
-                placing it in a similar bracket to all-in-one solutions. It's
-                accomplished this while maintaining user-friendly interfaces,
-                thanks to its focus on safety and ease of use.
-              </p>
-              <p className="text-black">
-                That prioritization of user experience carries over to their
-                suite of fleet management tools, including their tracking
-                infrastructure. With features and tools comparable to its peers
-                in this list, but with the added bonus of designing the platform
-                to function seamlessly for users of all technical levels.
-              </p>
-              <p className="text-black mb-4">
-                The platform is tailored to meet the needs of fleets of all
-                sizes, with flexible pricing and upgrade options. Its
-                pricing structure is competitive, offering value for money and
-                reflecting an understanding of diverse business models.
-              </p>
-              <p className="text-black mb-4">
-                Motive's interface is intuitive, scoring a 95/100 in design, and it
-                supports virtually no learning curve, ensuring new users can
-                quickly adapt. The platform's customizability is a standout
-                feature, allowing businesses to tailor their fleet management to their
-                unique operations and processes.
-              </p>
-              <p className="text-black mb-4">
-                In terms of product design, Motive has been crafted with the user
-                in mind, offering a balance between functionality and
-                simplicity. This balance is critical for user adoption and
-                long-term engagement with the platform.
-              </p>
-            </>
-          ),
-          "Key Features": (
-            <>
-              <h4 className="text-lg font-bold mb-2">
-                AI-Powered Driver Coaching:
-              </h4>
-              <p className="text-black mb-4">
-                Motive offers AI-powered driver coaching that can
-                create personalized safety recommendations based on driving behavior,
-                making fleet safety management smarter and more effective.
-              </p>
-              <h4 className="text-lg font-bold mb-2">Real-Time Fleet Tracking:</h4>
-              <p className="text-black mb-4">
-                This feature provides complete visibility with an intuitive
-                real-time tracking interface, allowing you to monitor vehicles exactly
-                where they are and optimize routes efficiently.
-              </p>
-
-              <h4 className="text-lg font-bold mb-2">ELD Compliance:</h4>
-              <p className="text-black">
-                Motive's ELD solution features automated hours of service tracking
-                to ensure compliance with federal regulations, from driver logs
-                to vehicle inspection reports.
-              </p>
-              <h4 className="text-lg font-bold mb-2">Fleet Maintenance:</h4>
-              <p className="text-black">
-                Provides automated maintenance scheduling ensuring your fleet
-                stays operational, with predictive maintenance alerts and
-                service reminders.
-              </p>
-              <h4 className="text-lg font-bold mb-2">
-                Fuel Management:
-              </h4>
-              <p className="text-black">
-                Motive offers comprehensive fuel monitoring including
-                consumption tracking, fuel card integration, and cost analysis
-                for better fleet efficiency.
-              </p>
-              <h4 className="text-lg font-bold mb-2">
-                Safety and Analytics:
-              </h4>
-              <p className="text-black">
-                Offers built-in safety scoring and detailed analytics capabilities,
-                enabling precise performance tracking and risk management.
-              </p>
-            </>
-          ),
-          Pricing: (
-            <>
-              <p className="text-black mb-4">
-                <a herf="/">Free Trial </a>Available
-              </p>
-
-              <h4 className="text-lg font-bold mb-2">Starter plan</h4>
-              <p className="font-bold  text-black mb-4">
-                Price:<span classname="font-light"> $40/vehicle/month</span>
-              </p>
-              <h6 className="text-lg font-bold mb-2">Features:</h6>
-              <ul className="list-disc pl-5 text-black">
-                <li>Basic fleet tracking</li>
-                <li>ELD compliance</li>
-                <li>Driver logs</li>
-              </ul>
-              <h4 className="text-lg font-bold mb-2">Essential:</h4>
-              <p className="font-bold  text-black mb-4">
-                Price:
-                <span classname="font-light"> $60/vehicle/month</span>
-              </p>
-              <h6 className="text-lg font-bold mb-2">Features: </h6>
-              <ul className="list-disc pl-5 text-black">
-                <li>Everything in Starter, plus:</li>
-                <li>Driver coaching</li>
-                <li>Safety scoring</li>
-                <li>Fuel monitoring</li>
-                <li>Maintenance alerts</li>
-              </ul>
-              <h4 className="text-lg font-bold mb-2">Complete:</h4>
-              <p className="font-bold  text-black mb-4">
-                Price:
-                <span classname="font-light"> $80/vehicle/month</span>
-              </p>
-              <h6 className="text-lg font-bold mb-2">Features: </h6>
-              <ul className="list-disc pl-5 text-black">
-                <li>Everything in Essential, plus:</li>
-                <li>Advanced analytics</li>
-                <li>Custom reporting</li>
-                <li>API access</li>
-              </ul>
-              <h4 className="text-lg font-bold mb-2">Enterprise:</h4>
-              <p className="font-bold  text-black mb-4">
-                Price: Custom pricing
-              </p>
-              <h6 className="text-lg font-bold mb-2">Features:</h6>
-              <ul className="list-disc pl-5 text-black">
-                <li>All Complete features</li>
-                <li>Dedicated support</li>
-                <li>Custom integrations</li>
-                <li>Advanced security</li>
-              </ul>
-              <p className="text-black">
-                For more detailed information on pricing and features, visit the
-                Motive Pricing page.
-              </p>
-            </>
-          ),
-        },
-      },
-    },
-
-    Azuga: {
-      title: "Azuga – Best for domain management and hosting",
-      logo: "/images/azuga.png",
-      button: {
-        text: "Visit Website",
-        link: "#",
-      },
-      scores: [
-        { label: "Overall Score", score: "4.3/5" },
-        { label: "Pricing", score: "4.1/5" },
-        { label: "General features and Interface", score: "4.2/5" },
-        { label: "Core features", score: "4.5/5" },
-        { label: "Advanced features", score: "4.0/5" },
-        { label: "Integration and compatibility", score: "4.6/5" },
-        { label: "UX", score: "4.1/5" },
-      ],
-      pros: [
-        "Comprehensive telematics and fleet management services",
-        "Reliable GPS tracking with 99.9% uptime",
-        "24/7 customer support across multiple channels",
-        "Integrated safety and compliance features",
-        "Wide range of solutions for all fleet sizes",
-      ],
-      cons: [
-        "Interface less intuitive than specialized platforms",
-        "Additional features often require separate purchases",
-        "Can be overwhelming for complete beginners",
-      ],
-      why: {
-        intro: `Azuga stands out as the best solution for comprehensive fleet management due to its robust telematics infrastructure, reliable performance, and integrated safety services. It excels in providing a complete solution for businesses that need both vehicle tracking and advanced fleet analytics capabilities.`,
-        bullets: [
-          "Azuga's telematics infrastructure scored 94/100 in our evaluation, with exceptional GPS accuracy, real-time reporting, and scalability options that surpass most competitors in the traditional fleet management space.",
-          "The platform's fleet management system allows businesses to easily track, monitor, and manage multiple vehicles with advanced analytics and reporting, making it accessible for business users while maintaining enterprise-grade functionality.",
-          "Unlike competitors that focus primarily on basic tracking, Azuga integrates vehicle monitoring, driver behavior, safety scoring, and compliance reporting into a unified platform, providing end-to-end fleet management.",
-        ],
-        outro: `While Motive offers superior user experience and Samsara provides excellent integration capabilities, Azuga's comprehensive telematics and fleet management foundation gives it a distinct advantage for organizations requiring robust vehicle monitoring with integrated safety services. It's particularly well-suited for businesses that need reliable tracking with extensive fleet analytics capabilities.`,
-        extras: {
-          "About ": (
-            <>
-              <p className="text-black mb-4">
-                Azuga is a comprehensive fleet telematics platform that combines
-                GPS tracking, driver behavior monitoring, fleet analytics, and safety
-                tools in a single solution. As a leading fleet management provider,
-                it enables organizations to optimize their fleet operations with
-                enterprise-grade telematics infrastructure.
-              </p>
-              <p className="text-black">
-                The platform originated from GPS tracking services and
-                has evolved to include advanced analytics capabilities, driver
-                safety programs, and compliance management tools.
-                Azuga's strength lies in its ability to provide reliable fleet
-                monitoring while maintaining comprehensive safety and compliance
-                support services.
-              </p>
-              <p className="text-black mb-4">
-                What sets Azuga apart is its integrated approach to fleet
-                management, where every aspect of your fleet operations
-                is supported by robust telematics infrastructure. This makes it ideal for
-                organizations with growing fleets, multiple locations, or
-                complex compliance requirements.
-              </p>
-              <p className="text-black mb-4">
-                The platform offers cloud-based solutions, advanced reporting
-                features, and 24/7 support that make it suitable for
-                business-critical fleet implementations across various industries and
-                geographic locations.
-              </p>
-            </>
-          ),
-          "Key Features": (
-            <>
-              <h4 className="text-lg font-bold mb-2">GPS Fleet Tracking:</h4>
-              <p className="text-black mb-4">
-                Comprehensive real-time GPS tracking system with advanced
-                location monitoring, route optimization, and automated reporting
-                for managing multiple vehicles efficiently.
-              </p>
-              <h4 className="text-lg font-bold mb-2">Driver Behavior Monitoring:</h4>
-              <p className="text-black mb-4">
-                Advanced driver behavior analysis with speed monitoring, harsh
-                driving detection, and safety scoring for improving fleet safety
-                and reducing risk.
-              </p>
-              <h4 className="text-lg font-bold mb-2">Fleet Analytics:</h4>
-              <p className="text-black mb-4">
-                Integrated analytics tools with customizable dashboards,
-                performance metrics, and automated reporting for optimizing
-                fleet operations and reducing costs.
-              </p>
-              <h4 className="text-lg font-bold mb-2">Maintenance Management:</h4>
-              <p className="text-black mb-4">
-                Automated maintenance scheduling and tracking with service
-                reminders, cost analysis, and vendor management for fleet
-                upkeep and compliance.
-              </p>
-              <h4 className="text-lg font-bold mb-2">Safety and Compliance:</h4>
-              <p className="text-black mb-4">
-                Complete safety program including driver scorecards, safety
-                coaching, compliance reporting, and risk management tools for
-                regulatory adherence.
-              </p>
-              <h4 className="text-lg font-bold mb-2">Integration Capabilities:</h4>
-              <p className="text-black">
-                Advanced integration options including ERP connectivity, third-party
-                app support, and API access for comprehensive fleet management
-                ecosystem integration.
-              </p>
-            </>
-          ),
-          Pricing: (
-            <>
-              <p className="text-black mb-4">
-                <a href="/">Free Trial </a>Available (30 days)
-              </p>
-              <h4 className="text-lg font-bold mb-2">Basic:</h4>
-              <p className="font-bold text-black mb-4">
-                Price:{" "}
-                <span className="font-light">
-                  $25/vehicle/month
-                </span>
-              </p>
-              <h6 className="text-lg font-bold mb-2">Features:</h6>
-              <ul className="list-disc pl-5 text-black">
-                <li>Real-time GPS tracking</li>
-                <li>Basic reporting</li>
-                <li>Geofencing</li>
-                <li>Driver behavior alerts</li>
-                <li>Mobile app access</li>
-              </ul>
-              <h4 className="text-lg font-bold mb-2">Professional:</h4>
-              <p className="font-bold text-black mb-4">
-                Price:{" "}
-                <span className="font-light">
-                  $35/vehicle/month
-                </span>
-              </p>
-              <h6 className="text-lg font-bold mb-2">Features:</h6>
-              <ul className="list-disc pl-5 text-black">
-                <li>Everything in Basic, plus:</li>
-                <li>Advanced analytics</li>
-                <li>Maintenance scheduling</li>
-                <li>Driver scorecards</li>
-                <li>Custom reporting</li>
-                <li>API access</li>
-              </ul>
-              <h4 className="text-lg font-bold mb-2">Premium:</h4>
-              <p className="font-bold text-black mb-4">
-                Price:{" "}
-                <span className="font-light">
-                  $45/vehicle/month
-                </span>
-              </p>
-              <h6 className="text-lg font-bold mb-2">Features:</h6>
-              <ul className="list-disc pl-5 text-black">
-                <li>Everything in Professional, plus:</li>
-                <li>Advanced driver coaching</li>
-                <li>Compliance management</li>
-                <li>Fuel management</li>
-                <li>Priority support</li>
-              </ul>
-              <h4 className="text-lg font-bold mb-2">Enterprise:</h4>
-              <p className="font-bold text-black mb-4">
-                Price:{" "}
-                <span className="font-light">
-                  Custom pricing
-                </span>
-              </p>
-              <h6 className="text-lg font-bold mb-2">Features:</h6>
-              <ul className="list-disc pl-5 text-black">
-                <li>Everything in Premium, plus:</li>
-                <li>Custom integrations</li>
-                <li>Dedicated account manager</li>
-                <li>Advanced security</li>
-                <li>White-label options</li>
-              </ul>
-              <p className="text-black">
-                For enterprise solutions and custom pricing, contact Azuga
-                directly for a personalized quote.
-              </p>
-            </>
-          ),
-        },
-      },
-    },
-
-    Samsara: {
-      title: "Samsara – Best for budget-conscious hosting",
-      logo: "/images/samsara.png",
-      button: {
-        text: "Visit Website",
-        link: "#",
-      },
-      scores: [
-        { label: "Overall Score", score: "4.1/5" },
-        { label: "Pricing", score: "4.8/5" },
-        { label: "General features and Interface", score: "3.9/5" },
-        { label: "Core features", score: "4.0/5" },
-        { label: "Advanced features", score: "3.7/5" },
-        { label: "Integration and compatibility", score: "4.2/5" },
-        { label: "UX", score: "3.8/5" },
-      ],
-      pros: [
-        "Extremely competitive pricing with scalable plans",
-        "Generous feature allocations and IoT capabilities",
-        "Strong integration ecosystem with third-party apps",
-        "Modern cloud-based platform",
-        "No long-term contracts required",
-      ],
-      cons: [
-        "Limited advanced features compared to premium solutions",
-        "Customer support can be slower during peak times",
-        "Interface less polished than major competitors",
-      ],
-      why: {
-        intro: `Samsara stands out as the best budget-conscious fleet management solution due to its exceptional value proposition, generous feature allocations, and commitment to affordable pricing without compromising essential fleet management capabilities. It excels in providing maximum value for cost-conscious businesses and growing fleets.`,
-        bullets: [
-          "Samsara's pricing scored 96/100 in our evaluation, with exceptional value-to-feature ratios, flexible plan options, and IoT capabilities that significantly exceed most competitors in the budget fleet management category.",
-          "The platform's commitment to transparent pricing and no long-term contracts allows businesses to scale their fleet management costs predictably, making it accessible for startups and small fleets while maintaining reliable performance.",
-          "Unlike premium solutions that charge separately for basic features, Samsara includes essential tools like GPS tracking, driver safety, and basic analytics in all plans, providing comprehensive fleet management at budget-friendly prices.",
-        ],
-        outro: `While Azuga offers superior telematics infrastructure and Motive provides better user experience, Samsara's focus on affordability and value gives it a distinct advantage for organizations with limited budgets who still need reliable fleet management services. It's particularly well-suited for small fleets, startups, and growing businesses that require professional fleet management without premium pricing.`,
-        extras: {
-          "About ": (
-            <>
-              <p className="text-black mb-4">
-                Samsara is a budget-focused fleet management platform that combines
-                affordable pricing with reliable IoT-based fleet services and cloud
-                infrastructure. Founded with the mission to make quality
-                fleet management accessible to everyone, it offers comprehensive
-                vehicle tracking solutions without the premium price tag.
-              </p>
-              <p className="text-black">
-                The platform has built its reputation on providing exceptional
-                value through competitive pricing, flexible plans, and
-                transparent fee policies. Samsara's strength lies in its ability
-                to deliver essential fleet management features at prices that make
-                professional vehicle monitoring accessible to small businesses and
-                growing fleets.
-              </p>
-              <p className="text-black mb-4">
-                What sets Samsara apart is its commitment to transparency and
-                affordability, where every fleet management plan includes essential
-                features without additional charges. This makes it ideal for
-                budget-conscious users, startups, and small fleets that need
-                reliable tracking without breaking the bank.
-              </p>
-              <p className="text-black mb-4">
-                The platform offers cloud-based solutions with IoT integration,
-                mobile access, and basic analytics, with a focus on providing
-                maximum value and functionality at each pricing tier, making
-                professional fleet management accessible to a broader audience.
-              </p>
-            </>
-          ),
-          "Key Features": (
-            <>
-              <h4 className="text-lg font-bold mb-2">
-                IoT Fleet Platform:
-              </h4>
-              <p className="text-black mb-4">
-                Comprehensive IoT-based fleet management that provides real-time
-                vehicle monitoring, sensor integration, and cloud-based analytics
-                for efficient fleet operations at affordable prices.
-              </p>
-              <h4 className="text-lg font-bold mb-2">Driver Safety Program:</h4>
-              <p className="text-black mb-4">
-                Built-in driver safety features with behavior monitoring, coaching
-                tools, and safety scoring to improve fleet safety without
-                additional charges.
-              </p>
-              <h4 className="text-lg font-bold mb-2">
-                Cloud-Based Dashboard:
-              </h4>
-              <p className="text-black mb-4">
-                Modern web-based dashboard with real-time fleet visibility,
-                customizable reporting, and mobile access for managing your
-                fleet from anywhere.
-              </p>
-              <h4 className="text-lg font-bold mb-2">Integration Ecosystem:</h4>
-              <p className="text-black mb-4">
-                Extensive third-party integration options including ERP systems,
-                maintenance software, and business applications for comprehensive
-                fleet management workflows.
-              </p>
-              <h4 className="text-lg font-bold mb-2">Scalable Solutions:</h4>
-              <p className="text-black mb-4">
-                Flexible platform that grows with your business, offering
-                scalable pricing and features that adapt to changing fleet
-                management needs without long-term commitments.
-              </p>
-              <h4 className="text-lg font-bold mb-2">Mobile Access:</h4>
-              <p className="text-black">
-                Full-featured mobile applications for iOS and Android that
-                provide complete fleet management capabilities on the go,
-                included at no extra cost.
-              </p>
-            </>
-          ),
-          Pricing: (
-            <>
-              <p className="text-black mb-4">
-                <a href="/">Free Trial </a>Available (30 days)
-              </p>
-              <h4 className="text-lg font-bold mb-2">Starter:</h4>
-              <p className="font-bold text-black mb-4">
-                Price:{" "}
-                <span className="font-light">
-                  $20/vehicle/month
-                </span>
-              </p>
-              <h6 className="text-lg font-bold mb-2">Features:</h6>
-              <ul className="list-disc pl-5 text-black">
-                <li>Real-time GPS tracking</li>
-                <li>Basic reporting</li>
-                <li>Mobile app access</li>
-                <li>Driver behavior monitoring</li>
-                <li>Geofencing</li>
-              </ul>
-              <h4 className="text-lg font-bold mb-2">Professional:</h4>
-              <p className="font-bold text-black mb-4">
-                Price:{" "}
-                <span className="font-light">
-                  $30/vehicle/month
-                </span>
-              </p>
-              <h6 className="text-lg font-bold mb-2">Features:</h6>
-              <ul className="list-disc pl-5 text-black">
-                <li>Everything in Starter, plus:</li>
-                <li>Advanced analytics</li>
-                <li>Custom dashboards</li>
-                <li>API access</li>
-                <li>Integration support</li>
-                <li>Priority support</li>
-              </ul>
-              <h4 className="text-lg font-bold mb-2">Enterprise:</h4>
-              <p className="font-bold text-black mb-4">
-                Price:{" "}
-                <span className="font-light">
-                  $40/vehicle/month
-                </span>
-              </p>
-              <h6 className="text-lg font-bold mb-2">Features:</h6>
-              <ul className="list-disc pl-5 text-black">
-                <li>Everything in Professional, plus:</li>
-                <li>Advanced IoT capabilities</li>
-                <li>Custom integrations</li>
-                <li>Dedicated support</li>
-                <li>Advanced security</li>
-              </ul>
-              <h4 className="text-lg font-bold mb-2">Custom Plans:</h4>
-              <p className="font-bold text-black mb-4">
-                Price:{" "}
-                <span className="font-light">
-                  Contact for pricing
-                </span>
-              </p>
-              <h6 className="text-lg font-bold mb-2">Features:</h6>
-              <ul className="list-disc pl-5 text-black">
-                <li>Tailored solutions</li>
-                <li>Volume discounts</li>
-                <li>Custom features</li>
-                <li>White-label options</li>
-              </ul>
-              <p className="text-black">
-                For custom fleet solutions and enterprise pricing, contact
-                Samsara directly for a personalized quote.
-              </p>
-            </>
-          ),
-        },
-      },
-    },
-    "Verizon Connect": {
-  title: "Verizon Connect – Best for comprehensive fleet management",
-  logo: "/images/verizon.png",
-  button: {
-    text: "Visit Website",
-    link: "#",
-  },
-  scores: [
-    { label: "Overall Score", score: "4.6/5" },
-    { label: "Pricing", score: "4.1/5" },
-    { label: "General features and Interface", score: "4.7/5" },
-    { label: "Core features", score: "4.8/5" },
-    { label: "Advanced features", score: "4.5/5" },
-    { label: "Integration and compatibility", score: "4.4/5" },
-    { label: "UX", score: "4.6/5" },
-  ],
-  pros: [
-    "Comprehensive fleet tracking and management tools",
-    "Advanced route optimization and dispatch capabilities",
-    "Real-time vehicle diagnostics and maintenance alerts",
-    "Excellent mobile app for drivers and managers",
-    "Robust reporting and analytics dashboard",
-  ],
-  cons: [
-    "Higher pricing compared to basic tracking solutions",
-    "Complex setup for smaller fleets",
-  ],
-  why: {
-    intro: `Verizon Connect is the best choice for comprehensive fleet management because it delivers an unmatched combination of real-time tracking, advanced analytics, and operational efficiency tools. Its high scores across core features and user experience reflect proven effectiveness in optimizing fleet operations for businesses of all sizes.`,
-    bullets: [
-      "Verizon Connect scores an impressive 96/100 in fleet visibility and control, with perfect ratings in GPS tracking accuracy, real-time alerts, and driver behavior monitoring. Its advanced route optimization reduces fuel costs by up to 20% and improves delivery efficiency significantly.",
-      "The platform's integrated approach to fleet management combines vehicle tracking, driver management, compliance monitoring, and maintenance scheduling in one comprehensive solution, streamlining operations across all fleet management aspects.",
-    ],
-    outro: `Verizon Connect's AI-powered insights and predictive maintenance capabilities help prevent costly breakdowns and optimize vehicle utilization. The platform's robust mobile applications ensure seamless communication between dispatchers and drivers, while comprehensive reporting tools provide actionable insights for continuous fleet optimization.`,
-    extras: {
-      "About ": (
-        <>
-          <p className="text-black mb-4">
-            Verizon Connect is a leading fleet management platform that provides
-            comprehensive telematics solutions for businesses managing vehicle
-            fleets. The platform combines GPS tracking, route optimization,
-            driver management, and vehicle diagnostics into a unified system
-            designed to improve operational efficiency and reduce costs.
-          </p>
-          <p className="text-black">
-            Built on Verizon's reliable network infrastructure, the platform
-            offers real-time visibility into fleet operations, enabling
-            managers to make data-driven decisions that improve productivity,
-            safety, and compliance. The solution scales from small delivery
-            fleets to large enterprise operations.
-          </p>
-          <p className="text-black mb-4">
-            The platform is designed to address the complex needs of modern
-            fleet operations, offering features that go beyond basic tracking
-            to include predictive maintenance, driver coaching, fuel
-            management, and comprehensive compliance reporting.
-          </p>
-          <p className="text-black mb-4">
-            Verizon Connect's interface is intuitive and user-friendly,
-            requiring minimal training for fleet managers and drivers. The
-            platform's customizable dashboards and automated reporting
-            capabilities ensure that businesses can quickly adapt the system
-            to their specific operational requirements.
-          </p>
-          <p className="text-black mb-4">
-            With a focus on ROI and operational efficiency, Verizon Connect
-            has been engineered to deliver measurable results through improved
-            route efficiency, reduced fuel consumption, enhanced driver safety,
-            and optimized vehicle utilization.
-          </p>
-        </>
-      ),
-      "Key Features": (
-        <>
-          <h4 className="text-lg font-bold mb-2">Real-Time GPS Tracking:</h4>
-          <p className="text-black mb-4">
-            Advanced GPS tracking with precise location data, geofencing
-            capabilities, and real-time alerts for unauthorized vehicle use,
-            route deviations, and arrival/departure notifications.
-          </p>
-          <h4 className="text-lg font-bold mb-2">Route Optimization:</h4>
-          <p className="text-black mb-4">
-            Intelligent route planning and optimization that reduces fuel costs,
-            minimizes drive time, and improves customer service through
-            efficient scheduling and dispatch management.
-          </p>
-
-          <h4 className="text-lg font-bold mb-2">Driver Management:</h4>
-          <p className="text-black">
-            Comprehensive driver behavior monitoring, safety scoring, coaching
-            tools, and performance analytics to improve driver safety and
-            reduce liability risks.
-          </p>
-          <h4 className="text-lg font-bold mb-2">Vehicle Diagnostics:</h4>
-          <p className="text-black">
-            Real-time vehicle health monitoring with diagnostic trouble codes,
-            maintenance alerts, and predictive maintenance scheduling to
-            prevent costly breakdowns.
-          </p>
-          <h4 className="text-lg font-bold mb-2">Compliance Management:</h4>
-          <p className="text-black">
-            Automated compliance reporting for DOT regulations, ELD compliance,
-            IFTA reporting, and driver hours of service tracking to ensure
-            regulatory adherence.
-          </p>
-          <h4 className="text-lg font-bold mb-2">Analytics and Reporting:</h4>
-          <p className="text-black">
-            Advanced analytics dashboard with customizable reports, KPI
-            tracking, and actionable insights for fleet optimization and
-            performance improvement.
-          </p>
-        </>
-      ),
-      Pricing: (
-        <>
-          <p className="text-black mb-4">
-            <a href="/">Free Trial </a>Available (30 days)
-          </p>
-
-          <h4 className="text-lg font-bold mb-2">Essential</h4>
-          <p className="font-bold text-black mb-4">
-            Price: <span className="font-light">$35/month per vehicle</span>
-          </p>
-          <h6 className="text-lg font-bold mb-2">Features:</h6>
-          <ul className="list-disc pl-5 text-black">
-            <li>Real-time GPS tracking</li>
-            <li>Basic reporting</li>
-            <li>Mobile app access</li>
-            <li>Geofencing</li>
-          </ul>
-          <h4 className="text-lg font-bold mb-2">Professional:</h4>
-          <p className="font-bold text-black mb-4">
-            Price: <span className="font-light">$45/month per vehicle</span>
-          </p>
-          <h6 className="text-lg font-bold mb-2">Features:</h6>
-          <ul className="list-disc pl-5 text-black">
-            <li>Everything in Essential, plus:</li>
-            <li>Route optimization</li>
-            <li>Driver behavior monitoring</li>
-            <li>Maintenance scheduling</li>
-            <li>Advanced analytics</li>
-          </ul>
-          <h4 className="text-lg font-bold mb-2">Enterprise:</h4>
-          <p className="font-bold text-black mb-4">
-            Price: <span className="font-light">$65/month per vehicle</span>
-          </p>
-          <h6 className="text-lg font-bold mb-2">Features:</h6>
-          <ul className="list-disc pl-5 text-black">
-            <li>Everything in Professional, plus:</li>
-            <li>ELD compliance</li>
-            <li>Advanced driver coaching</li>
-            <li>Predictive maintenance</li>
-            <li>API integrations</li>
-            <li>Dedicated support</li>
-          </ul>
-          <p className="text-black">
-            For large fleets and custom solutions, contact Verizon Connect
-            directly for enterprise pricing and implementation support.
-          </p>
-        </>
-      ),
-    },
-  },
-},
-
-"Teletrac Navman": {
-  title: "Teletrac Navman – Best for compliance and driver safety",
-  logo: "/images/tele.png",
-  button: {
-    text: "Visit Website",
-    link: "#",
-  },
-  scores: [
-    { label: "Overall Score", score: "4.4/5" },
-    { label: "Pricing", score: "4.0/5" },
-    { label: "General features and Interface", score: "4.3/5" },
-    { label: "Core features", score: "4.6/5" },
-    { label: "Advanced features", score: "4.2/5" },
-    { label: "Integration and compatibility", score: "4.5/5" },
-    { label: "UX", score: "4.3/5" },
-  ],
-  pros: [
-    "Industry-leading compliance and safety features",
-    "Advanced driver behavior analytics and coaching",
-    "Comprehensive ELD and DOT compliance solutions",
-    "Strong integration capabilities with third-party systems",
-    "Excellent customer support and training programs",
-  ],
-  cons: [
-    "Interface can be complex for new users",
-    "Pricing may be higher for small fleets",
-    "Some advanced features require additional modules",
-  ],
-  why: {
-    intro: `Teletrac Navman excels as the best solution for compliance and driver safety due to its comprehensive regulatory compliance tools, advanced safety analytics, and proven track record in high-regulation industries. Its superior compliance features and driver safety programs make it the preferred choice for organizations prioritizing regulatory adherence and risk management.`,
-    bullets: [
-      "Teletrac Navman scores 98/100 in compliance management, with perfect ratings in ELD compliance, DOT reporting, and safety monitoring capabilities that exceed industry standards and regulatory requirements.",
-      "The platform's advanced driver safety programs include real-time coaching, comprehensive safety scoring, and predictive risk analytics that have been proven to reduce accidents by up to 40% in customer implementations.",
-      "Unlike general fleet management solutions, Teletrac Navman specializes in regulatory compliance with built-in modules for FMCSA, DOT, IFTA, and other industry-specific requirements, making it ideal for transportation companies operating under strict regulations.",
-    ],
-    outro: `While Verizon Connect offers excellent general fleet management capabilities, Teletrac Navman's specialized focus on compliance and safety gives it a distinct advantage for organizations in highly regulated industries. The platform's comprehensive safety programs and regulatory expertise make it particularly well-suited for transportation companies, logistics providers, and government fleets that require strict compliance adherence.`,
-    extras: {
-      "About ": (
-        <>
-          <p className="text-black mb-4">
-            Teletrac Navman is a specialized fleet management platform focused
-            on compliance, safety, and operational efficiency for commercial
-            vehicle operations. The platform provides comprehensive telematics
-            solutions with particular strength in regulatory compliance and
-            driver safety management.
-          </p>
-          <p className="text-black">
-            With decades of experience in fleet management, Teletrac Navman
-            has developed deep expertise in transportation regulations and
-            safety requirements. The platform is designed to help fleet
-            operators navigate complex compliance landscapes while maintaining
-            operational efficiency.
-          </p>
-          <p className="text-black mb-4">
-            The platform's strength lies in its comprehensive approach to
-            fleet safety and compliance, offering integrated solutions for
-            ELD compliance, driver management, safety monitoring, and
-            regulatory reporting that meet the strictest industry standards.
-          </p>
-          <p className="text-black mb-4">
-            Teletrac Navman serves a diverse range of industries including
-            transportation, logistics, construction, utilities, and government
-            fleets, providing specialized features and reporting capabilities
-            tailored to each sector's unique requirements.
-          </p>
-        </>
-      ),
-      "Key Features": (
-        <>
-          <h4 className="text-lg font-bold mb-2">ELD Compliance:</h4>
-          <p className="text-black mb-4">
-            Comprehensive Electronic Logging Device solution with automatic
-            HOS tracking, DVIR management, and complete DOT compliance
-            reporting for commercial vehicle operations.
-          </p>
-          <h4 className="text-lg font-bold mb-2">Driver Safety Programs:</h4>
-          <p className="text-black mb-4">
-            Advanced driver behavior monitoring with real-time coaching,
-            safety scoring, risk assessment, and comprehensive training
-            programs to reduce accidents and improve driver performance.
-          </p>
-          <h4 className="text-lg font-bold mb-2">Fleet Tracking:</h4>
-          <p className="text-black mb-4">
-            Real-time GPS tracking with advanced mapping, geofencing, route
-            optimization, and dispatch management capabilities for efficient
-            fleet operations.
-          </p>
-          <h4 className="text-lg font-bold mb-2">Maintenance Management:</h4>
-          <p className="text-black mb-4">
-            Comprehensive vehicle maintenance scheduling, diagnostic monitoring,
-            preventive maintenance alerts, and service history tracking to
-            optimize vehicle uptime and reduce costs.
-          </p>
-          <h4 className="text-lg font-bold mb-2">Compliance Reporting:</h4>
-          <p className="text-black mb-4">
-            Automated compliance reporting for DOT, FMCSA, IFTA, and other
-            regulatory requirements with customizable reports and audit trail
-            capabilities.
-          </p>
-          <h4 className="text-lg font-bold mb-2">Integration Platform:</h4>
-          <p className="text-black">
-            Robust API and integration capabilities for connecting with
-            existing business systems, third-party applications, and
-            specialized industry software solutions.
-          </p>
-        </>
-      ),
-      Pricing: (
-        <>
-          <p className="text-black mb-4">
-            <a href="/">Free Trial </a>Available (30 days)
-          </p>
-          <h4 className="text-lg font-bold mb-2">TN360 Essentials:</h4>
-          <p className="font-bold text-black mb-4">
-            Price: <span className="font-light">$30/month per vehicle</span>
-          </p>
-          <h6 className="text-lg font-bold mb-2">Features:</h6>
-          <ul className="list-disc pl-5 text-black">
-            <li>GPS tracking and mapping</li>
-            <li>Basic reporting</li>
-            <li>Mobile app access</li>
-            <li>Geofencing alerts</li>
-          </ul>
-          <h4 className="text-lg font-bold mb-2">TN360 Professional:</h4>
-          <p className="font-bold text-black mb-4">
-            Price: <span className="font-light">$40/month per vehicle</span>
-          </p>
-          <h6 className="text-lg font-bold mb-2">Features:</h6>
-          <ul className="list-disc pl-5 text-black">
-            <li>Everything in Essentials, plus:</li>
-            <li>Driver behavior monitoring</li>
-            <li>Maintenance scheduling</li>
-            <li>Advanced analytics</li>
-            <li>Route optimization</li>
-          </ul>
-          <h4 className="text-lg font-bold mb-2">TN360 Compliance:</h4>
-          <p className="font-bold text-black mb-4">
-            Price: <span className="font-light">$55/month per vehicle</span>
-          </p>
-          <h6 className="text-lg font-bold mb-2">Features:</h6>
-          <ul className="list-disc pl-5 text-black">
-            <li>Everything in Professional, plus:</li>
-            <li>ELD compliance</li>
-            <li>DOT reporting</li>
-            <li>Hours of service tracking</li>
-            <li>DVIR management</li>
-          </ul>
-          <h4 className="text-lg font-bold mb-2">TN360 Enterprise:</h4>
-          <p className="font-bold text-black mb-4">
-            Price: <span className="font-light">Custom pricing</span>
-          </p>
-          <h6 className="text-lg font-bold mb-2">Features:</h6>
-          <ul className="list-disc pl-5 text-black">
-            <li>All Compliance features, plus:</li>
-            <li>Advanced safety programs</li>
-            <li>Custom integrations</li>
-            <li>Dedicated support</li>
-            <li>Training programs</li>
-          </ul>
-          <p className="text-black">
-            For detailed pricing and custom enterprise solutions, contact
-            Teletrac Navman directly for a personalized consultation and
-            implementation plan.
-          </p>
-        </>
-      ),
-    },
-  },
-},
-  };
-  // Convert toolsContent object to array for mapping
-  const toolsArray = Object.entries(toolsContent).map(([key, value]) => ({
-    id: key,
-    ...value,
-  }));
-
- const gpsData = [
-  {
-    id: 1,
-    name: "Motive",
-    image: "/images/motive.png",
-    alt: "Motive",
-    expertScore: 4.5,
-    bestFor: "Best for comprehensive fleet management",
-    visitUrl: "motive",
-    useCase: "Large fleets with diverse vehicle types",
-    contractLength: "12-36 months",
-    pricing: "$40-80 per vehicle/month",
-    freeTrialPaid: "30-day free trial",
-    refreshRates: "Real-time (every 10 seconds)",
-    hardwareType: "OBD-II devices, dash cams",
-    thirdPartyApps: "Extensive integrations available",
-    customerSupport: "24/7 phone and chat support",
-  },
-  {
-    id: 2,
-    name: "Azuga",
-    image: "/images/azuga.png",
-    alt: "Azuga",
-    expertScore: 4.2,
-    bestFor: "Best for small to medium businesses",
-    visitUrl: "azuga",
-    useCase: "Construction and service fleets",
-    contractLength: "Month-to-month or annual",
-    pricing: "$25-45 per vehicle/month",
-    freeTrialPaid: "14-day free trial",
-    refreshRates: "Real-time (every 30 seconds)",
-    hardwareType: "GPS trackers, mobile apps",
-    thirdPartyApps: "Limited third-party integrations",
-    customerSupport: "Business hours phone support",
-  },
-  {
-    id: 3,
-    name: "Teletrac Navman",
-    image: "/images/tele.png",
-    alt: "Teletrac Navman",
-    expertScore: 4.4,
-    bestFor: "Best for enterprise-level tracking",
-    visitUrl: "teletrac-navman",
-    useCase: "Large enterprise fleets",
-    contractLength: "24-48 months",
-    pricing: "$50-100 per vehicle/month",
-    freeTrialPaid: "Free demo available",
-    refreshRates: "Real-time (every 5 seconds)",
-    hardwareType: "Advanced GPS units, sensors",
-    thirdPartyApps: "Enterprise-grade integrations",
-    customerSupport: "24/7 dedicated account manager",
-  },
-  {
-    id: 4,
-    name: "Samsara",
-    image: "/images/samsara.png",
-    alt: "Samsara",
-    expertScore: 4.6,
-    bestFor: "Best for AI-powered fleet insights",
-    visitUrl: "samsara",
-    useCase: "Technology-forward fleets",
-    contractLength: "12-24 months",
-    pricing: "$30-60 per vehicle/month",
-    freeTrialPaid: "30-day free trial",
-    refreshRates: "Real-time (every 5 seconds)",
-    hardwareType: "AI dash cams, IoT sensors",
-    thirdPartyApps: "API-first with many integrations",
-    customerSupport: "24/7 support with dedicated CSM",
-  },
-  {
-    id: 5,
-    name: "Verizon Connect",
-    image: "/images/verizon.png",
-    alt: "Verizon Connect",
-    expertScore: 4.3,
-    bestFor: "Best for reliable network coverage",
-    visitUrl: "verizon-connect",
-    useCase: "Field service and delivery fleets",
-    contractLength: "24-36 months",
-    pricing: "$45-75 per vehicle/month",
-    freeTrialPaid: "Free trial available",
-    refreshRates: "Real-time (every 15 seconds)",
-    hardwareType: "Cellular-based GPS devices",
-    thirdPartyApps: "Moderate integration options",
-    customerSupport: "24/7 technical support",
-  },
-];
-
-  const renderStars = (score) => {
-    const stars = [];
-    const fullStars = Math.floor(score);
-    const hasHalfStar = score % 1 !== 0;
-
-    for (let i = 0; i < fullStars; i++) {
-      stars.push(
-        <svg
-          key={i}
-          className="w-5 h-5 text-yellow-400 fill-current"
-          viewBox="0 0 24 24"
-        >
-          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-        </svg>
-      );
-    }
-
-    if (hasHalfStar) {
-      stars.push(
-        <svg
-          key="half"
-          className="w-5 h-5 text-yellow-400 fill-current"
-          viewBox="0 0 24 24"
-        >
-          <defs>
-            <linearGradient id="half">
-              <stop offset="50%" stopColor="currentColor" />
-              <stop offset="50%" stopColor="transparent" />
-            </linearGradient>
-          </defs>
-          <path
-            fill="url(#half)"
-            d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
-          />
-        </svg>
-      );
-    }
-
-    return stars;
-  };
 
   return (
     <>
 
-      <div className="min-h-screen bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="flex flex-col lg:flex-row gap-8">
-            <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-8">
-              {/* Table of Contents - Left Sidebar */}
-              <TableOfContents contents={contents} />
-            </div>
-            {/* main content */}
-            <div className="flex-1 max-w-4xl">
-                 {/* Hero Section */}
-   
-              {/* What Is a Website Builder Section */}
-              <section id="What-is-GPS-Fleet-Tracking" className="mb-8 mt-6">
-                <div className="bg-white rounded-2xl sm:rounded-3xl border border-gray-200 shadow-sm hover:shadow-lg transition-shadow duration-300 overflow-hidden p-6 sm:p-8">
-                  {/* Header */}
-                  <header className="mb-8">
-                    <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-                     What is GPS Fleet Tracking?
-                    </h1>
-                  </header>
-
-                  {/* Main Content */}
-                  <div className="prose prose-lg max-w-none">
-                    <p className="text-gray-700 leading-relaxed mb-6">
-                    GPS fleeting tracking uses GPS satellites to monitor the location and movement of vehicles or assets within a fleet. This tracking system provides businesses with real-time data on their fleet’s whereabouts, enabling them to optimize operations, improve efficiency and reduce costs.
-                    </p>
-
-                    <p className="text-gray-700 leading-relaxed mb-6">
-                     Several types of businesses can benefit from GPS fleet management:{" "}
-                    <ul className="space-y-3 text-gray-700">
-        <li className="flex items-start">
-          <span className="text-black font-bold mr-2 mt-1">•</span>
-          <span className="text-lg">
-            Trucking companies, delivery services and courier services
-          </span>
-        </li>
-        
-        <li className="flex items-start">
-          <span className="text-black font-bold mr-2 mt-1">•</span>
-          <span className="text-lg">
-            Construction and field services
-          </span>
-        </li>
-        
-        <li className="flex items-start">
-          <span className="text-black font-bold mr-2 mt-1">•</span>
-          <span className="text-lg">
-            Rental car companies
-          </span>
-        </li>
-        
-        <li className="flex items-start">
-          <span className="text-black font-bold mr-2 mt-1">•</span>
-          <span className="text-lg">
-            Government agencies
-          </span>
-        </li>
-        
-        <li className="flex items-start">
-          <span className="text-black font-bold mr-2 mt-1">•</span>
-          <span className="text-lg">
-            Private fleets for retail, manufacturing and distribution services
-          </span>
-        </li>
-      </ul>
-                 </p>
-
-                  
-
-                    {/* Header */}
-                    <header className="mb-8">
-                      <h1 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4">
-                       The Best Fleet Management Services of 2025
-                      </h1>
-                    </header>
-
-                    {/* Main Content */}
-                    <div className="prose prose-lg max-w-none">
-                      <p className="text-gray-700 leading-relaxed mb-6">
-                      Businesses that employ a fleet of vehicles need to keep tabs on them to ensure routes are completed in a timely manner, drivers are engaging in safe behaviors, preventive maintenance is performed as needed and that their expensive vehicles are all accounted for. That’s where fleet management software comes in. The best GPS fleet management services offer easy-to-use software, hardware that’s simple to install, and valuable tracking, driver safety and fuel performance features. To help you find the best GPS fleet tracking systems for your business, we scrutinized the top options on the market to determine their ease of use, price and safety features before arriving at our best picks.
-                      </p>
-
-                 
-
-                    
-                        
-                      {/* Recommendations List */}
-                      <div className="space-y-3 mb-8">
-                         <header className="mb-8">
-                      <h1 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4">
-                       Best GPS Fleet Management Services
-                      </h1>
-                    </header>
-                        {/* motive */}
-                        <div className="flex items-start space-x-3">
-                          <div className="w-5 h-5 rounded-full bg-orange-100 flex items-center justify-center mt-0.5">
-                            <svg
-                              className="w-3 h-3 text-orange-600"
-                              fill="currentColor"
-                              viewBox="0 0 20 20"
-                            >
-                              <path
-                                fillRule="evenodd"
-                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                clipRule="evenodd"
-                              />
-                            </svg>
-                          </div>
-                          <p className="text-gray-700">
-                            <a
-                              href="#"
-                              className="text-orange-600 hover:text-orange-700 font-medium underline"
-                            >
-                              Motive:
-                            </a>{" "}
-                            Best for Driver Accountability
-                          </p>
-                        </div>
-
-                        {/* Verizon Connect */}
-                        <div className="flex items-start space-x-3">
-                          <div className="w-5 h-5 rounded-full bg-orange-100 flex items-center justify-center mt-0.5">
-                            <svg
-                              className="w-3 h-3 text-orange-600"
-                              fill="currentColor"
-                              viewBox="0 0 20 20"
-                            >
-                              <path
-                                fillRule="evenodd"
-                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                clipRule="evenodd"
-                              />
-                            </svg>
-                          </div>
-                          <p className="text-gray-700">
-                            <a
-                              href="#"
-                              className="text-orange-600 hover:text-orange-700 font-medium underline"
-                            >
-                             Verizon Connect:
-                            </a>{" "}
-                            Best for Midsize Fleets
-                          </p>
-                        </div>
-
-                        {/* Azuga */}
-                        <div className="flex items-start space-x-3">
-                          <div className="w-5 h-5 rounded-full bg-orange-100 flex items-center justify-center mt-0.5">
-                            <svg
-                              className="w-3 h-3 text-orange-600"
-                              fill="currentColor"
-                              viewBox="0 0 20 20"
-                            >
-                              <path
-                                fillRule="evenodd"
-                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                clipRule="evenodd"
-                              />
-                            </svg>
-                          </div>
-                          <p className="text-gray-700">
-                            <a
-                              href="#"
-                              className="text-orange-600 hover:text-orange-700 font-medium underline"
-                            >
-                              Azuga:
-                            </a>{" "}
-                           Best for Ease of Use
-                          </p>
-                        </div>
-
-                        {/* Samsara */}
-                        <div className="flex items-start space-x-3">
-                          <div className="w-5 h-5 rounded-full bg-orange-100 flex items-center justify-center mt-0.5">
-                            <svg
-                              className="w-3 h-3 text-orange-600"
-                              fill="currentColor"
-                              viewBox="0 0 20 20"
-                            >
-                              <path
-                                fillRule="evenodd"
-                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                clipRule="evenodd"
-                              />
-                            </svg>
-                          </div>
-                          <p className="text-gray-700">
-                            <a
-                              href="#"
-                              className="text-orange-600 hover:text-orange-700 font-medium underline"
-                            >
-                              Samsara:
-                            </a>{" "}
-                            Best for Sustainability
-                          </p>
-                        </div>
-
-                        {/* Teletrac Navman */}
-                        <div className="flex items-start space-x-3">
-                          <div className="w-5 h-5 rounded-full bg-orange-100 flex items-center justify-center mt-0.5">
-                            <svg
-                              className="w-3 h-3 text-orange-600"
-                              fill="currentColor"
-                              viewBox="0 0 20 20"
-                            >
-                              <path
-                                fillRule="evenodd"
-                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                clipRule="evenodd"
-                              />
-                            </svg>
-                          </div>
-                          <p className="text-gray-700">
-                            <a
-                              href="#"
-                              className="text-orange-600 hover:text-orange-700 font-medium underline"
-                            >
-                              Teletrac Navman:
-                            </a>{" "}
-                            Best for Easy Vehicle Maintenance
-                          </p>
-                        </div>
-
-                    
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </section>
-
-              {/* Best Website Builders Section */}
-              <section id="Tracking-Work">
-                <div className="bg-white rounded-2xl sm:rounded-3xl border border-gray-200 shadow-sm hover:shadow-lg transition-shadow duration-300 overflow-hidden p-6 sm:p-8">
-                  {/* Header */}
-                  <header className="mb-8">
-                    <h1 className="text-3xl sm:text-3xl font-bold text-gray-900 mb-4">
-                      How Does Fleet Management Tracking Work?
-                    </h1>
-                  </header>
-
-                  {/* Main Content */}
-                  <div className="prose prose-lg max-w-none">
-                    <p className="text-gray-700 leading-relaxed mb-6">
-                      GPS fleet management uses a combination of hardware and software to track company assets like trucks, equipment and drivers. GPS fleet management hardware records and sends a wide variety of data that used to improve driver safety, maintain and service your vehicles better, decrease fuel costs, protect against damage and theft, and increase the number of jobs individual drivers can carry out in a day thanks to route optimization.
-                    </p>
-
-                    <p className="text-gray-700 leading-relaxed mb-6">
-                      Most GPS fleet tracking providers don’t require you to download apps or programs to your PC or Mac to access data. You can access their platforms via internet browsers like Chrome, Firefox and Edge. You will need to download mobile phone apps.
-                    </p>
-
-                    <p className="text-gray-700 leading-relaxed mb-6">
-                     On GPS fleet tracking dashboards, you can see live information on your vehicles, their location and the trip they’re making. You can run reports on driver safety and performance, fuel efficiency and optimization, geofences and route navigation and vehicle condition and maintenance to improve efficiency.
-                    </p>
-                  </div>
-                </div>
-              </section>
-
-          {/* Featured Partners Section */}
-              <div className="bg-white rounded-2xl sm:rounded-3xl border border-gray-200 shadow-sm hover:shadow-lg mt-4 transition-shadow duration-300 overflow-hidden p-6 sm:p-8">
-                <div className="flex items-center justify-between mb-6">
-                  <h2 className="text-2xl font-bold text-gray-900">
-                    Featured partners
-                  </h2>
-                  <div className="flex items-center space-x-2 text-sm text-gray-500">
-                    <span>Advertisement</span>
-                    <div className="w-4 h-4 rounded-full bg-gray-400 flex items-center justify-center">
-                      <span className="text-white font-bold">i</span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Azuga */}
-                <div className="bg-gray-50 rounded-lg p-6 mb-6">
-                  <div className="flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0">
-                    <div className="flex items-center space-x-4">
-                      <div className="w-16 h-16 flex-shrink-0 rounded-lg overflow-hidden bg-white border border-gray-200">
-                        <img 
-                          src="/images/azuga.png" 
-                          alt="Azuga Logo" 
-                          className="w-full h-full object-contain p-2"
-                          loading="lazy"
-                          width="64"
-                          height="64"
-                        />
-                      </div>
-
-                      <div className="text-xl font-bold text-gray-900">
-                        Azuga
-                        <br />
-                        <span className="text-lg">Fleet Management</span>
-                      </div>
-                    </div>
-                    <div className="w-full sm:w-auto">
-                      <button className="w-full sm:w-auto bg-orange-600 hover:bg-orange-700 text-white font-medium py-3 px-8 rounded-lg transition-colors duration-200 flex items-center justify-center space-x-2">
-                        <span>Visit Website</span>
-                        <ExternalLink className="w-4 h-4" />
-                      </button>
-                    </div>
-                  </div>
-                  <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
-                    <div>
-                      <div className="text-gray-600 mb-1">Good For</div>
-                      <div className="font-medium text-gray-900">
-                        Small to Medium Fleets
-                      </div>
-                    </div>
-                    <div>
-                      <div className="text-gray-600 mb-1">Core Features</div>
-                      <div className="font-medium text-gray-900">
-                        GPS Tracking, Driver Safety, Fuel Management, and 20+ more
-                      </div>
-                    </div>
-                    <div>
-                      <div className="text-gray-600 mb-1">Integrations</div>
-                      <div className="font-medium text-gray-900">
-                        QuickBooks, Sage, Microsoft Office, and more
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Samsara */}
-                <div className="bg-gray-50 rounded-lg p-6 mb-6">
-                  <div className="flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0">
-                    <div className="flex items-center space-x-4">
-                      <div className="w-16 h-16 flex-shrink-0 rounded-lg overflow-hidden bg-white border border-gray-200">
-                        <img 
-                          src="/images/samsara.png" 
-                          alt="Samsara Logo" 
-                          className="w-full h-full object-contain p-2"
-                          loading="lazy"
-                          width="64"
-                          height="64"
-                        />
-                      </div>
-
-                      <div className="text-xl font-bold text-gray-900">
-                        Samsara
-                        <br />
-                        <span className="text-lg">Connected Operations</span>
-                      </div>
-                    </div>
-                    <div className="w-full sm:w-auto">
-                      <button className="w-full sm:w-auto bg-orange-600 hover:bg-orange-700 text-white font-medium py-3 px-8 rounded-lg transition-colors duration-200 flex items-center justify-center space-x-2">
-                        <span>Visit Website</span>
-                        <ExternalLink className="w-4 h-4" />
-                      </button>
-                    </div>
-                  </div>
-                  <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
-                    <div>
-                      <div className="text-gray-600 mb-1">Good For</div>
-                      <div className="font-medium text-gray-900">
-                        Large Enterprise Fleets
-                      </div>
-                    </div>
-                    <div>
-                      <div className="text-gray-600 mb-1">Core Features</div>
-                      <div className="font-medium text-gray-900">
-                        AI Dash Cams, ELD Compliance, Real-time Tracking
-                      </div>
-                    </div>
-                    <div>
-                      <div className="text-gray-600 mb-1">Integrations</div>
-                      <div className="font-medium text-gray-900">
-                        Salesforce, Oracle, SAP, and 100+ more
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Verizon Connect */}
-                <div className="bg-gray-50 rounded-lg p-6 mb-6">
-                  <div className="flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0">
-                    <div className="flex items-center space-x-4">
-                      <div className="w-16 h-16 flex-shrink-0 rounded-lg overflow-hidden bg-white border border-gray-200">
-                        <img 
-                          src="/images/verizon.png" 
-                          alt="Verizon Connect Logo" 
-                          className="w-full h-full object-contain p-2"
-                          loading="lazy"
-                          width="64"
-                          height="64"
-                        />
-                      </div>
-
-                      <div className="text-xl font-bold text-gray-900">
-                        Verizon Connect
-                        <br />
-                        <span className="text-lg">Fleet Intelligence</span>
-                      </div>
-                    </div>
-                    <div className="w-full sm:w-auto">
-                      <button className="w-full sm:w-auto bg-orange-600 hover:bg-orange-700 text-white font-medium py-3 px-8 rounded-lg transition-colors duration-200 flex items-center justify-center space-x-2">
-                        <span>Visit Website</span>
-                        <ExternalLink className="w-4 h-4" />
-                      </button>
-                    </div>
-                  </div>
-                  <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
-                    <div>
-                      <div className="text-gray-600 mb-1">Good For</div>
-                      <div className="font-medium text-gray-900">
-                        Mid-Market & Enterprise
-                      </div>
-                    </div>
-                    <div>
-                      <div className="text-gray-600 mb-1">Core Features</div>
-                      <div className="font-medium text-gray-900">
-                        Route Optimization, Mobile Workforce, Asset Tracking
-                      </div>
-                    </div>
-                    <div>
-                      <div className="text-gray-600 mb-1">Integrations</div>
-                      <div className="font-medium text-gray-900">
-                        ServiceNow, Workday, NetSuite, and 30+ more
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Teletrac Navman */}
-                <div className="bg-gray-50 rounded-lg p-6">
-                  <div className="flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0">
-                    <div className="flex items-center space-x-4">
-                      <div className="w-16 h-16 flex-shrink-0 rounded-lg overflow-hidden bg-white border border-gray-200">
-                        <img 
-                          src="/images/tele.png" 
-                          alt="Teletrac Navman Logo" 
-                          className="w-full h-full object-contain p-2"
-                          loading="lazy"
-                          width="64"
-                          height="64"
-                        />
-                      </div>
-
-                      <div className="text-xl font-bold text-gray-900">
-                        Teletrac Navman
-                        <br />
-                        <span className="text-lg">Fleet Solutions</span>
-                      </div>
-                    </div>
-                    <div className="w-full sm:w-auto">
-                      <button className="w-full sm:w-auto bg-orange-600 hover:bg-orange-700 text-white font-medium py-3 px-8 rounded-lg transition-colors duration-200 flex items-center justify-center space-x-2">
-                        <span>Visit Website</span>
-                        <ExternalLink className="w-4 h-4" />
-                      </button>
-                    </div>
-                  </div>
-                  <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
-                    <div>
-                      <div className="text-gray-600 mb-1">Good For</div>
-                      <div className="font-medium text-gray-900">
-                        All Fleet Sizes
-                      </div>
-                    </div>
-                    <div>
-                      <div className="text-gray-600 mb-1">Core Features</div>
-                      <div className="font-medium text-gray-900">
-                        Vehicle Tracking, Driver Behavior, Compliance Management
-                      </div>
-                    </div>
-                    <div>
-                      <div className="text-gray-600 mb-1">Integrations</div>
-                      <div className="font-medium text-gray-900">
-                        Sage, Xero, MYOB, and 40+ more
-                      </div>
-                    </div>
-                  </div>
-                </div>
+      {/* introduction */}
+      <div id="intro-gps"  className="max-w-6xl mx-auto p-4">
+      <div className="container mx-auto">
+        <div className="flex flex-col lg:flex-row items-center justify-between lg:gap-12 md:gap-20">
+          <div className="lg:w-1/2">
+            <h1 className="text-4xl font-semibold text-gray-900 mb-6">
+             Introduction to GPS Fleet Management
+            </h1>
+            <p className="text-base text-gray-800 mb-8 text-justify">
+            Managing your fleet with GPS isn't just about tracking dots on a map—it's about breathing new life into your business operations.
+Picture this: your drivers navigating confidently while you peek at their progress from your desk. No more frantic phone calls asking "Where are you?" or customers left wondering when service will arrive.
+Every vehicle tells its own story—from the delivery van that found a shortcut saving 20 minutes daily, to the truck whose gentle acceleration extended its engine life by years. These aren't just data points; they're opportunities hiding in plain sight.
+Your fuel bills dropping? That's what happens when drivers stop taking the scenic route home. Maintenance costs stabilizing? Thank the system that caught that oil leak before it became a roadside breakdown.
+Beyond the numbers, it's about peace of mind. Setting up virtual boundaries around job sites or seeing who's available for that urgent call-out gives you control without micromanaging.
+For businesses with wheels on the ground, smart GPS management isn't a luxury—it's the difference between surviving and thriving in a world where every minute and mile counts.  </p>
+          </div>
+          <div className="lg:w-1/2 flex justify-center">
+            <div className="relative w-full max-w-lg">
+              <div className="absolute top-0 -left-4 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
+              <div className="absolute top-0 -right-4 w-72 h-72 bg-yellow-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
+              <div className="absolute -bottom-8 left-20 w-72 h-72 bg-blue-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
+              <div className="relative">
+                <img src="https://geospatialmedia.s3.amazonaws.com/wp-content/uploads/2018/08/gps-fleet.jpg" alt="Fleet Management Dashboard" className="rounded-xl shadow-2xl" />
               </div>
-
-           <section id="gps-recommendations" className="mt-8">
-  <div className="mx-auto">
-    <div className="text-center mb-8 sm:mb-12">
-      <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-800 mb-4">
-        Compare Our Best GPS Fleet Management Picks
-      </h1>
-      <div className="w-24 h-1 bg-gradient-to-r from-orange-500 to-orange-600 mx-auto rounded-full"></div>
-    </div>
-
-    {/* Unified Table Layout for All Screen Sizes */}
-    <div className="bg-white rounded-2xl border border-gray-200 overflow-hidden">
-      <div className="overflow-x-auto">
-        <table className="w-full min-w-full">
-          <thead>
-            <tr className="border-b border-gray-200 bg-gray-50">
-              <th className="text-left py-3 sm:py-6 px-2 sm:px-8 font-semibold text-gray-700 text-sm sm:text-lg">
-                GPS Platform
-              </th>
-              <th className="text-center py-3 sm:py-6 px-2 sm:px-6 font-semibold text-gray-700 text-sm sm:text-lg">
-                Expert Score
-              </th>
-              <th className="text-center py-3 sm:py-6 px-2 sm:px-6 font-semibold text-gray-700 text-sm sm:text-lg">
-                Use Case
-              </th>
-              <th className="text-center py-3 sm:py-6 px-2 sm:px-6 font-semibold text-gray-700 text-sm sm:text-lg">
-                Contract Length
-              </th>
-              <th className="text-center py-3 sm:py-6 px-2 sm:px-6 font-semibold text-gray-700 text-sm sm:text-lg">
-                Pricing
-              </th>
-              <th className="text-center py-3 sm:py-6 px-2 sm:px-6 font-semibold text-gray-700 text-sm sm:text-lg">
-                Free/Paid Trial
-              </th>
-              <th className="text-center py-3 sm:py-6 px-2 sm:px-6 font-semibold text-gray-700 text-sm sm:text-lg">
-                Refresh Rates
-              </th>
-              <th className="text-center py-3 sm:py-6 px-2 sm:px-6 font-semibold text-gray-700 text-sm sm:text-lg">
-                Hardware Type
-              </th>
-              <th className="text-center py-3 sm:py-6 px-2 sm:px-6 font-semibold text-gray-700 text-sm sm:text-lg">
-                Third-Party Apps
-              </th>
-              <th className="text-center py-3 sm:py-6 px-2 sm:px-8 font-semibold text-gray-700 text-sm sm:text-lg">
-                Action
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {gpsData.map((gps, index) => (
-              <tr
-                key={gps.id}
-                className={`border-b border-gray-100 hover:bg-gray-50 transition-colors duration-200 ${
-                  index % 2 === 0 ? "bg-white" : "bg-gray-50/50"
-                }`}
-              >
-                <td className="py-4 sm:py-8 px-2 sm:px-8">
-                  <div className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-3">
-                    <div className="flex items-center justify-center flex-shrink-0">
-                      <img
-                        src={gps.image}
-                        alt={gps.alt}
-                        className="max-w-16 max-h-8 sm:max-w-32 sm:max-h-12 object-contain"
-                      />
-                    </div>
-                    <div className="text-center sm:text-left">
-                      <span className="font-medium text-gray-800 text-xs sm:text-base">
-                        {gps.name}
-                      </span>
-                    </div>
-                  </div>
-                </td>
-                <td className="py-4 sm:py-8 px-2 sm:px-6 text-center">
-                  <div className="flex flex-col items-center space-y-1 sm:space-y-2">
-                    <span className="text-lg sm:text-2xl font-bold text-gray-800">
-                      {gps.expertScore}
-                    </span>
-                    <div className="flex space-x-1 scale-75 sm:scale-100">
-                      {renderStars(gps.expertScore)}
-                    </div>
-                  </div>
-                </td>
-                <td className="py-4 sm:py-8 px-2 sm:px-6 text-center">
-                  <span className="inline-block bg-orange-100 text-orange-800 px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium">
-                    {gps.useCase}
-                  </span>
-                </td>
-                <td className="py-4 sm:py-8 px-2 sm:px-6 text-center">
-                  <span className="text-xs sm:text-sm text-gray-600 font-medium">
-                    {gps.contractLength}
-                  </span>
-                </td>
-                <td className="py-4 sm:py-8 px-2 sm:px-6 text-center">
-                  <span className="text-xs sm:text-sm text-gray-800 font-semibold">
-                    {gps.pricing}
-                  </span>
-                </td>
-                <td className="py-4 sm:py-8 px-2 sm:px-6 text-center">
-                  <span className="inline-block bg-green-100 text-green-800 px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium">
-                    {gps.freeTrialPaid}
-                  </span>
-                </td>
-                <td className="py-4 sm:py-8 px-2 sm:px-6 text-center">
-                  <span className="text-xs sm:text-sm text-gray-600 font-medium">
-                    {gps.refreshRates}
-                  </span>
-                </td>
-                <td className="py-4 sm:py-8 px-2 sm:px-6 text-center">
-                  <span className="text-xs sm:text-sm text-gray-600">
-                    {gps.hardwareType}
-                  </span>
-                </td>
-                <td className="py-4 sm:py-8 px-2 sm:px-6 text-center">
-                  <span className="text-xs sm:text-sm text-gray-600">
-                    {gps.thirdPartyApps}
-                  </span>
-                </td>
-                <td className="py-4 sm:py-8 px-2 sm:px-8">
-                  <button className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-medium py-2 px-3 sm:py-3 sm:px-6 rounded-lg transition-all duration-200 flex items-center space-x-1 sm:space-x-2 mx-auto text-xs sm:text-sm">
-                    <span>Visit Website</span>
-                    <ExternalLink className="w-3 h-3 sm:w-4 sm:h-4" />
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <div className="text-center mt-12">
-      <p className="text-gray-600 text-sm">
-        * Scores and recommendations are based on expert analysis
-        and user reviews
-      </p>
-    </div>
-  </div>
-</section>
-
-              <section id="reviews" className="mt-8">
-                <div className="mx-auto">
-                  <div className="text-center mb-8 sm:mb-12">
-                    <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-800 mb-4">
-                      Reviews
-                    </h1>
-                    <div className="w-24 h-1 bg-gradient-to-r from-orange-500 to-orange-600 mx-auto rounded-full"></div>
-                  </div>
-                  {toolsArray.map((tool) => (
-                    <div
-                      key={tool.id}
-                      className="bg-white rounded-2xl sm:rounded-3xl border mt-4  border-gray-200  p-6 mb-8"
-                    >
-                      {/* Tool Header */}
-                      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
-                        <div className="flex items-center gap-4">
-                          <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center">
-                            <Image
-                              src={tool.logo}
-                              alt={`${tool.title} logo`}
-                              width={48}
-                              height={48}
-                              className="object-contain"
-                            />
-                          </div>
-                          <h2 className="text-2xl font-bold text-black">
-                            {tool.title}
-                          </h2>
-                        </div>
-                        <a
-                          href={tool.button.link}
-                          className="bg-orange-600 text-white px-4 py-2 rounded-full text-sm hover:bg-orange-700"
-                        >
-                          {tool.button.text}
-                        </a>
-                      </div>
-
-                      {/* Scores */}
-                      <div className="space-y-4 text-black mb-6">
-                        {tool.scores.map((score, index) => (
-                          <div key={index}>
-                            <div className="flex justify-between text-sm font-medium mb-1">
-                              <span>{score.label}</span>
-                              <span>{score.score}</span>
-                            </div>
-                            <div className="w-full bg-gray-100 rounded-full h-2">
-                              <div
-                                className="bg-orange-600 h-2 rounded-full"
-                                style={{
-                                  width: `${
-                                    (parseFloat(score.score) / 5) * 100
-                                  }%`,
-                                }}
-                              ></div>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-
-                      {/* Pros and Cons */}
-                      <div className="grid md:grid-cols-2 text-black gap-6 mb-6">
-                        <div>
-                          <h3 className="text-lg font-semibold mb-2">Pros</h3>
-                          <ul className="list-disc pl-5 space-y-1">
-                            {tool.pros.map((pro, index) => (
-                              <li key={index}>{pro}</li>
-                            ))}
-                          </ul>
-                        </div>
-                        <div>
-                          <h3 className="text-lg font-semibold mb-2">Cons</h3>
-                          <ul className="list-disc pl-5 space-y-1">
-                            {tool.cons.map((con, index) => (
-                              <li key={index}>{con}</li>
-                            ))}
-                          </ul>
-                        </div>
-                      </div>
-
-                      {/* Why I Chose Section */}
-                      <div className="mb-6 text-black">
-                        <h3 className="text-lg font-semibold mb-2">
-                          Why I chose {tool.title.split(":")[0]}
-                        </h3>
-                        <p className="mb-4">{tool.why.intro}</p>
-                        {tool.why.bullets && (
-                          <ul className="list-disc pl-5 space-y-1 mb-4">
-                            {tool.why.bullets.map((bullet, index) => (
-                              <li key={index}>{bullet}</li>
-                            ))}
-                          </ul>
-                        )}
-                        <p>{tool.why.outro}</p>
-                      </div>
-
-                      {/* Expandable Sections */}
-                      {tool.why.extras &&
-                        Object.entries(tool.why.extras).map(
-                          ([label, content]) => {
-                            const sectionKey = `${tool.id}-${label}`;
-                            return (
-                              <div
-                                key={sectionKey}
-                                className="border-t text-black pt-4 mb-4"
-                              >
-                                <button
-                                  onClick={() => toggleSection(sectionKey)}
-                                  className="w-full flex justify-between items-center font-medium"
-                                >
-                                  <span>{label}</span>
-                                  <span className="text-orange-600">
-                                    {openSections[sectionKey] ? (
-                                      <Minus className="w-5 h-5" />
-                                    ) : (
-                                      <Plus className="w-5 h-5" />
-                                    )}
-                                  </span>
-                                </button>
-                                {openSections[sectionKey] && (
-                                  <div className="mt-2 text-gray-700">
-                                    {typeof content === "string" ? (
-                                      <p>{content}</p>
-                                    ) : (
-                                      content
-                                    )}
-                                  </div>
-                                )}
-                              </div>
-                            );
-                          }
-                        )}
-                    </div>
-                  ))}
-                </div>
-              </section>
-
-
-              {/* Website Builder Cost Section */}
-              <section
-                id="benefits"
-                className="mt-8 max-w-7xl mx-auto"
-              >
-                {" "}
-                <div className="max-w-none">
-                  {/* Main Heading */}
-                  <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-8 sm:mb-10 md:mb-12 lg:mb-16">
-                    What Are the Benefits of Fleet Tracking?
-                  </h1>
-
-                  {/* First Paragraph */}
-                  <div className="mb-8 sm:mb-10 md:mb-12 lg:mb-16">
-                    <p className="text-base sm:text-sm md:text-lg lg:text-lg text-gray-700 leading-relaxed sm:leading-relaxed md:leading-relaxed lg:leading-relaxed">
-                      GPS fleet tracking offers numerous advantages for businesses that manage fleets of vehicles. These benefits include:
-                    </p>
-                  </div>
-
-                 {/* Improved efficiency */}
-      <div>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">Improved efficiency</h2>
-        <p className="text-gray-700 text-base leading-relaxed mb-4">
-          GPS tracking allows you to plan and optimize routes, reducing travel time and fuel consumption.
-        </p>
-        <p className="text-gray-700 text-base leading-relaxed">
-          By monitoring vehicle performance and identifying potential issues early, you can schedule preventive maintenance and avoid costly breakdowns.
-        </p>
-      </div>
-
-      {/* Enhanced security */}
-      <div>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">Enhanced security</h2>
-        <p className="text-gray-700 text-base leading-relaxed mb-4">
-          GPS tracking can help deter theft by allowing you to locate and recover stolen vehicles.
-        </p>
-        <p className="text-gray-700 text-base leading-relaxed">
-          You can monitor vehicle usage to prevent unauthorized use, as well as set virtual boundaries to alert you if vehicles enter or exit specific areas.
-        </p>
-      </div>
-
-      {/* Improved customer service */}
-      <div>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">Improved customer service</h2>
-        <p className="text-gray-700 text-base leading-relaxed">
-          GPS fleet tracking can provide customers with real-time updates on the location of their shipments or services. This allows you to respond quickly to customer inquiries or issues by tracking the location of field workers or delivery drivers.
-        </p>
-      </div>
-
-      {/* Reduced costs */}
-      <div>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">Reduced costs</h2>
-        <p className="text-gray-700 text-base leading-relaxed">
-          GPS fleet tracking helps to optimize routes and reduce idle time to minimize fuel consumption. This preventative maintenance can help identify and address issues before they escalate, reducing costly repairs. Some insurance companies also offer discounts to businesses that use GPS fleet tracking.
-        </p>
-      </div>
-
-      {/* Better visibility */}
-      <div>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">Better visibility</h2>
-        <p className="text-gray-700 text-base leading-relaxed">
-          Tracking vehicle locations and activities in real time provides valuable insights into your fleet's operations. Analyze data on driver behavior, fuel consumption and vehicle maintenance to identify areas for improvement.
-        </p>
-      </div>
-                </div>
-              </section>
-
-           
-
-              {/* Website Builder Features Section */}
-              <section
-                id="features"
-                className="mt-8 max-w-7xl mx-auto"
-              >
-                {" "}
-                <div className="max-w-none">
-                  {/* Main Heading */}
-                  <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-8 sm:mb-10 md:mb-12 lg:mb-16">
-                    What Are Some Features of GPS Fleet Tracking?
-                  </h1>
-
-                  {/* Introduction Paragraph */}
-                  <div className="mb-12 sm:mb-16 md:mb-20 lg:mb-24">
-                    <p className="text-base sm:text-sm md:text-lg lg:text-lg text-gray-700 leading-relaxed sm:leading-relaxed md:leading-relaxed lg:leading-relaxed">
-                 GPS fleet tracking systems offer a wide range of features to help businesses optimize their operations and improve efficiency. Here are some of the most important features to consider:
-                    </p>
-                  </div>
-
-                  {/* User-Friendly Tools Section */}
-                  <div className="mb-12 sm:mb-16 md:mb-20 lg:mb-24">
-                    {/* User-Friendly Tools Heading */}
-                    <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 leading-tight mb-6 sm:mb-8 md:mb-10 lg:mb-12">
-                      Real time tracking
-                    </h2>
-
-                    {/* User-Friendly Tools Paragraph */}
-                    <p className="text-base sm:text-sm md:text-lg lg:text-lg text-gray-700 leading-relaxed sm:leading-relaxed md:leading-relaxed lg:leading-relaxed">
-                      GPS fleet tracking systems provide real-time location data for each vehicle in your fleet, allowing you to monitor their movements and activities.
-                    </p>
-                  </div>
-
-                  {/* Responsive Web Design Section */}
-                  <div className="mb-12 sm:mb-16 md:mb-20 lg:mb-24">
-                    {/* Responsive Web Design Heading */}
-                    <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 leading-tight mb-6 sm:mb-8 md:mb-10 lg:mb-12">
-                     Route optimization
-                    </h2>
-
-                    {/* Responsive Web Design Paragraph */}
-                    <p className="text-base sm:text-sm md:text-lg lg:text-lg text-gray-700 leading-relaxed sm:leading-relaxed md:leading-relaxed lg:leading-relaxed">
-                     Many systems offer route optimization features that help plan the most efficient routes for your vehicles, reducing fuel consumption and travel time.
-                    </p>
-                  </div>
-
-                  {/* Web Hosting Section */}
-                  <div className="mb-12 sm:mb-16 md:mb-20 lg:mb-24">
-                    {/* Web Hosting Heading */}
-                    <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 leading-tight mb-6 sm:mb-8 md:mb-10 lg:mb-12">
-                     Driver behavior analysis
-                    </h2>
-
-                    {/* Web Hosting Paragraph */}
-                    <p className="text-base sm:text-sm md:text-lg lg:text-lg text-gray-700 leading-relaxed sm:leading-relaxed md:leading-relaxed lg:leading-relaxed">
-                     GPS fleet tracking can be used to monitor driver behavior, such as speeding, harsh braking and excessive idling. This information can help improve driver safety and reduce operating costs.
-                    </p>
-                  </div>
-
-                  {/* E-Commerce Section */}
-                  <div className="mb-12 sm:mb-16 md:mb-20 lg:mb-24">
-                    {/* E-Commerce Heading */}
-                    <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 leading-tight mb-6 sm:mb-8 md:mb-10 lg:mb-12">
-                      Geofencing
-                    </h2>
-
-                    {/* E-Commerce Paragraph */}
-                    <p className="text-base sm:text-sm md:text-lg lg:text-lg text-gray-700 leading-relaxed sm:leading-relaxed md:leading-relaxed lg:leading-relaxed">
-                     Geofencing allows you to create virtual boundaries around specific areas. You can receive alerts if vehicles enter or exit these boundaries, which can be helpful for security, compliance and ensuring that vehicles are staying within designated areas.
-                    </p>
-                  </div>
-
-                  {/* Storage Section */}
-                  <div>
-                    {/* Storage Heading */}
-                    <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 leading-tight mb-6 sm:mb-8 md:mb-10 lg:mb-12">
-                      Fuel and maintenance monitoring
-                    </h2>
-
-                    {/* Storage Paragraph */}
-                    <p className="text-base sm:text-sm md:text-lg lg:text-lg text-gray-700 leading-relaxed sm:leading-relaxed md:leading-relaxed lg:leading-relaxed">
-                 GPS fleet tracking systems can track fuel consumption for each vehicle, allowing you to identify areas where fuel efficiency can be improved in an effort to reduce costs. Some systems also provide alerts when vehicles need maintenance or repairs, helping you avoid unexpected downtime.
-                    </p>
-                  </div>
-
-                     <div>
-                    {/* Storage Heading */}
-                    <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 leading-tight mb-6 sm:mb-8 md:mb-10 lg:mb-12">
-                      Reporting and analytics
-                    </h2>
-
-                    {/* Storage Paragraph */}
-                    <p className="text-base sm:text-sm md:text-lg lg:text-lg text-gray-700 leading-relaxed sm:leading-relaxed md:leading-relaxed lg:leading-relaxed">
-                 GPS fleet tracking systems can generate reports on various metrics, such as fuel consumption, driver behavior and vehicle utilization. This data can help identify areas for improvement and make data-driven decisions.
-                    </p>
-                  </div>
-                </div>
-              </section>
-              <section id="methodology" className="mt-8 max-w-7xl mx-auto">
-                <div className="max-w-none">
-                  <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-8 sm:mb-10 md:mb-12 lg:mb-16">
-                    Methodology
-                  </h1>
-
-                  <div className="text-base sm:text-sm md:text-lg lg:text-lg text-gray-700 leading-relaxed sm:leading-relaxed md:leading-relaxed lg:leading-relaxed">
-                    <p>
-                   To determine the best GPS fleet management services on the market, our team of technology experts and software analysts evaluated an initial list of 25 vendors. We then considered a number of factors, to whittle down our list, including its usability, hardware options, safety features and reporting capabilities.
-                    </p>
-
-                    <p>
-                      After narrowing our list down to 14, we chose six services as our top recommendations. Our experts and analysts studied each solution’s functionality and evaluated the systems on more than 30 factors.
-                    </p>
-
-                    <p>
-                     These factors were weighted differently in our overall conclusion. The weights were determined based on how much business owners prioritize these criteria when shopping for business software and services and making purchasing decisions.
-                    </p>
-
-                    <ul className="space-y-6 ml-0">
-                      <li>
-                        <span className="font-semibold text-gray-900">
-                          Pricing (30%):
-                        </span>{" "}
-                       Our experts and analysts compared and contrasted each vendor’s plans, judging which packages offered the best bang for your buck. They took into account monthly subscription rates, caps on fleet size, hardware costs, contract lengths and add-on fees.
-                      </li>
-
-                      <li>
-                        <span className="font-semibold text-gray-900">
-                          Features (25%):
-                        </span>{" "}
-                       We looked for standard GPS fleet management functions like dashcam recording, electronic logging, fleet management tools, driver safety monitoring and maintenance tracking. We also assessed the available integrations and awarded extra points for advanced services, like AI-powered dashcams and open API access.
-                      </li>
-
-                      <li>
-                        <span className="font-semibold text-gray-900">
-                          Ease of Use (25%):
-                        </span>{" "}
-                       We tested the hardware and software ourselves, gauging each solution’s learning curve, user-friendliness and customization options. We also considered whether the GPS devices and other equipment were plug-and-play and if the vendor offered a fully featured mobile app for handling fleet management tasks on the go.
-                      </li>
-
-                      <li>
-                        <span className="font-semibold text-gray-900">
-                          Customer Service (15%):
-                        </span>{" "}
-                        We evaluated the range of customer service options, including whether phone assistance was provided with all package tiers. We also examined each vendor’s online resources for businesses interested in self-guided help.
-                      </li>
-                       <li>
-                        <span className="font-semibold text-gray-900">
-                         Hardware (10%):
-                        </span>{" "}
-                       We examined the various hardware options for businesses. Was there a range of options? Did they offer options that needed to be professionally installed and plug-and-play ready tools, or just one or the other? We wanted to ensure businesses weren’t locked into hardware that wouldn’t serve their needs.
-                      </li>
-                    </ul>
-
-                    <p>
-                      Based on these criteria, we not only determined which fleet management systems our readers could trust but also the ways in which each solution could best serve different business needs. Some services were better at certain tasks than others or more suited to a particular type of company. These takeaways informed the “Best for” use cases you see on this page.
-                    </p>
-
-                    <p>
-                      To learn more about our methodology, see our full{" "}
-                      <Link
-                        href="#"
-                        className="text-orange-600 hover:text-orange-800 underline"
-                      >
-                        editorial process
-                      </Link>
-                      .
-                    </p>
-                  </div>
-                </div>
-              </section>
-              {/* FAQs */}
-              <FAQ faqsData={gpsFleetFAQs} />
             </div>
           </div>
         </div>
       </div>
+      <div className="container py-16 max-w-6xl mx-auto">
+        <h2 className="text-4xl font-semibold text-center text-gray-900 mb-12">
+          Complete Fleet Management Solution
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 ">
+          {features.map((feature, index) => (
+            <div key={index} className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+              <div className="mb-4">{feature.icon}</div>
+              <h3 className="text-xl font-semibold text-gray-800 mb-2">{feature.title}</h3>
+              <p className="text-gray-800 text-base">{feature.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+
+      {/* what is gpstracking*/}
+      <section id="what-is-gpstracking" className="py-10 max-w-6xl mx-auto p-4">
+      <div className="container mx-auto max-w-6xl mx-auto">
+
+        {/* Key Components Grid */}
+        <div className="mb-20 max-w-6xl mx-auto ">
+          <h3 className="text-4xl font-semibold text-gray-900 text-center mb-10">Key Components of GPS Fleet Tracking</h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6 md:gap-6 sm:gap-6 text-base max-w-6xl mx-auto">
+            {[
+              {
+                icon: <Radio className="w-10 h-10 text-blue-600" />,
+                title: "GPS Tracking Devices",
+                description: "Hardware installed in vehicles that receive satellite signals and transmit location and vehicle data to central servers."
+              },
+              {
+                icon: <Globe className="w-10 h-10 text-green-600" />,
+                title: "Data Transmission",
+                description: "Cellular networks that relay information from vehicles to the cloud, allowing for real-time monitoring across wide geographical areas."
+              },
+              {
+                icon: <Cpu className="w-10 h-10 text-purple-600" />,
+                title: "Fleet Management Software",
+                description: "Cloud-based platforms that process, analyze, and visualize tracking data, providing user-friendly interfaces for fleet managers."
+              },
+              {
+                icon: <Zap className="w-10 h-10 text-orange-600" />,
+                title: "Integration Systems",
+                description: "APIs and connectors that link fleet tracking data with other business systems like ERP, accounting, or customer service platforms."
+              }
+            ].map((item, index) => (
+              <div key={index} className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 max-w-6xl mx-automax-w-6xl mx-auto p-4">
+                <div className="bg-gray-50 w-16 h-16 rounded-full flex items-center justify-center mb-4 ">
+                  {item.icon}
+                </div>
+                <h4 className="text-xl font-semibold text-gray-800 mb-2">{item.title}</h4>
+                <p className="text-gray-800 text-base">{item.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+       
+
+        {/* Implementation Process */}
+        <div className="mb-20 max-w-6xl mx-auto">
+          <h3 className="text-4xl font-semibold text-gray-900 text-center mb-10">GPS Fleet Tracking Implementation</h3>
+          <div className="flex flex-col md:flex-row items-start justify-between gap-6 text-center">
+            {[
+              {
+                step: "1",
+                title: "Assessment",
+                icon: <Truck className="w-8 h-8 text-white" />,
+                color: "bg-blue-600",
+                description: "Evaluate your fleet size, vehicle types, and specific tracking needs to determine the appropriate solution."
+              },
+              {
+                step: "2",
+                title: "Hardware Installation",
+                icon: <Cpu className="w-8 h-8 text-white" />,
+                color: "bg-green-600",
+                description: "Install GPS tracking devices in all vehicles, either through plug-and-play OBD-II devices or hardwired solutions."
+              },
+              {
+                step: "3",
+                title: "Software Setup",
+                icon: <Globe className="w-8 h-8 text-white" />,
+                color: "bg-purple-600",
+                description: "Configure your fleet management software dashboard, set up geofences, and establish custom alerts and reports."
+              },
+              {
+                step: "4",
+                title: "Team Training",
+                icon: <Users className="w-8 h-8 text-white" />,
+                color: "bg-orange-600",
+                description: "Train dispatchers, managers, and drivers on how to use the system effectively and address potential concerns."
+              },
+              {
+                step: "5",
+                title: "Optimization",
+                icon: <TrendingUp className="w-8 h-8 text-white" />,
+                color: "bg-red-600",
+                description: "Continuously refine your tracking parameters and reporting tools based on initial results and feedback."
+              }
+            ].map((step, index) => (
+              <div key={index} className="flex-1">
+                <div className="flex flex-col items-center">
+                  <div className={`${step.color} w-16 h-16 rounded-full flex items-center justify-center mb-4 shadow-lg`}>
+                    {step.icon}
+                  </div>
+                  <div className="h-24 w-px bg-gray-300 hidden md:block"></div>
+                </div>
+                <div className="text-left">
+                  <h4 className="text-xl font-semibold text-gray-800 mb-2 text-center">{step.title}</h4>
+                  <p className="text-gray-800 text-base text-center">{step.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+{/* working of gpstracking */}
+ <div id="gpstracking-working" className="py-10 max-w-6xl mx-auto">
+ <div className="text-center mb-16 max-w-6xl mx-auto p-4">
+          <h2 className="text-4xl md:text-4xl font-semibold text-gray-900 mb-4">
+            What is GPS Fleet Tracking?
+          </h2>
+          <div className="w-24 h-1 bg-[#000e54] mx-auto mb-6"></div>
+          <p className="text-xl text-gray-800 max-w-3xl mx-auto">
+          Watch vehicles move across town in real-time. Spot traffic jams before drivers do. Send the closest truck to urgent jobs. Track fuel usage while identifying wasteful idling. All from one screen that updates every few seconds. That's modern fleet tracking.
+          </p>
+</div>
+ {/* Main Concept Illustration */}
+ <div id="gpstracking-working" className="flex flex-col lg:flex-row items-center justify-between gap-12 mb-20 max-w-6xl mx-auto">
+          <div className="lg:w-1/2">
+            <div className="relative p-4 bg-white rounded-2xl">
+              <div className="flex justify-center mb-6">
+                <div className="relative">
+                  <div className="absolute inset-0 bg-[#000e54] rounded-full animate-ping opacity-25"></div>
+                  <Satellite className="w-16 h-16 text-[#000e54] relative z-10" />
+                </div>
+              </div>
+              <h3 className="text-xl font-semibold text-center text-[#000e54] mb-4">How GPS Fleet Tracking Works</h3>
+              <p className="text-gray-800 mb-6 text-base">
+              Tiny devices in each truck constantly talk with satellites circling high above Earth. By measuring distance from at least three satellites simultaneously, they pinpoint exactly where your vehicles are—within a few feet. The same technology guiding your weekend hikes now keeps your business moving efficiently every day.   </p>
+              <div className="flex flex-wrap justify-center gap-4">
+                <div className="flex flex-col items-center">
+                  <Satellite className="w-10 h-10 text-blue-500 mb-2" />
+                  <p className="text-base text-center">Satellite Signal</p>
+                </div>
+                <div className="flex items-center text-gray-800">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5 12H19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                    <path d="M13 6L19 12L13 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </div>
+                <div className="flex flex-col items-center">
+                  <Radio className="w-10 h-10 text-green-500 mb-2" />
+                  <p className="text-base text-center">GPS Receiver</p>
+                </div>
+                <div className="flex items-center text-gray-800">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5 12H19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                    <path d="M13 6L19 12L13 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </div>
+                <div className="flex flex-col items-center">
+                  <Globe className="w-10 h-10 text-purple-500 mb-2" />
+                  <p className="text-base text-center">Cellular Network</p>
+                </div>
+                <div className="flex items-center text-gray-800">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5 12H19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                    <path d="M13 6L19 12L13 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </div>
+                <div className="flex flex-col items-center">
+                  <Cpu className="w-10 h-10 text-red-500 mb-2" />
+                  <p className="text-base text-center">Fleet Software</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="lg:w-1/2 max-w-6xl mx-auto p-4">
+            <div className="space-y-6">
+              <p className="text-base text-gray-800 text-justify">
+              "Modern trackers show more than just where trucks are," explains Mark. "They reveal engine health and driving habits too."
+
+Today's fleet systems transform vehicle data into clear insights on manager dashboards. Companies set digital boundaries around locations, plan smarter routes, schedule maintenance before breakdowns, and maintain compliance records—all in one system.
+
+It's evolved from simple tracking to a complete management tool that works around the clock, catching issues before they become problems.
+             </p>
+              <p className="text-base text-gray-800 text-justify">
+              These systems do more than just track vehicles—they give you full control over your fleet. With features like geofencing, route planning, maintenance reminders, and compliance tracking, you can streamline operations and stay on top of regulations. By combining reliable hardware with smart software, you get a powerful solution that helps optimize your fleet’s performance. </p>
+              <div className="p-4 bg-blue-50 border-l-4 border-[#000e54] rounded">
+                <p className="font-semibold text-base text-[#000e54]">
+                GPS fleet tracking turns simple location data into powerful insights. With this information, businesses can make smarter decisions—boosting efficiency, keeping drivers safe, and cutting costs to drive higher profits  </p>
+              </div>
+            </div>
+          </div>
+</div>
+</div>
+
+ {/* Benefits of fleet tracking Section */}
+ <div id="gpstracking-benefits" className="mb-20 py-10 max-w-6xl mx-auto p-6">
+          <h3 className="text-4xl font-semibold text-gray-900 text-center mb-10">Benefits of GPS Fleet Tracking</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                icon: <TrendingUp className="w-12 h-12 text-green-600" />,
+                title: "Increased Operational Efficiency",
+                description: "Optimize routes, reduce idle time, and improve dispatching to complete more jobs with fewer resources.",
+                stats: "Up to 25% reduction in fuel costs"
+              },
+              {
+                icon: <ShieldCheck className="w-12 h-12 text-blue-600" />,
+                title: "Enhanced Vehicle Security",
+                description: "Prevent unauthorized use and quickly recover stolen vehicles with real-time location tracking.",
+                stats: "90% higher recovery rate for stolen vehicles"
+              },
+              {
+                icon: <Clock className="w-12 h-12 text-orange-600" />,
+                title: "Improved Time Management",
+                description: "Accurate arrival time predictions and proof of service timestamps improve customer satisfaction.",
+                stats: "30% reduction in customer complaints"
+              },
+              {
+                icon: <MapPin className="w-12 h-12 text-purple-600" />,
+                title: "Better Route Planning",
+                description: "AI-powered route optimization that accounts for traffic, weather, and vehicle constraints.",
+                stats: "15-20% more deliveries per day"
+              },
+              {
+                icon: <AlertTriangle className="w-12 h-12 text-red-600" />,
+                title: "Reduced Risk & Liability",
+                description: "Monitor driver behavior to discourage speeding and harsh driving, leading to fewer accidents.",
+                stats: "Up to 40% reduction in accident rates"
+              },
+              {
+                icon: <Users className="w-12 h-12 text-indigo-600" />,
+                title: "Enhanced Driver Management",
+                description: "Identify training opportunities and recognize top performers through objective performance data.",
+                stats: "20% improvement in driver retention"
+              }
+            ].map((benefit, index) => (
+              <div key={index} className="bg-white p-6 rounded-xl shadow-md border-t-4 border-b-4" style={{ borderTopColor: benefit.icon.props.className.split(' ')[3], borderBottomColor: benefit.icon.props.className.split(' ')[3] }}>
+                <div className="flex items-center mb-4">
+                  {benefit.icon}
+                  <h4 className="text-xl font-semibold text-gray-800 ml-4">{benefit.title}</h4>
+                </div>
+                <p className="text-gray-800 mb-4 text-base">{benefit.description}</p>
+                <div className="bg-gray-50 p-3 rounded-lg">
+                  <p className="font-semibold text-base text-gray-800">{benefit.stats}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+{/* features of gps fleet tracking */}
+<section id="gpstracking-features" className="py-8 max-w-6xl mx-auto p-6">
+      <div className="container max-w-6xl mx-auto ">
+        {/* Main Header */}
+        <div className="text-center mb-16">
+          <h2 className="text-4xl font-semibold text-gray-900 mb-6">
+            Comprehensive GPS Fleet Tracking Features
+          </h2>
+          <p className="text-xl text-gray-800 max-w-3xl mx-auto">
+          Our fleet management system gives you the tools to run a tighter ship—cut costs, boost safety, keep your vehicles running longer, and make every dollar count.  </p>
+        </div>
+
+        {/* Feature Navigation */}
+        <div className="flex flex-wrap text-base justify-center mb-12 gap-2">
+  {Object.keys(featureCategories).map((category) => (
+    <button
+      key={category}
+      onClick={() => setActiveTab(category)}
+      className={`flex items-center px-6 py-4 rounded-full transition-all duration-300 ${
+        activeTab === category 
+          ? `${featureCategories[category].color} text-white shadow-lg` 
+          : 'bg-white text-gray-800 hover:bg-gray-100'
+      }`}
+    >
+      <span className={`mr-2 ${
+        activeTab === category 
+          ? 'text-white' 
+          : featureCategories[category].textColor
+      }`}>
+        {renderAnimatedIcon(category)}
+      </span>
+      <span className="font-semibold">
+        {featureCategories[category].title}
+      </span>
+    </button>
+  ))}
+</div>
+
+        {/* Features Banner */}
+        <div className={`${featureCategories[activeTab].color} text-white rounded-xl p-8 mb-12 relative overflow-hidden`}>
+  <div className="relative z-10">
+    <h3 className="text-xl font-semibold mb-4">{featureCategories[activeTab].title}</h3>
+    <p className="text-base max-w-2xl">{featureCategories[activeTab].description}</p>
+  </div>
+  
+  {/* Background Pattern */}
+  <div className="absolute top-0 right-0 opacity-10">
+    <svg width="400" height="400" viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+      <path d="M435.7,566.7c-96.9,37.6-196.8,72.4-302.4,31.6C30.8,558.3-23.4,450.8,8.9,355.5C42.6,256.9,155.1,188.1,250.5,137
+       c85.6-45.8,180-68.3,269-36.1c91.9,33.2,159.3,120.3,156.9,221.2C673.5,422.9,542.5,525.7,435.7,566.7z" fill="currentColor"/>
+    </svg>
+  </div>
+</div>
+
+        {/* Features Content */}
+        <div className="bg-white text-base rounded-2xl p-6 md:p-12">
+{featureCategories[activeTab].features.map((feature, index) => (
+  <React.Fragment key={feature.title || index}>
+    {renderFeature(feature, featureCategories[activeTab].color)}
+  </React.Fragment>
+))}
+        </div>
+
+        {/* Interactive Feature Showcase */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20 ">
+          <div className="bg-white rounded-2xl p-8 overflow-hidden relative">
+            <div className="relative z-10">
+              <h3 className="text-xl font-semibold text-gray-900 mb-6">See the Difference</h3>
+              <p className="text-gray-800 mb-8 text-base">
+              Our GPS fleet tracking gives you complete visibility, helping you:
+              </p>
+              <ul className="space-y-4">
+                <li className="flex items-start">
+                  <div className={`bg-${featureCategories[activeTab].color}-100 p-2 rounded-full mr-4`}>
+                    <CheckCircle className={`w-5 h-5 text-${featureCategories[activeTab].color}-600`} />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-xl text-gray-800">Make Data-Driven Decisions</h4>
+                    <p className="text-gray-800 text-base">Replace guesswork with analytics-powered insights</p>
+                  </div>
+                </li>
+                <li className="flex items-start">
+                  <div className={`bg-${featureCategories[activeTab].color}-100 p-2 rounded-full mr-4`}>
+                    <CheckCircle className={`w-5 h-5 text-${featureCategories[activeTab].color}-600`} />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-xl text-gray-800">Enhance Customer Experience</h4>
+                    <p className="text-gray-800 text-base">Provide accurate ETAs and responsive service</p>
+                  </div>
+                </li>
+                <li className="flex items-start">
+                  <div className={`bg-${featureCategories[activeTab].color}-100 p-2 rounded-full mr-4`}>
+                    <CheckCircle className={`w-5 h-5 text-${featureCategories[activeTab].color}-600`} />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-gray-800 text-xl">Reduce Operational Costs</h4>
+                    <p className="text-gray-800 text-base">Cut fuel, maintenance, and labor expenses</p>
+                  </div>
+                </li>
+                <li className="flex items-start">
+                  <div className={`bg-${featureCategories[activeTab].color}-100 p-2 rounded-full mr-4`}>
+                    <CheckCircle className={`w-5 h-5 text-${featureCategories[activeTab].color}-600`} />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-gray-800 text-xl">Improve Fleet Safety</h4>
+                    <p className="text-gray-800 text-base">Protect drivers and reduce liability risks</p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            
+            {/* Background Decoration */}
+            <div className="absolute -right-12 -bottom-12 opacity-5">
+              <svg width="300" height="300" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M17.5,19.85C17.32,19.85 17.15,19.76 17.04,19.59L12.58,12.91L9.32,17.8C9.22,17.95 9.05,18.04 8.87,18.05C8.69,18.05 8.52,17.97 8.4,17.83L5.14,13.83L2.35,17.31C2.33,17.34 2.31,17.36 2.29,17.38C2.04,17.64 1.67,17.69 1.35,17.5C1.04,17.31 0.942,16.97 1.03,16.65C1.03,16.6 1.04,16.55 1.06,16.5L4.15,12.43C4.26,12.29 4.44,12.21 4.62,12.23C4.81,12.23 4.97,12.32 5.09,12.47L8.31,16.41L11.5,11.61C11.59,11.45 11.77,11.35 11.96,11.35C12.15,11.34 12.34,11.43 12.45,11.58L16.96,18.33L20.12,15.62C20.29,15.48 20.51,15.44 20.71,15.51C20.91,15.5 21.13,15.68 21.22,15.87C21.31,16.06 21.28,16.28 21.15,16.44L17.9,19.64C17.79,19.78 17.65,19.85 17.5,19.85Z"/>
+              </svg>
+            </div>
+          </div>
+          
+          <div className="bg-white rounded-2xl  overflow-hidden">
+  <div className="">
+    <h3 className="text-xl font-semibold text-gray-800 mb-6">Core GPS Fleet Tracking Capabilities</h3>
+    
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {/* Feature 1 */}
+      <div className="flex items-start">
+        <div className="bg-blue-100 p-3 rounded-lg mr-4">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+            <circle cx="12" cy="10" r="3"></circle>
+          </svg>
+        </div>
+        <div>
+          <h4 className="font-semibold text-gray-800 mb-2 text-xl">Real-Time Location Tracking</h4>
+          <p className="text-gray-800 text-base">
+          See live GPS updates with exact locations, directions, and status of every vehicle.
+          </p>
+        </div>
+      </div>
+
+      {/* Feature 2 */}
+      <div className="flex items-start">
+        <div className="bg-green-100 p-3 rounded-lg mr-4">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M12 2s3 5 3 10-3 10-3 10-3-5-3-10 3-10 3-10z"></path>
+            <path d="M12 12a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"></path>
+          </svg>
+        </div>
+        <div>
+          <h4 className="font-semibold text-gray-800 mb-2 text-xl">Geofencing Alerts</h4>
+          <p className="text-gray-800 text-base">
+          Set virtual boundaries and get instant alerts when vehicles cross them.
+          </p>
+        </div>
+      </div>
+
+      {/* Feature 3 */}
+      <div className="flex items-start">
+        <div className="bg-purple-100 p-3 rounded-lg mr-4">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          </svg>
+        </div>
+        <div>
+          <h4 className="font-semibold text-gray-800 mb-2 text-xl">Driver Safety Monitoring</h4>
+          <p className="text-gray-800 text-base">
+          Monitor risky driving—like speeding, hard braking, and rapid acceleration—to boost fleet safety.
+          </p>
+        </div>
+      </div>
+
+      {/* Feature 4 */}
+      <div className="flex items-start">
+        <div className="bg-amber-100 p-3 rounded-lg mr-4">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+            <line x1="12" y1="9" x2="12" y2="13"></line>
+            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+          </svg>
+        </div>
+        <div>
+          <h4 className="font-semibold text-gray-800 mb-2 text-xl">Instant Alerts</h4>
+          <p className="text-gray-800 text-base">
+          Instant alerts for unauthorized use, maintenance needs, or emergencies—so you're always in control.  </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        </div>
+        
+ 
+      </div>
+    </section>
+
+{/* how your data is protected */}
+<div className="max-w-6xl mx-auto py-12 px-4">
+      {/* Header */}
+      <div className="text-center mb-16">
+        <h1 className="text-4xl font-semibold text-gray-900 mb-6">Data Security & Privacy</h1>
+        <p className="text-xl text-gray-800 max-w-3xl mx-auto">We prioritize your data security and privacy at every step of your journey with us</p>
+      </div>
+      
+      <div className="bg-[#000e54] text-white p-8 rounded-xl mb-16 shadow-lg">
+        <div className="flex flex-col md:flex-row items-center">
+          <div className="md:w-3/4">
+            <h2 className="text-4xl font-semibold mb-4">Your Trust Is Our Priority</h2>
+            <p className="text-base">Your data stays protected, private, and yours—with enterprise-grade security and strict compliance built in.</p>
+          </div>
+          <div className="md:w-1/4 flex justify-center mt-6 md:mt-0">
+            <div className="bg-white bg-opacity-20 p-6 rounded-full">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-20 w-20" fill="none" viewBox="0 0 24 24" stroke="#000e54">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      {/* Data Protection Section */}
+      <div className="mb-20">
+        <div className="flex items-center mb-8">
+          <div className="bg-[#000e54] p-2 rounded-full mr-4">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-blue-700" fill="white" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+            </svg>
+          </div>
+          <h2 className="text-4xl font-semibold text-gray-900">How We Protect Your Data</h2>
+        </div>
+        
+        <div className="grid md:grid-cols-2 gap-8 mb-10">
+          <div className="bg-white p-6 rounded-lg shadow-md border-t-4 border-[#000e54]">
+            <h3 className="text-xl font-semibold text-gray-800 mb-4">Enterprise-Grade Security</h3>
+            <p className="text-gray-800 text-base">Your data stays protected with military-grade encryption (AES-256 for storage, TLS 1.3 for transfers), enterprise firewalls, and 24/7 threat monitoring – so you can focus on your business with complete peace of mind.</p>
+          </div>
+          
+          <div className="bg-white p-6 rounded-lg shadow-md border-t-4 border-[#000e54]">
+            <h3 className="text-xl font-semibold text-gray-800 mb-4">Access Controls</h3>
+            <p className="text-gray-800 text-base">We implement strict role-based access controls (RBAC) and follow the principle of least privilege. Multi-factor authentication is mandatory for all internal systems, and employee access to customer data is limited, logged, and regularly audited.</p>
+          </div>
+        </div>
+        
+        <div className="space-y-8">
+          <div className="bg-white p-6 rounded-lg shadow-md">
+            <h3 className="text-xl font-semibold text-gray-800 mb-4">Regular Security Assessments</h3>
+            <p className="text-gray-800 text-base">We maintain rigorous security standards through quarterly third-party penetration tests, continuous vulnerability scanning, and comprehensive system audits. Independent cybersecurity experts simulate real-world attacks to expose weaknesses, while automated scanners monitor for new risks 24/7. Any identified vulnerabilities are prioritized and patched on an accelerated timeline, ensuring potential threats are neutralized before they can be exploited.</p>
+          </div>
+          
+          <div className="bg-white p-6 rounded-lg shadow-md">
+            <h3 className="text-xl font-semibold text-gray-800 mb-4">Data Backup & Disaster Recovery</h3>
+            <p className="text-gray-800 text-base">Your data is protected with automated hourly backups—encrypted and stored across multiple secure locations. In the rare event of an outage, our disaster recovery protocols minimize downtime and data loss, with regular drills to ensure seamless restoration.</p>
+          </div>
+          
+          <div className="bg-white p-6 rounded-lg shadow-md">
+            <h3 className="text-xl font-semibold text-gray-800 mb-4">Employee Training</h3>
+            <p className="text-gray-800 text-base">Security starts with our people. All employees complete rigorous cybersecurity training during onboarding and participate in mandatory quarterly refresher courses. We reinforce this knowledge through regular phishing simulations, security awareness campaigns, and team-based challenges that keep security top of mind across our entire organization.</p>
+          </div>
+        </div>
+      </div>
+      
+      {/* Regulatory Compliance Section */}
+      <div className="mb-20">
+        <div className="flex items-center mb-8">
+          <div className="bg-green-100 p-2 rounded-full mr-4">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-green-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <h2 className="text-4xl font-semibold text-gray-900">Compliance with Privacy Regulations</h2>
+        </div>
+        
+        <div className="grid md:grid-cols-2 gap-8 mb-10">
+          <div className="bg-white p-6 rounded-lg shadow-md">
+            <h3 className="text-xl font-semibold text-gray-800 mb-4">GDPR Compliance</h3>
+            <p className="text-gray-800 mb-4 text-base">We fully comply with the EU General Data Protection Regulation, ensuring that:</p>
+            <ul className="list-disc pl-5 text-gray-800 text-base space-y-2">
+              <li>You can access, correct, or delete your personal data at any time</li>
+              <li>We collect only the minimum data necessary to provide our services</li>
+              <li>All data processing activities are documented and justified</li>
+              <li>Data protection is built into our systems by design and default</li>
+            </ul>
+          </div>
+          
+          <div className="bg-white p-6 rounded-lg shadow-md">
+            <h3 className="text-xl font-semibold text-gray-800 mb-4">CCPA/CPRA Compliance</h3>
+            <p className="text-gray-700 text-base mb-4">We honor California Consumer Privacy Act and Privacy Rights Act requirements:</p>
+            <ul className="list-disc pl-5 text-gray-800 text-base space-y-2">
+              <li>Rights to know what personal information is collected</li>
+              <li>Options to opt-out of data sales or sharing</li>
+              <li>Deletion rights for collected personal information</li>
+              <li>Protection against discrimination for exercising privacy rights</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div className="bg-white p-8 rounded-lg ">
+          <h3 className="text-xl font-semibold text-gray-800 mb-6">Industry-Specific Compliance</h3>
+          <p className="text-gray-800 text-base mb-6">We maintain compliance with industry-specific regulations to ensure your data is protected according to the highest standards:</p>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div className="bg-gray-50 p-5 rounded-lg text-center shadow-sm border border-gray-200">
+              <span className="font-semibold text-xl block mb-2 text-gray-800">HIPAA</span>
+              <p className="text-gray-800 text-base">Healthcare data protection standards</p>
+            </div>
+            <div className="bg-gray-50 p-5 rounded-lg text-center shadow-sm border border-gray-200">
+              <span className="font-semibold text-xl block mb-2 text-gray-800">PCI DSS</span>
+              <p className="text-gray-800 text-base">Payment card industry security standards</p>
+            </div>
+            <div className="bg-gray-50 p-5 rounded-lg text-center shadow-sm border border-gray-200">
+              <span className="font-semibold text-xl block mb-2 text-gray-800">SOC 2</span>
+              <p className="text-gray-800 text-base">Service organization control standards</p>
+            </div>
+            <div className="bg-gray-50 p-5 rounded-lg text-center shadow-sm border border-gray-200">
+              <span className="font-semibold text-xl block mb-2 text-gray-800">ISO 27001</span>
+              <p className="text-gray-800 text-base">Information security management</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      {/* Data Ownership Section */}
+      <div className="mb-16">
+        <div className="flex items-center mb-8">
+          <div className="bg-blue-50 p-2 rounded-full mr-4">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-yellow-700" fill="none" viewBox="0 0 24 24" stroke="#000e54">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+            </svg>
+          </div>
+          <h2 className="text-4xl font-semibold text-gray-900">Data Ownership Policies</h2>
+        </div>
+        
+        <div className="bg-blue-50 border-l-4 border-[#000e54] p-6 rounded-r-lg mb-10 shadow-md">
+          <h3 className="text-xl font-semibold text-[#000e54] mb-3">Your Data, Always Yours</h3>
+          <p className="text-gray-800 text-base">We never take ownership of your information—what you upload stays yours, period. This principle is baked into every contract, feature, and support interaction.</p>
+        </div>
+        
+        <div className="grid md:grid-cols-3 gap-6 mb-10">
+          <div className="bg-white p-5 rounded-lg shadow-md">
+            <div className="text-[#000e54] mb-3">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+              </svg>
+            </div>
+            <h4 className="text-xl font-semibold mb-3 text-gray-800">Right to Access</h4>
+            <p className="text-gray-800 text-base">You have full rights to access and export your data at any time. Through our self-service portal, you can instantly download your complete records.</p>
+          </div>
+          <div className="bg-white p-5 rounded-lg shadow-md">
+            <div className="text-[#000e54] mb-3">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+              </svg>
+            </div>
+            <h4 className="text-xl font-semibold mb-3 text-gray-800">Right to Delete</h4>
+            <p className="text-gray-800 text-base">Request permanent data deletion anytime. We'll erase everything—including backups—within 30 days, leaving no trace.</p>
+          </div>
+          <div className="bg-white p-5 rounded-lg shadow-md">
+            <div className="text-[#000e54] mb-3">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+              </svg>
+            </div>
+            <h4 className="text-xl font-semibold mb-3 text-gray-800">Right to Modify</h4>
+            <p className="text-gray-800 text-base">Keep your data accurate and up-to-date—edit it anytime directly in the platform, or let our support team assist you.</p>
+          </div>
+        </div>
+        
+        <div className="bg-white p-6 rounded-lg shadow-md mb-8">
+          <h3 className="text-4xl font-semibold text-gray-800 mb-4">Data Retention & Deletion</h3>
+          <p className="text-gray-800 text-xl mb-4">We maintain clear policies regarding how long we retain your data:</p>
+          <ul className="list-disc pl-5 text-gray-800 text-base space-y-3">
+            <li><span className="font-semibold">Active Accounts:</span> Your data is retained for as long as you maintain an active account with our service.</li>
+            <li><span className="font-semibold">Account Closure:</span> Upon account closure, non-essential personal data is deleted within 30 days. Essential transaction records may be retained for legal compliance purposes (typically 7 years).</li>
+            <li><span className="font-semibold">Backups:</span> Data may persist in encrypted backups for up to 90 days after deletion from production systems.</li>
+            <li><span className="font-semibold">Anonymized Data:</span> We may retain permanently anonymized data that cannot be linked back to individuals for analytical purposes.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+{/* methodology */}
+<div id="gps-methodology" className="py-10 max-w-6xl mx-auto">
+      {/* Header */}
+      <div className="max-w-7xl mx-auto p-4  lg:px-8">
+        <div className="text-center">
+          <h2 className="text-4xl font-semibold text-gray-900 ">
+            Our GPS Fleet Management Methodology
+          </h2>
+          <p className="mt-4 max-w-2xl mx-auto text-xl text-gray-800">
+          Track, monitor, and optimize your entire fleet—all in one place.
+          </p>
+        </div>
+
+        {/* Methodology Overview */}
+        <div className="mt-16 max-w-6xl mx-auto">
+          <div className="lg:grid lg:grid-cols-2 lg:gap-12 items-center">
+            <div>
+              <h3 className="lg:text-xl font-semibold text-gray-900">
+                System Architecture
+              </h3>
+              <p className="mt-3 lg:text-base text-gray-800">
+              Get real-time insights from every vehicle with our smart fleet tracking system.
+              </p>
+              <div className="mt-10 space-y-6">
+                <div className="flex">
+                  <div className="flex-shrink-0">
+                    <div className="flex items-center justify-center h-12 w-12 rounded-md bg-[#000e54] text-white">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+                      </svg>
+                    </div>
+                  </div>
+                  <div className="ml-4">
+                    <h4 className="text-xl font-semibold text-gray-900">Hardware Integration</h4>
+                    <p className="mt-2 lg:text-base text-gray-800">Advanced GPS trackers monitor your vehicles location, speed, fuel use, and engine health in real time.</p>
+                  </div>
+                </div>
+                <div className="flex">
+                  <div className="flex-shrink-0">
+                    <div className="flex items-center justify-center h-12 w-12 rounded-md bg-[#000e54] text-white">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+                      </svg>
+                    </div>
+                  </div>
+                  <div className="ml-4">
+                    <h4 className="text-xl font-semibold text-gray-900">Secure Data Transmission</h4>
+                    <p className="mt-2 text-base text-gray-800">Your data stays protected with bank-grade encryption during transmission and storage—accessible anytime with 99.9% reliability.</p>
+                  </div>
+                </div>
+                <div className="flex">
+                  <div className="flex-shrink-0">
+                    <div className="flex items-center justify-center h-12 w-12 rounded-md bg-[#000e54] text-white">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                      </svg>
+                    </div>
+                  </div>
+                  <div className="ml-4">
+                    <h4 className="text-xl font-semibold text-gray-900">Intelligent Data Processing</h4>
+                    <p className="mt-2 text-base text-gray-800">Smart analytics uncover hidden savings—automatically spotting trends and recommending improvements.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="mt-10 lg:mt-0">
+              <img 
+                src="https://loginextsolutions.com/blog/wp-content/uploads/2022/10/Fleet-Management-Software.png" 
+                alt="Fleet Management System Architecture" 
+                className="rounded-lg"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Process Flow */}
+        <div className="mt-24">
+          <h3 className="text-4xl font-semibold text-gray-900 text-center mb-20">
+            Our Methodology Process
+          </h3>
+          
+          <div className="relative">
+            {/* Process SVG Background Line (visible on lg screens) */}
+            <div className="hidden lg:block absolute top-1/2 transform -translate-y-1/2 w-full">
+              <svg height="24" width="100%" className="absolute">
+                <line x1="0" y1="12" x2="100%" y2="12" stroke="#E5E7EB" strokeWidth="4" strokeDasharray="1,10" />
+              </svg>
+            </div>
+            
+            {/* Process Steps */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {/* Step 1 */}
+              <div className="relative bg-white p-6 rounded-lg shadow-md">
+                <div className="lg:absolute lg:-top-12 lg:left-1/2 lg:transform lg:-translate-x-1/2 flex items-center justify-center h-16 w-16 rounded-full bg-[#000e54] text-white mx-auto mb-6 lg:mb-0">
+                  <span className="text-xl font-semibold">1</span>
+                </div>
+                <h4 className="text-xl font-semibold text-gray-900 text-center mt-6">Data Collection</h4>
+                <div className="mt-4 flex justify-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 text-[#000e54]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0" />
+                  </svg>
+                </div>
+                <p className="mt-4 text-gray-800 text-center text-base">
+                Real-time vehicle tracking: location, speed, fuel use, and engine health—all monitored 24/7.
+                </p>
+              </div>
+              
+              {/* Step 2 */}
+              <div className="relative bg-white p-6 rounded-lg shadow-md">
+                <div className="lg:absolute lg:-top-12 lg:left-1/2 lg:transform lg:-translate-x-1/2 flex items-center justify-center h-16 w-16 rounded-full bg-[#000e54] text-white mx-auto mb-6 lg:mb-0">
+                  <span className="text-xl font-semibold">2</span>
+                </div>
+                <h4 className="text-xl font-semibold text-gray-900 text-center mt-6">Secure Transmission</h4>
+                <div className="mt-4 flex justify-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 text-[#000e54]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0" />
+                  </svg>
+                </div>
+                <p className="mt-4 text-gray-800 text-center text-base">
+                Bank-grade encryption protects your data during transmission to our cloud—ensuring security from vehicle to server.
+                </p>
+              </div>
+              
+              {/* Step 3 */}
+              <div className="relative bg-white p-6 rounded-lg shadow-md">
+                <div className="lg:absolute lg:-top-12 lg:left-1/2 lg:transform lg:-translate-x-1/2 flex items-center justify-center h-16 w-16 rounded-full bg-[#000e54] text-white mx-auto mb-6 lg:mb-0">
+                  <span className="text-xl font-semibold">3</span>
+                </div>
+                <h4 className="text-xl font-semibold text-gray-900 text-center mt-6">Analysis & Processing</h4>
+                <div className="mt-4 flex justify-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 text-[#000e54]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+                  </svg>
+                </div>
+                <p className="mt-4 text-gray-800 text-center text-base">
+                Smart analytics spot trends and recommend improvements—automatically.
+                </p>
+              </div>
+              
+              {/* Step 4 */}
+              <div className="relative bg-white p-6 rounded-lg shadow-md">
+                <div className="lg:absolute lg:-top-12 lg:left-1/2 lg:transform lg:-translate-x-1/2 flex items-center justify-center h-16 w-16 rounded-full bg-[#000e54] text-white mx-auto mb-6 lg:mb-0">
+                  <span className="text-xl font-semibold">4</span>
+                </div>
+                <h4 className="text-xl font-semibold text-gray-900 text-center mt-6">Actionable Insights</h4>
+                <div className="mt-4 flex justify-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 text-[#000e54]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                </div>
+                <p className="mt-4 text-gray-800 text-center text-base">
+                See everything, optimize everything—your dashboard shows real-time fleet performance with smart improvement tips.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Technology Stack */}
+        <div className="mt-24" >
+          <h3 className="text-4xl font-semibold text-gray-900 text-center mb-12">
+            Our Technology Stack
+          </h3>
+          
+          <div className="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
+            <div className="mt-10 lg:mt-0 order-2 lg:order-1">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 400" className="w-full">
+                {/* Background */}
+                <rect width="500" height="400" fill="white" rx="10" />
+                
+                {/* Layers */}
+                <g transform="translate(50, 50)">
+                  {/* UI Layer */}
+                  <rect x="0" y="0" width="400" height="60" fill="#000e54" rx="5" />
+                  <text x="200" y="35" textAnchor="middle" fill="white" fontWeight="semibold" fontSize="18">User Interface Layer</text>
+                  
+                  {/* API Layer */}
+                  <rect x="0" y="90" width="400" height="60" fill="#000e54" rx="5" />
+                  <text x="200" y="125" textAnchor="middle" fill="white" fontWeight="semibold" fontSize="18">API Layer</text>
+                  
+                  {/* Processing Layer */}
+                  <rect x="0" y="180" width="400" height="60" fill="#000e54" rx="5" />
+                  <text x="200" y="215" textAnchor="middle" fill="white" fontWeight="semibold" fontSize="18">Processing Layer</text>
+                  
+                  {/* Data Layer */}
+                  <rect x="0" y="270" width="400" height="60" fill="#000e54" rx="5" />
+                  <text x="200" y="305" textAnchor="middle" fill="white" fontWeight="semibold" fontSize="18">Data Layer</text>
+                  
+                  {/* Connecting Lines */}
+                  <line x1="200" y1="60" x2="200" y2="90" stroke="#000e54" strokeWidth="3" strokeDasharray="5,5" />
+                  <line x1="200" y1="150" x2="200" y2="180" stroke="#000e54" strokeWidth="3" strokeDasharray="5,5" />
+                  <line x1="200" y1="240" x2="200" y2="270" stroke="#000e54" strokeWidth="3" strokeDasharray="5,5" />
+                </g>
+              </svg>
+            </div>
+            <div className="order-1 lg:order-2">
+              <h3 className="text-xl px-2 font-semibold text-gray-900">
+                Integrated Technology
+              </h3>
+              <p className="mt-3 px-2 text-base text-gray-800">
+                Our system combines multiple technology layers to deliver a comprehensive fleet management solution.
+              </p>
+              <div className="mt-8 px-4 space-y-6">
+                <div className="border-l-4 border-[#000e54] pl-4">
+                  <h4 className="text-xl font-semibold text-gray-900">User Interface Layer</h4>
+                  <p className="mt-2 text-base text-gray-800">Interactive dashboards, real-time maps, and mobile applications that provide access anywhere, anytime.</p>
+                </div>
+                <div className="border-l-4 border-[#000e54] pl-4">
+                  <h4 className="text-xl font-semibold text-gray-900">API Layer</h4>
+                  <p className="mt-2 text-base text-gray-500">Secure APIs that facilitate integration with your existing systems and third-party applications.</p>
+                </div>
+                <div className="border-l-4 border-[#000e54] pl-4">
+                  <h4 className="text-xl font-semibold text-gray-900">Processing Layer</h4>
+                  <p className="mt-2 text-base text-gray-800">Machine learning algorithms that analyze trends, predict maintenance needs, and optimize routes.</p>
+                </div>
+                <div className="border-l-4 border-[#000e54] pl-4">
+                  <h4 className="text-xl font-semibold text-gray-900">Data Layer</h4>
+                  <p className="mt-2 text-base text-gray-800">Secure cloud infrastructure that stores and processes fleet data with multiple redundancies and backups.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Results & Benefits */}
+        <div className="mt-24 max-w-6xl mx-auto">
+          <h3 className="text-4xl font-semibold text-gray-900 text-center mb-12">
+            Proven Results
+          </h3>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <div className="bg-white p-6 rounded-lg shadow-md border-t-4 border-[#000e54]">
+              <div className="flex justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-[#000e54]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <h4 className="mt-4 text-xl font-semibold text-gray-900 text-center">Cost Savings</h4>
+              <p className="mt-4 text-gray-800 text-center text-base">
+                Customers report average fuel savings of 15% and maintenance cost reductions of 25%.
+              </p>
+            </div>
+            
+            <div className="bg-white p-6 rounded-lg shadow-md border-t-4 border-[#000e54]">
+              <div className="flex justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-[#000e54]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+                </svg>
+              </div>
+              <h4 className="mt-4 text-xl font-semibold text-gray-900 text-center">Improved Efficiency</h4>
+              <p className="mt-4 text-gray-800 text-center text-base">
+                Route optimization reduces travel time by up to 20%, increasing deliveries per day.
+              </p>
+            </div>
+            
+            <div className="bg-white p-6 rounded-lg shadow-md border-t-4 border-#000e54">
+              <div className="flex justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-[#000e54]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                </svg>
+              </div>
+              <h4 className="mt-4 text-xl font-semibold text-gray-900 text-center">Enhanced Safety</h4>
+              <p className="mt-4 text-gray-800 text-center text-base">
+                Driver behavior monitoring has helped reduce accidents by an average of 30%.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+{/* how to choose the service */}
+<section id="gpstracking-howchoose" className=" py-10 max-w-6xl mx-auto p-4 ">
+      <div className="max-w-6xl mx-auto">
+        <h2 className="lg:text-4xl md:text-4xl font-semibold text-center text-gray-900 mb-12">
+          How to Choose the Best GPS Fleet Service
+        </h2>
+
+        {/* Step 1 */}
+        <div className="flex flex-col lg:flex-row lg:h-[350px] items-center bg-white rounded-xl shadow-lg overflow-hidden mb-12">
+          <div className="w-full lg:w-1/2 p-8">
+            <h3 className="text-xl font-semibold text-gray-800 mb-4">1. Assess Your Fleet Needs</h3>
+            <p className="text-gray-800 mb-4 text-base">Determine what features are essential for your operations:</p>
+            <ul className="list-disc pl-6 text-gray-800 space-y-2 text-base">
+              <li>Real-time tracking requirements</li>
+              <li>Number of vehicles to monitor</li>
+              <li>Types of reports needed</li>
+              <li>Integration with existing systems</li>
+            </ul>
+          </div>
+          <div className="w-full lg:w-1/2 p-8 bg-blue-50 flex justify-center">
+            <svg width="100%" height="auto" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+              <rect x="50" y="50" width="300" height="200" fill="#f0f8ff" rx="10"/>
+              <path d="M70 80 H330 M70 110 H330 M70 140 H330 M70 170 H330" stroke="#4a90e2" strokeWidth="2"/>
+              <circle cx="100" cy="95" r="10" fill="#4a90e2"/>
+              <circle cx="100" cy="125" r="10" fill="#4a90e2"/>
+              <circle cx="100" cy="155" r="10" fill="#4a90e2"/>
+              <circle cx="100" cy="185" r="10" fill="#4a90e2"/>
+              <text x="130" y="100" fontFamily="Arial" fontSize="14" fill="#333">Real-time tracking</text>
+              <text x="130" y="130" fontFamily="Arial" fontSize="14" fill="#333">Vehicle capacity</text>
+              <text x="130" y="160" fontFamily="Arial" fontSize="14" fill="#333">Reporting needs</text>
+              <text x="130" y="190" fontFamily="Arial" fontSize="14" fill="#333">System integration</text>
+            </svg>
+          </div>
+        </div>
+
+        {/* Step 2 */}
+        <div className="flex flex-col lg:flex-row-reverse lg:h-[350px]   items-center bg-white rounded-xl shadow-lg overflow-hidden mb-12">
+          <div className="w-full lg:w-1/2 p-8">
+            <h3 className="text-xl font-semibold text-gray-800 mb-4">2. Compare Hardware Options</h3>
+            <p className="text-gray-800 mb-4 text-base">Different GPS devices offer varying capabilities:</p>
+            <ul className="list-disc pl-6 text-gray-800 space-y-2 text-base">
+              <li>OBD-II plug-in devices (easy installation)</li>
+              <li>Hardwired units (permanent solution)</li>
+              <li>Battery-powered trackers (for assets)</li>
+              <li>Smartphone-based tracking (low-cost option)</li>
+            </ul>
+          </div>
+          <div className="w-full lg:w-1/2 p-8 bg-red-50 flex justify-center">
+            <svg width="100%" height="auto" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+              <rect x="50" y="50" width="300" height="200" fill="#fff5f5" rx="10"/>
+              <rect x="80" y="80" width="60" height="40" fill="#ff6b6b" rx="5"/>
+              <text x="110" y="105" fontFamily="Arial" fontSize="12" fill="white" textAnchor="middle">OBD-II</text>
+              <rect x="160" y="80" width="60" height="60" fill="#ff9e7d" rx="5"/>
+              <text x="190" y="115" fontFamily="Arial" fontSize="12" fill="white" textAnchor="middle">Hardwired</text>
+              <circle cx="270" cy="100" r="30" fill="#8ce99a"/>
+              <text x="270" y="105" fontFamily="Arial" fontSize="12" fill="white" textAnchor="middle">Battery</text>
+              <rect x="120" y="160" width="50" height="80" fill="#74c0fc" rx="5"/>
+              <rect x="125" y="165" width="40" height="70" fill="#e7f5ff" rx="3"/>
+              <circle cx="145" cy="185" r="5" fill="#74c0fc"/>
+            </svg>
+          </div>
+        </div>
+
+        {/* Step 3 */}
+        <div className="flex flex-col lg:flex-row items-center lg:h-[350px] bg-white rounded-xl shadow-lg overflow-hidden mb-12">
+          <div className="w-full lg:w-1/2 p-8">
+            <h3 className="text-xl font-semibold text-gray-800 mb-4">3. Evaluate Software Features</h3>
+            <p className="text-gray-800 mb-4 text-base">Look for these critical software capabilities:</p>
+            <ul className="list-disc pl-6 text-gray-800 space-y-2 text-base">
+              <li>Customizable dashboards and alerts</li>
+              <li>Geofencing and route optimization</li>
+              <li>Driver behavior monitoring</li>
+              <li>Maintenance scheduling</li>
+              <li>Fuel usage tracking</li>
+            </ul>
+          </div>
+          <div className="w-full lg:w-1/2 p-8 bg-purple-50 flex justify-center">
+            <svg width="100%" height="auto" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+              <rect x="50" y="50" width="300" height="200" fill="#f8f0ff" rx="10"/>
+              <rect x="70" y="70" width="260" height="160" fill="#9775fa" rx="5"/>
+              <rect x="80" y="80" width="240" height="140" fill="#e5dbff" rx="3"/>
+              <rect x="90" y="90" width="70" height="30" fill="#9775fa" rx="2"/>
+              <rect x="170" y="90" width="70" height="30" fill="#9775fa" rx="2"/>
+              <rect x="250" y="90" width="60" height="30" fill="#9775fa" rx="2"/>
+              <rect x="90" y="130" width="220" height="80" fill="#b197fc" rx="2"/>
+              <line x1="90" y1="150" x2="310" y2="150" stroke="#9775fa" strokeWidth="2"/>
+              <line x1="90" y1="170" x2="310" y2="170" stroke="#9775fa" strokeWidth="2"/>
+              <line x1="90" y1="190" x2="310" y2="190" stroke="#9775fa" strokeWidth="2"/>
+            </svg>
+          </div>
+        </div>
+
+        {/* Step 4 */}
+        <div className="flex flex-col lg:flex-row-reverse lg:h-[350px] items-center bg-white rounded-xl shadow-lg overflow-hidden mb-12">
+          <div className="w-full lg:w-1/2 p-8">
+            <h3 className="text-xl font-semibold text-gray-800 mb-4">4. Consider Reliability & Support</h3>
+            <p className="text-gray-800 mb-4 text-base">Essential service factors to evaluate:</p>
+            <ul className="list-disc pl-6 text-gray-800 space-y-2 text-base">
+              <li>Uptime guarantees (look for 99%+)</li>
+              <li>Customer support availability (24/7?)</li>
+              <li>Onboarding and training offered</li>
+              <li>User community and documentation</li>
+              <li>Company reputation and reviews</li>
+            </ul>
+          </div>
+          <div className="w-full lg:w-1/2 p-8 bg-yellow-50 flex justify-center">
+            <svg width="100%" height="auto" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+              <rect x="50" y="50" width="300" height="200" fill="#fff9db" rx="10"/>
+              <path d="M200 80 L150 120 L150 180 L250 180 L250 120 Z" fill="#ffd43b" stroke="#f08c00" strokeWidth="3"/>
+              <text x="200" y="150" fontFamily="Arial" fontSize="24" fill="#f08c00" textAnchor="middle" fontWeight="bold">99.9%</text>
+              <circle cx="120" cy="100" r="15" fill="#74c0fc"/>
+              <path d="M120 90 L120 100 L125 105" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+              <circle cx="280" cy="100" r="15" fill="#63e6be"/>
+              <path d="M280 95 L280 105 M275 100 L285 100" stroke="white" strokeWidth="2"/>
+              <rect x="120" y="150" width="160" height="40" fill="#ff8787" rx="5"/>
+              <text x="200" y="175" fontFamily="Arial" fontSize="14" fill="white" textAnchor="middle">24/7 Support</text>
+            </svg>
+          </div>
+        </div>
+
+        {/* Step 5 */}
+        <div className="flex flex-col lg:flex-row items-center lg:h-[350px] bg-white rounded-xl shadow-lg overflow-hidden mb-12">
+          <div className="w-full lg:w-1/2 p-8">
+            <h3 className="text-xl font-semibold text-gray-800 mb-4">5. Analyze Pricing Structure</h3>
+            <p className="text-gray-800 mb-4 text-base">Understand the total cost of ownership:</p>
+            <ul className="list-disc pl-6 text-gray-800 space-y-2 text-base">
+              <li>Monthly per-vehicle fees</li>
+              <li>Hardware costs (purchase vs. lease)</li>
+              <li>Installation charges</li>
+              <li>Contract length requirements</li>
+              <li>Additional feature costs</li>
+            </ul>
+          </div>
+          <div className="w-full lg:w-1/2 p-8 bg-green-50 flex justify-center">
+            <svg width="100%" height="auto" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+              <rect x="50" y="50" width="300" height="200" fill="#ebfbee" rx="10"/>
+              <rect x="80" y="80" width="240" height="150" fill="#d3f9d8" rx="3"/>
+              <line x1="80" y1="130" x2="320" y2="130" stroke="#40c057" strokeWidth="2" strokeDasharray="5,5"/>
+              <line x1="80" y1="180" x2="320" y2="180" stroke="#40c057" strokeWidth="2" strokeDasharray="5,5"/>
+              <path d="M100 200 L140 150 L180 170 L220 120 L260 160 L300 140" fill="none" stroke="#2b8a3e" strokeWidth="3"/>
+              <text x="100" y="210" fontFamily="Arial" fontSize="12" fill="#2b8a3e" textAnchor="middle">$25</text>
+              <text x="140" y="210" fontFamily="Arial" fontSize="12" fill="#2b8a3e" textAnchor="middle">$35</text>
+              <text x="180" y="210" fontFamily="Arial" fontSize="12" fill="#2b8a3e" textAnchor="middle">$45</text>
+              <text x="220" y="210" fontFamily="Arial" fontSize="12" fill="#2b8a3e" textAnchor="middle">$30</text>
+              <text x="260" y="210" fontFamily="Arial" fontSize="12" fill="#2b8a3e" textAnchor="middle">$40</text>
+              <text x="300" y="210" fontFamily="Arial" fontSize="12" fill="#2b8a3e" textAnchor="middle">$50</text>
+              <rect x="150" y="100" width="100" height="60" fill="#fff" rx="3" stroke="#adb5bd" strokeWidth="1"/>
+              <text x="200" y="125" fontFamily="Arial" fontSize="14" fill="#495057" textAnchor="middle">$1,250</text>
+              <text x="200" y="145" fontFamily="Arial" fontSize="10" fill="#868e96" textAnchor="middle">Monthly Total</text>
+            </svg>
+          </div>
+        </div>
+
+        {/* Step 6 */}
+        <div className="flex flex-col lg:flex-row-reverse items-center lg:h-[350px] bg-white rounded-xl shadow-lg overflow-hidden mb-12">
+          <div className="w-full lg:w-1/2 p-8">
+            <h3 className="text-xl font-semibold text-gray-800 mb-4">6. Check Integration Capabilities</h3>
+            <p className="text-gray-800 mb-4 text-base">Ensure compatibility with your existing tools:</p>
+            <ul className="list-disc pl-6 text-gray-800 space-y-2 text-base">
+              <li>Dispatch and routing software</li>
+              <li>Accounting and invoicing systems</li>
+              <li>ELD compliance solutions</li>
+              <li>CRM and customer portals</li>
+              <li>API access for custom solutions</li>
+            </ul>
+          </div>
+          <div className="w-full lg:w-1/2 p-8 bg-orange-50 flex justify-center">
+            <svg width="100%" height="auto" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+              <rect x="50" y="50" width="300" height="200" fill="#fff4e6" rx="10"/>
+              <circle cx="200" cy="150" r="50" fill="#ff922b"/>
+              <text x="200" y="155" fontFamily="Arial" fontSize="14" fill="white" textAnchor="middle" fontWeight="bold">GPS</text>
+              <rect x="80" y="80" width="60" height="40" fill="#ffc078" rx="3"/>
+              <text x="110" y="105" fontFamily="Arial" fontSize="10" fill="white" textAnchor="middle">Dispatch</text>
+              <rect x="260" y="80" width="60" height="40" fill="#ffc078" rx="3"/>
+              <text x="290" y="105" fontFamily="Arial" fontSize="10" fill="white" textAnchor="middle">Accounting</text>
+              <rect x="80" y="180" width="60" height="40" fill="#ffc078" rx="3"/>
+              <text x="110" y="205" fontFamily="Arial" fontSize="10" fill="white" textAnchor="middle">ELD</text>
+              <rect x="260" y="180" width="60" height="40" fill="#ffc078" rx="3"/>
+              <text x="290" y="205" fontFamily="Arial" fontSize="10" fill="white" textAnchor="middle">CRM</text>
+              <line x1="140" y1="100" x2="170" y2="130" stroke="#ff922b" strokeWidth="2"/>
+              <line x1="260" y1="100" x2="230" y2="130" stroke="#ff922b" strokeWidth="2"/>
+              <line x1="140" y1="200" x2="170" y2="170" stroke="#ff922b" strokeWidth="2"/>
+              <line x1="260" y1="200" x2="230" y2="170" stroke="#ff922b" strokeWidth="2"/>
+            </svg>
+          </div>
+        </div>
+
+        {/* Step 7 */}
+        <div className="flex flex-col lg:flex-row items-center lg:h-[350px] bg-white rounded-xl shadow-lg overflow-hidden">
+          <div className="w-full lg:w-1/2 p-8">
+            <h3 className="text-xl font-semibold text-gray-800 mb-4">7. Test Before Committing</h3>
+            <p className="text-gray-800 mb-4 text-base">Always evaluate before full implementation:</p>
+            <ul className="list-disc pl-6 text-gray-800 space-y-2 text-base">
+              <li>Request a free trial or demo</li>
+              <li>Test with a few vehicles first</li>
+              <li>Evaluate ease of use for your team</li>
+              <li>Check mobile app functionality</li>
+              <li>Assess reporting accuracy</li>
+            </ul>
+          </div>
+          <div className="w-full lg:w-1/2 p-8 bg-teal-50 flex justify-center">
+            <svg width="100%" height="auto" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+              <rect x="50" y="50" width="300" height="200" fill="#e6fcf5" rx="10"/>
+              <rect x="120" y="100" width="160" height="80" fill="#38d9a9" rx="5"/>
+              <rect x="140" y="110" width="120" height="60" fill="#96f2d7" rx="3"/>
+              <circle cx="150" cy="160" r="15" fill="#087f5b"/>
+              <circle cx="250" cy="160" r="15" fill="#087f5b"/>
+              <circle cx="280" cy="120" r="30" fill="none" stroke="#087f5b" strokeWidth="3"/>
+              <line x1="300" y1="140" x2="330" y2="170" stroke="#087f5b" strokeWidth="3"/>
+              <path d="M130 200 L150 220 L180 190" fill="none" stroke="#087f5b" strokeWidth="3" strokeLinecap="round"/>
+              <path d="M210 200 L230 220 L260 190" fill="none" stroke="#087f5b" strokeWidth="3" strokeLinecap="round"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+{/* alternative */}
+<section id="gps-alternative" className="py-10 max-w-6xl mx-auto">
+      <div className="container mx-auto max-w-6xl mx-auto p-4">
+        {/* Header */}
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-4xl font-semibold text-gray-900 mb-4">
+            Alternative Fleet Tracking Options
+          </h2>
+          <div className="flex justify-center mb-6">
+            <svg width="200" height="4" viewBox="0 0 200 4">
+              <path d="M0 2H200" stroke="#000e54" strokeWidth="3" strokeLinecap="round"/>
+            </svg>
+          </div>
+          <p className="text-xl text-gray-800 max-w-3xl mx-auto">
+          Go Beyond GPS: Smarter Ways to Monitor Your Fleet
+          </p>
+        </div>
+
+        {/* Options Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 ">
+{alternatives.map((option) => (
+  <div 
+    key={option.title}  // unique key for each alternative
+    className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-200"
+  >
+    <div className="h-48 flex items-center justify-center p-6">
+      <img 
+        src={option.visual} 
+        alt={option.title}
+        className="h-[350px] w-[700px] mt-35"
+        loading="lazy"
+      />
+    </div>
+    <div className="p-6">
+      <h3 className="text-xl font-semibold text-gray-800 mt-40 mb-2">{option.title}</h3>
+      <p className="text-gray-800 mb-4 text-base">{option.description}</p>
+      
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="bg-green-50 p-4 rounded-lg">
+          <h4 className="font-semibold text-xl text-green-800 mb-2 flex items-center">
+            <svg className="w-5 h-5 text-green-500 mr-2" viewBox="0 0 20 20" fill="currentColor">
+              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/>
+            </svg>
+            Advantages
+          </h4>
+          <ul className="space-y-2">
+            {option.pros.map((pro) => (
+              <li key={pro} className="text-base text-green-700 flex items-start">
+                <svg className="w-4 h-4 text-green-500 mt-0.5 mr-2 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/>
+                </svg>
+                {pro}
+              </li>
+            ))}
+          </ul>
+        </div>
+        
+        <div className="bg-red-50 p-4 rounded-lg">
+          <h4 className="font-semibold text-xl text-red-800 mb-2 flex items-center">
+            <svg className="w-5 h-5 text-red-500 mr-2" viewBox="0 0 20 20" fill="currentColor">
+              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd"/>
+            </svg>
+            Limitations
+          </h4>
+          <ul className="space-y-2">
+            {option.cons.map((con) => (
+              <li key={con} className="text-base text-red-700 flex items-start">
+                <svg className="w-4 h-4 text-red-500 mt-0.5 mr-2 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd"/>
+                </svg>
+                {con}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+))}
+
+        </div>
+
+        {/* Comparison Chart */}
+        <div className="mt-16 bg-white rounded-xl shadow-lg overflow-hidden">
+          <div className="md:flex">
+            <div className="md:w-1/3 bg-[#000e54] text-white p-8 md:p-12">
+              <h3 className="text-xl font-semibold mb-6">Technology Comparison</h3>
+              <p className="text-gray-300 mb-6 text-base">
+                See how different tracking technologies stack up across key metrics
+              </p>
+              <ul className="space-y-4">
+                {[
+                  "Coverage Area",
+                  "Update Frequency",
+                  "Hardware Cost",
+                  "Ongoing Costs",
+                  "Installation Complexity",
+                  "Data Richness"
+                ].map((item, index) => (
+                  <li key={index} className="text-gray-300 text-base">{item}</li>
+                ))}
+              </ul>
+            </div>
+            <div className="md:w-2/3 p-4 overflow-x-auto">
+              <svg width="100%" height="400" viewBox="0 0 800 400" className="min-w-[600px]">
+                {/* X-axis */}
+                <path d="M50 350H750" stroke="#6B7280" strokeWidth="2"/>
+                
+                {/* Y-axis labels */}
+                <text x="30" y="70" textAnchor="end" fontSize="12" fill="#6B7280">Best</text>
+                <text x="30" y="150" textAnchor="end" fontSize="12" fill="#6B7280">Good</text>
+                <text x="30" y="230" textAnchor="end" fontSize="12" fill="#6B7280">Fair</text>
+                <text x="30" y="310" textAnchor="end" fontSize="12" fill="#6B7280">Poor</text>
+                
+                {/* Grid lines */}
+                <path d="M50 70H750" stroke="#E5E7EB" strokeWidth="1"/>
+                <path d="M50 150H750" stroke="#E5E7EB" strokeWidth="1"/>
+                <path d="M50 230H750" stroke="#E5E7EB" strokeWidth="1"/>
+                <path d="M50 310H750" stroke="#E5E7EB" strokeWidth="1"/>
+                
+                {/* Data points - Cellular */}
+                <circle cx="120" cy="310" r="6" fill="#3B82F6"/>
+                <circle cx="220" cy="230" r="6" fill="#3B82F6"/>
+                <circle cx="320" cy="150" r="6" fill="#3B82F6"/>
+                <circle cx="420" cy="150" r="6" fill="#3B82F6"/>
+                <circle cx="520" cy="230" r="6" fill="#3B82F6"/>
+                <circle cx="620" cy="150" r="6" fill="#3B82F6"/>
+                <text x="120" y="380" textAnchor="middle" fontSize="12" fill="#6B7280">Cellular</text>
+                
+                {/* Data points - Satellite */}
+                <circle cx="120" cy="70" r="6" fill="#10B981"/>
+                <circle cx="220" cy="310" r="6" fill="#10B981"/>
+                <circle cx="320" cy="310" r="6" fill="#10B981"/>
+                <circle cx="420" cy="230" r="6" fill="#10B981"/>
+                <circle cx="520" cy="150" r="6" fill="#10B981"/>
+                <circle cx="620" cy="230" r="6" fill="#10B981"/>
+                <text x="220" y="380" textAnchor="middle" fontSize="12" fill="#6B7280">Satellite</text>
+                
+                {/* Data points - Bluetooth */}
+                <circle cx="120" cy="350" r="6" fill="#F59E0B"/>
+                <circle cx="220" cy="70" r="6" fill="#F59E0B"/>
+                <circle cx="320" cy="350" r="6" fill="#F59E0B"/>
+                <circle cx="420" cy="310" r="6" fill="#F59E0B"/>
+                <circle cx="520" cy="70" r="6" fill="#F59E0B"/>
+                <circle cx="620" cy="310" r="6" fill="#F59E0B"/>
+                <text x="320" y="380" textAnchor="middle" fontSize="12" fill="#6B7280">Bluetooth</text>
+                
+                {/* Data points - RFID */}
+                <circle cx="120" cy="350" r="6" fill="#EF4444"/>
+                <circle cx="220" cy="350" r="6" fill="#EF4444"/>
+                <circle cx="320" cy="70" r="6" fill="#EF4444"/>
+                <circle cx="420" cy="350" r="6" fill="#EF4444"/>
+                <circle cx="520" cy="310" r="6" fill="#EF4444"/>
+                <circle cx="620" cy="70" r="6" fill="#EF4444"/>
+                <text x="420" y="380" textAnchor="middle" fontSize="12" fill="#6B7280">RFID</text>
+                
+                {/* Category labels */}
+                <text x="120" y="400" textAnchor="middle" fontSize="12" fill="#6B7280">Coverage</text>
+                <text x="220" y="400" textAnchor="middle" fontSize="12" fill="#6B7280">Frequency</text>
+                <text x="320" y="400" textAnchor="middle" fontSize="12" fill="#6B7280">Hardware Cost</text>
+                <text x="420" y="400" textAnchor="middle" fontSize="12" fill="#6B7280">Ongoing Cost</text>
+                <text x="520" y="400" textAnchor="middle" fontSize="12" fill="#6B7280">Installation</text>
+                <text x="620" y="400" textAnchor="middle" fontSize="12" fill="#6B7280">Data Richness</text>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
 
 {/* related articles */}
@@ -2534,7 +1765,10 @@ const GPSFleetContent = () => {
       />
       </div>
 
-    
+      {/* faq */}
+      <div id="gpsfleet-faq" className="">
+        <FAQ faqsData={ gpsFleetFAQs} />
+      </div>
     </>
   );
 };
