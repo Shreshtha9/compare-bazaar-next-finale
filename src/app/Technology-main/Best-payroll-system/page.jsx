@@ -533,11 +533,7 @@ const BestPayrollSystem = () => {
       title: "Introduction to Best Payroll System",
       active: false,
     },
-    {
-      id: "Tracking-Work",
-      title: "How Does Fleet Management Tracking Work?",
-      active: false,
-    },
+  
     {
       id: "recommendations",
       title: " Our top 5 Payroll System recommendations",
